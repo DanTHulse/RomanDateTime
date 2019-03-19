@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomanDate", "RomanDate\RomanDate.csproj", "{605A4FCD-9BA2-4C02-84E2-9265EDB0156E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomanDate.Tests", "..\RomanDate.Tests\RomanDate.Tests.csproj", "{7A1F3861-1B7C-453B-B7AB-DB45C681AA1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{605A4FCD-9BA2-4C02-84E2-9265EDB0156E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{605A4FCD-9BA2-4C02-84E2-9265EDB0156E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{605A4FCD-9BA2-4C02-84E2-9265EDB0156E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{605A4FCD-9BA2-4C02-84E2-9265EDB0156E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1F3861-1B7C-453B-B7AB-DB45C681AA1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1F3861-1B7C-453B-B7AB-DB45C681AA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1F3861-1B7C-453B-B7AB-DB45C681AA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1F3861-1B7C-453B-B7AB-DB45C681AA1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {189FF7F4-1D75-4BA4-A7EB-4D76B8C73A88}
+	EndGlobalSection
+EndGlobal
