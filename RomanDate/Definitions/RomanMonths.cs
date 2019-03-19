@@ -71,9 +71,7 @@ namespace RomanDate.Definitions
 
         public static RomanMonths GetRomanMonth(Months month)
         {
-            var monthVal = (Months)month;
-
-            switch (monthVal)
+            switch (month)
             {
                 case Months.Ianuarius:
                     return Ianuarias;
