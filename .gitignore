@@ -53,3 +53,5 @@ dkms.conf
 /.vs
 /RomanDate/bin/Debug/netstandard2.0
 /RomanDate/obj
+/RomanDate.Tests/bin/Debug/netcoreapp2.2
+/RomanDate.Tests/obj
