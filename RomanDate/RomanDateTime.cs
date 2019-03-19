@@ -84,135 +84,6 @@ namespace RomanDate
             return new RomanDateTime(DateTimeData.AddYears(years));
         }
 
-        public RomanDateTime ToNextSetDay(SetDays? setDay = null)
-        {
-            var daysTo = DaysUntilSetDay.Value != 0 ? DaysUntilSetDay.Value - 1 : 0;
-            var refDate = DateTimeData;
-            var sDay = SetDay;
-            var cMonth = CalendarMonth;
-            var next = RomanMonths.GetNextRomanMonth(CalendarMonth);
-
-            if (setDay.HasValue && setDay.Value == sDay.SetDay)
-            {
-                if (daysTo == 0)
-                {
-                    if (next.Month == Months.Ianuarius)
-                        refDate = refDate.AddYears(1);
-
-                    refDate = refDate.AddMonths(1).StartOfMonth();
-
-                    if (setDay.Value == SetDays.Nonae)
-                    {
-                        daysTo = (next.Nonae - 1);
-                    }
-                    else if (setDay.Value == SetDays.Idus)
-                    {
-                        daysTo = (next.Idus - 1);
-                    }
-                }
-            }
-            else if (setDay.HasValue && (int)setDay.Value > (int)sDay.SetDay)
-            {
-                if (setDay.Value == SetDays.Nonae)
-                {
-                    daysTo = (cMonth.Nonae - 1);
-                }
-                else if (setDay.Value == SetDays.Idus)
-                {
-                    daysTo = (cMonth.Idus - 1);
-                }
-            }
-            else if (setDay.HasValue && (int)setDay.Value < (int)sDay.SetDay)
-            {
-                if (next.Month == Months.Ianuarius)
-                    refDate = refDate.AddYears(1);
-
-                refDate = refDate.AddMonths(1).StartOfMonth();
-
-                if (setDay.Value == SetDays.Kalendae)
-                {
-                    daysTo = 0;
-                }
-                else if (setDay.Value == SetDays.Nonae)
-                {
-                    daysTo = (cMonth.Nonae - 1);
-                }
-            }
-
-            return new RomanDateTime(refDate.AddDays(daysTo));
-        }
-
-        public RomanDateTime ToPreviousSetDay(SetDays? setDay = null)
-        {
-            var refDate = DateTimeData;
-            var cMonth = CalendarMonth;
-            var sDay = SetDay;
-            var prev = RomanMonths.GetPreviousRomanMonth(cMonth);
-
-            if (setDay.HasValue && setDay.Value == sDay.SetDay)
-            {
-                if (sDay.SetDay == SetDays.Kalendae)
-                {
-                    return new RomanDateTime(refDate.Year, refDate.Month, 1);
-                }
-                else if (sDay.SetDay == SetDays.Nonae)
-                {
-                    if (prev.Month == Months.December)
-                        refDate = refDate.AddYears(-1);
-                    return new RomanDateTime(refDate.Year, (int)prev.Month, prev.Nonae);
-                }
-                else
-                {
-                    if (prev.Month == Months.December)
-                        refDate = refDate.AddYears(-1);
-                    return new RomanDateTime(refDate.Year, (int)prev.Month, prev.Idus);
-                }
-            }
-            else if (setDay.HasValue && (int)setDay.Value > (int)sDay.SetDay)
-            {
-                if (setDay.Value == SetDays.Nonae)
-                {
-                    return new RomanDateTime(refDate.Year, refDate.Month, prev.Nonae);
-                }
-                else if (setDay.Value == SetDays.Idus)
-                {
-                    if (prev.Month == Months.December)
-                        refDate = refDate.AddYears(-1);
-                    return new RomanDateTime(refDate.Year, (int)prev.Month, prev.Idus);
-                }
-            }
-            else if (setDay.HasValue && (int)setDay.Value < (int)sDay.SetDay)
-            {
-                if (setDay.Value == SetDays.Kalendae)
-                {
-                    if (prev.Month == Months.December)
-                        refDate = refDate.AddYears(-1);
-                    return new RomanDateTime(refDate.Year, (int)prev.Month, 1);
-                }
-                else if (setDay.Value == SetDays.Nonae)
-                {
-                    return new RomanDateTime(refDate.Year, refDate.Month, prev.Nonae);
-                }
-            }
-            else
-            {
-                if (sDay.SetDay == SetDays.Kalendae)
-                {
-                    return new RomanDateTime(refDate.Year, refDate.Month, prev.Idus);
-                }
-                else if (sDay.SetDay == SetDays.Nonae)
-                {
-                    return new RomanDateTime(refDate.Year, refDate.Month, 1);
-                }
-                else
-                {
-                    return new RomanDateTime(refDate.Year, refDate.Month, prev.Nonae);
-                }
-            }
-
-            return new RomanDateTime();
-        }
-
         public override string ToString()
         {
             return $"{Time}, {Day} {Year}";
@@ -271,41 +142,6 @@ namespace RomanDate
             return DateTimeData;
         }
 
-        public bool IsNundinae()
-        {
-            var year = DateTimeData.Year;
-            var startPosition = (NundinalLetters)(year % 8);
-            var enumList = EnumHelpers.EnumToList<NundinalLetters>();
-
-            var checkDates = new List<NundinalLetters>
-            {
-                CheckNundialLetter(new DateTime(year, 1, 1), startPosition),
-                CheckNundialLetter(new DateTime(year, 1, 5), startPosition),
-                CheckNundialLetter(new DateTime(year, 2, 5), startPosition),
-                CheckNundialLetter(new DateTime(year, 3, 7), startPosition),
-                CheckNundialLetter(new DateTime(year, 4, 5), startPosition),
-                CheckNundialLetter(new DateTime(year, 5, 7), startPosition),
-                CheckNundialLetter(new DateTime(year, 6, 5), startPosition),
-                CheckNundialLetter(new DateTime(year, 7, 7), startPosition),
-                CheckNundialLetter(new DateTime(year, 8, 5), startPosition),
-                CheckNundialLetter(new DateTime(year, 9, 5), startPosition),
-                CheckNundialLetter(new DateTime(year, 10, 7), startPosition),
-                CheckNundialLetter(new DateTime(year, 11, 5), startPosition),
-                CheckNundialLetter(new DateTime(year, 12, 5), startPosition),
-                };
-
-            var result = enumList.Where(p => !checkDates.Any(p2 => p2 == p)).ToList();
-
-            if (result.Any())
-            {
-                return result.First() == NundinalLetter;
-            }
-
-            var countResult = checkDates.GroupBy(i => i).OrderBy(g => g.Count()).Select(g => g.Key).ToList();
-
-            return countResult.First() == NundinalLetter;
-        }
-
         #region Private Methods
 
         private NundinalLetters GetNundinalLetter()
@@ -323,14 +159,6 @@ namespace RomanDate
             var cyclePosition = (NundinalLetters)daysFromCycle;
 
             return cyclePosition;
-        }
-
-        private NundinalLetters CheckNundialLetter(DateTime to, NundinalLetters startPosition)
-        {
-            var daysFromStart = (to - new DateTime(DateTimeData.Year, 1, 1)).Days;
-            var daysFromCycle = (((daysFromStart + (int)startPosition)) % 8);
-
-            return (NundinalLetters)daysFromCycle;
         }
 
         private string GetRomanDayString(bool shorten = false)

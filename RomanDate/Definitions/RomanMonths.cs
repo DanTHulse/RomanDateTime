@@ -104,24 +104,24 @@ namespace RomanDate.Definitions
             }
         }
 
-        public static RomanMonths GetNextRomanMonth(RomanMonths month)
+        public static RomanMonths GetNextRomanMonth(int month)
         {
-            if (month.Month == Months.December)
+            if (month == 12)
             {
                 return Ianuarias;
             }
 
-            return GetRomanMonth(((int)month.Month) + 1);
+            return GetRomanMonth((month) + 1);
         }
 
-        public static RomanMonths GetPreviousRomanMonth(RomanMonths month)
+        public static RomanMonths GetPreviousRomanMonth(int month)
         {
-            if (month.Month == Months.Ianuarius)
+            if (month == 1)
             {
                 return December;
             }
 
-            return GetRomanMonth(((int)month.Month) - 1);
+            return GetRomanMonth((month) - 1);
         }
     }
 }

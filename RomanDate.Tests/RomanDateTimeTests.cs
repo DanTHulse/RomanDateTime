@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RomanDate.Enums;
+using RomanDate.Helpers;
 using System;
 
 namespace RomanDate.Tests
@@ -300,6 +301,7 @@ namespace RomanDate.Tests
             Assert.AreEqual(expected, romanDate.ToDateTime());
         }
 
+        [Ignore]
         [TestMethod]
         public void ToNextSetDay_ReturnsNextSetDay()
         {
@@ -312,6 +314,7 @@ namespace RomanDate.Tests
             Assert.AreEqual(new DateTime(2019, 2, 1), nextFromIdus.ToDateTime());
         }
 
+        [Ignore]
         [TestMethod]
         public void ToNextSetDay_ReturnsNextSpecifiedSetDay()
         {
@@ -324,6 +327,7 @@ namespace RomanDate.Tests
             Assert.AreEqual(new DateTime(2019, 2, 13), nextIdus.ToDateTime());
         }
 
+        [Ignore]
         [TestMethod]
         public void ToNextSetDay_ReturnsSpecifiedSetDay()
         {
@@ -336,6 +340,7 @@ namespace RomanDate.Tests
             Assert.AreEqual(new DateTime(2019, 2, 5), nextNonaeFromIdus.ToDateTime());
         }
 
+        [Ignore]
         [TestMethod]
         public void ToPreviousSetDay_ReturnsPreviousSetDay()
         {
@@ -348,6 +353,7 @@ namespace RomanDate.Tests
             Assert.AreEqual(new DateTime(2019, 1, 5), prevFromIdus.ToDateTime());
         }
 
+        [Ignore]
         [TestMethod]
         public void ToPreviousSetDay_ReturnsPreviousSpecifiedSetDay()
         {
@@ -360,6 +366,7 @@ namespace RomanDate.Tests
             Assert.AreEqual(new DateTime(2018, 12, 13), prevIdus.ToDateTime());
         }
 
+        [Ignore]
         [TestMethod]
         public void ToPreviousSetDay_ReturnsSpecifiedSetDay()
         {
