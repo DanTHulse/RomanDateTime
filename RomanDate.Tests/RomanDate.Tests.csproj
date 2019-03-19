@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RomanDate\RomanDate\RomanDate.csproj" />
+    <ProjectReference Include="..\RomanDate\RomanDate.csproj" />
   </ItemGroup>
 
 </Project>
