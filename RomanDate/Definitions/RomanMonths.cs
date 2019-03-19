@@ -69,7 +69,7 @@ namespace RomanDate.Definitions
             HourLengthDay = hourLength;
         }
 
-        public static RomanMonths GetRomanMonth(int month)
+        public static RomanMonths GetRomanMonth(Months month)
         {
             var monthVal = (Months)month;
 
@@ -102,26 +102,6 @@ namespace RomanDate.Definitions
                 default:
                     return new RomanMonths();
             }
-        }
-
-        public static RomanMonths GetNextRomanMonth(int month)
-        {
-            if (month == 12)
-            {
-                return Ianuarias;
-            }
-
-            return GetRomanMonth((month) + 1);
-        }
-
-        public static RomanMonths GetPreviousRomanMonth(int month)
-        {
-            if (month == 1)
-            {
-                return December;
-            }
-
-            return GetRomanMonth((month) - 1);
         }
     }
 }

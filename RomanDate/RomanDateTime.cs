@@ -238,10 +238,8 @@ namespace RomanDate
 
         private RomanMonths GetReferenceMonth()
         {
-            var nextMonth = DateTimeData.Month == 12 ? 1 : (DateTimeData.Month + 1);
-
             if (DateTimeData.Day != 1 && SetDay.SetDay == SetDays.Kalendae)
-                return RomanMonths.GetRomanMonth(nextMonth);
+                return RomanMonths.GetRomanMonth(CalendarMonth.Month.Next());
 
             return CalendarMonth;
         }
@@ -310,7 +308,7 @@ namespace RomanDate
         {
             if (DateTimeData.Month != 0 && DateTimeData.Month <= 12)
             {
-                return (RomanMonths.GetRomanMonth(DateTimeData.Month));
+                return (RomanMonths.GetRomanMonth((Months)DateTimeData.Month));
             }
 
             return default(RomanMonths);
