@@ -45,7 +45,7 @@ namespace RomanDate.Helpers
             return countResult.First() == date.NundinalLetter;
         }
 
-        public static RomanDateTime ToNextSetDay(this RomanDateTime date, SetDays? setDay = null)
+        public static RomanDateTime NextSetDay(this RomanDateTime date, SetDays? setDay = null)
         {
             var dateTime = date.ToDateTime();
             var daysToAdd = date.DaysUntilSetDay.Value != 0 ? date.DaysUntilSetDay.Value - 1 : 0;
@@ -76,10 +76,24 @@ namespace RomanDate.Helpers
                 }
             }
 
+            if (daysToAdd == 0)
+            {
+                if (currSetDay == SetDays.Kalendae)
+                    return new RomanDateTime(dateTime.Year, dateTime.Month, currMonth.Nonae);
+                if (currSetDay == SetDays.Nonae)
+                    return new RomanDateTime(dateTime.Year, dateTime.Month, currMonth.Idus);
+                if (currSetDay == SetDays.Idus)
+                {
+                    if (nextMonth.Month == Months.Ianuarius)
+                        dateTime = dateTime.AddYears(1);
+                    return new RomanDateTime(dateTime.Year, (int) nextMonth.Month, 1);
+                }
+            }
+
             return date.AddDays(daysToAdd);
         }
 
-        public static RomanDateTime ToPreviousSetDay(this RomanDateTime date, SetDays? setDay = null)
+        public static RomanDateTime PreviousSetDay(this RomanDateTime date, SetDays? setDay = null)
         {
             var dateTime = date.ToDateTime();
             var currSetDay = date.SetDay.SetDay;
@@ -101,8 +115,8 @@ namespace RomanDate.Helpers
                 }
                 if (setDay.Value == SetDays.Nonae)
                 {
-                    if ((currSetDay == SetDays.Kalendae && daysUntil == 0)
-                    || (currSetDay == SetDays.Nonae && daysUntil >= 0))
+                    if ((currSetDay == SetDays.Kalendae && daysUntil == 0) ||
+                        (currSetDay == SetDays.Nonae && daysUntil >= 0))
                     {
                         if (prevMonth.Month == Months.December)
                             dateTime = dateTime.AddYears(-1);
@@ -112,9 +126,9 @@ namespace RomanDate.Helpers
                 }
                 else
                 {
-                    if ((currSetDay == SetDays.Kalendae && daysUntil == 0)
-                    || (currSetDay == SetDays.Nonae && daysUntil >= 0)
-                    || (currSetDay == SetDays.Idus && daysUntil >= 0))
+                    if ((currSetDay == SetDays.Kalendae && daysUntil == 0) ||
+                        (currSetDay == SetDays.Nonae && daysUntil >= 0) ||
+                        (currSetDay == SetDays.Idus && daysUntil >= 0))
                     {
                         if (prevMonth.Month == Months.December)
                             dateTime = dateTime.AddYears(-1);
