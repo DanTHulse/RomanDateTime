@@ -58,3 +58,5 @@ dkms.conf
 /.vscode
 /DateTimeEra/obj
 /DateTimeEra.Tests/obj
+/DateTimeEra/bin/Debug/netstandard2.0
+/DateTimeEra.Tests/bin/Debug/netcoreapp2.2

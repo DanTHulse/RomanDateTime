@@ -6,8 +6,9 @@ namespace DateTimeEra.Tests
     public class DateTimeEraTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Test()
         {
+            var test = new DateTimeEras();
         }
     }
 }
