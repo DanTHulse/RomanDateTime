@@ -1,18 +1,17 @@
-﻿using NodaTime;
-using RomanDate.Definitions;
-using RomanDate.Enums;
-using RomanDate.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NodaTime;
+using RomanDate.Definitions;
+using RomanDate.Enums;
+using RomanDate.Helpers;
 
 namespace RomanDate
 {
     public struct RomanDateTime
     {
         public string Year => GetRomanYear();
-        public string AucYear => GetRomanYear(true);
         public string Day => GetRomanDayString();
         public NundinalLetters NundinalLetter => GetNundinalLetter();
         public RomanSetDays SetDay => GetSetDay();
@@ -21,6 +20,7 @@ namespace RomanDate
         public string Time => GetTime();
         public string Hour => GetTime(true);
         public int? DaysUntilSetDay => _daysUntil == null ? GetDaysUntil() : _daysUntil;
+        public Eras Era { get; set; }
 
         private int? _daysUntil;
         private RomanMonths CalendarMonth => GetCalendarMonth();
@@ -31,69 +31,80 @@ namespace RomanDate
 
         private LocalDateTime DateTimeData { get; }
 
-        public RomanDateTime(int year)
+        public RomanDateTime(int year, Eras era = Eras.AD)
         {
             _daysUntil = null;
             DateTimeData = new LocalDateTime(year, 1, 1, 0, 0);
+            Era = era;
         }
 
-        public RomanDateTime(int year, int month)
+        public RomanDateTime(int year, int month, Eras era = Eras.AD)
         {
             _daysUntil = null;
             DateTimeData = new LocalDateTime(year, month, 1, 0, 0);
+            Era = era;
         }
-        public RomanDateTime(int year, int month, int day)
+        public RomanDateTime(int year, int month, int day, Eras era = Eras.AD)
         {
             _daysUntil = null;
             DateTimeData = new LocalDateTime(year, month, day, 0, 0);
+            Era = era;
         }
 
-        public RomanDateTime(int year, int month, int day, int hour)
+        public RomanDateTime(int year, int month, int day, int hour, Eras era = Eras.AD)
         {
             _daysUntil = null;
             DateTimeData = new LocalDateTime(year, month, day, hour, 0, 0);
+            Era = era;
         }
 
-        public RomanDateTime(DateTime date)
+        public RomanDateTime(DateTime date, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = date.ToLocalDateTime();
+            DateTimeData = date.ToLocalDateTime(era);
+            Era = era;
         }
 
-        public RomanDateTime(LocalDateTime date)
+        private RomanDateTime(LocalDateTime date, bool auc)
         {
             _daysUntil = null;
             DateTimeData = date;
+            Era = auc ? Eras.AUC : date.Year > 0 ? Eras.AD : Eras.BC;
         }
 
         public RomanDateTime AddHours(int hours)
         {
-            return new RomanDateTime(DateTimeData.PlusHours(hours));
+            return new RomanDateTime(DateTimeData.PlusHours(hours), Era == Eras.AUC);
         }
 
         public RomanDateTime AddDays(int days)
         {
-            return new RomanDateTime(DateTimeData.PlusDays(days));
+            return new RomanDateTime(DateTimeData.PlusDays(days), Era == Eras.AUC);
         }
 
         public RomanDateTime AddRomanWeeks(int weeks)
         {
-            return new RomanDateTime(DateTimeData.PlusDays((weeks * 8)));
+            return new RomanDateTime(DateTimeData.PlusDays((weeks * 8)), Era == Eras.AUC);
         }
 
         public RomanDateTime AddMonths(int months)
         {
-            return new RomanDateTime(DateTimeData.PlusMonths(months));
+            return new RomanDateTime(DateTimeData.PlusMonths(months), Era == Eras.AUC);
         }
 
         public RomanDateTime AddYears(int years)
         {
-            return new RomanDateTime(DateTimeData.PlusYears(years));
+            return new RomanDateTime(DateTimeData.PlusYears(years), Era == Eras.AUC);
         }
 
         public override string ToString()
         {
-            return $"{Time}, {Day} {Year}";
+            var date = $"{Time}, {Day} {Year}";
+
+            if (Era == Eras.AD)
+                return date;
+
+            return $"{date} {Era}";
         }
 
         /// <summary>
@@ -103,7 +114,7 @@ namespace RomanDate
         /// > {d} = Days until Set Day 
         /// > {sx/Sx} = short/full Set Day
         /// > {m/M} = short/full Month
-        /// > {y/Yx} = AD Year / AUC Year
+        /// > {y/Yx} = Year / {e} = Era
         /// > {Dx} = Calendar day / {Dn} = Nundinal Letter
         /// > {cx/Cx} = short/full Calendar month
         /// </summary>
@@ -121,11 +132,11 @@ namespace RomanDate
             format = format.Replace("cx", "{8}");
             format = format.Replace("Cx", "{9}");
             format = format.Replace("y", "{10}");
-            format = format.Replace("Yx", "{11}");
-            format = format.Replace("t", "{12}");
-            format = format.Replace("h", "{13}");
-            format = format.Replace("v", "{14}");
-            format = format.Replace("Dn", "{15}");
+            format = format.Replace("t", "{11}");
+            format = format.Replace("h", "{12}");
+            format = format.Replace("v", "{13}");
+            format = format.Replace("Dn", "{14}");
+            format = format.Replace("e", "{15}");
 
             var sdAcc = DaysUntilSetDay != 0;
             var mAcc = DaysUntilSetDay > 1;
@@ -140,8 +151,8 @@ namespace RomanDate
                 dPrefix.Short, dPrefix.Long, DaysUntilSetDay.ToRomanNumerals(), calendarDay,
                 sDay.Short, (sdAcc ? sDay.Accusative : sDay.Ablative),
                 rMonth.Short, (mAcc ? rMonth.Accusative : rMonth.Ablative),
-                cMonth.Short, cMonth.Month.ToString(), Year, AucYear, Time, Hour, vigila,
-                NundinalLetter.ToString());
+                cMonth.Short, cMonth.Month.ToString(), Year, Time, Hour, vigila,
+                NundinalLetter.ToString(), Era.ToString());
         }
 
         public LocalDateTime ToDateTime()
@@ -193,14 +204,18 @@ namespace RomanDate
             return sb.ToString().TrimStart();
         }
 
-        private string GetRomanYear(bool aucEra = false)
+        private string GetRomanYear()
         {
-            var year = DateTimeData.Year;
+            if (Era == Eras.AUC)
+                return GetAucYear().ToRomanNumerals();
 
-            if (aucEra)
-                year += 753;
+            return DateTimeData.YearOfEra.ToRomanNumerals();
+        }
 
-            return year.ToRomanNumerals();
+        private int GetAucYear()
+        {
+            var auc = 753;
+            return auc += DateTimeData.Year;
         }
 
         private string GetTime(bool hour = false)

@@ -1,13 +1,20 @@
 using System;
 using NodaTime;
+using RomanDate.Enums;
 
 namespace RomanDate.Helpers
 {
     public static class NodaTimeHelpers
     {
-        public static LocalDateTime ToLocalDateTime(this DateTime date)
+        public static LocalDateTime ToLocalDateTime(this DateTime date, Eras era = Eras.AD)
         {
-            return new LocalDateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond, CalendarSystem.Gregorian);
+            if (era == Eras.BC)
+            {
+                var year = (date.Year - 1) == 0 ? 0 : -(date.Year - 1);
+                return new LocalDateTime(year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
+            }
+
+            return new LocalDateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
         }
 
         public static double TimeAsFraction(this LocalDateTime date)
