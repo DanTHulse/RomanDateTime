@@ -56,3 +56,5 @@ dkms.conf
 /RomanDate.Tests/bin/Debug/netcoreapp2.2
 /RomanDate.Tests/obj
 /.vscode
+/DateTimeEra/obj
+/DateTimeEra.Tests/obj
