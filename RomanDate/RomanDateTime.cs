@@ -34,24 +34,24 @@ namespace RomanDate
         public RomanDateTime(int year)
         {
             _daysUntil = null;
-            DateTimeData = new LocalDateTime(year, 1, 1, 0, 0, CalendarSystem.Gregorian);
+            DateTimeData = new LocalDateTime(year, 1, 1, 0, 0);
         }
 
         public RomanDateTime(int year, int month)
         {
             _daysUntil = null;
-            DateTimeData = new LocalDateTime(year, month, 1, 0, 0, CalendarSystem.Gregorian);
+            DateTimeData = new LocalDateTime(year, month, 1, 0, 0);
         }
         public RomanDateTime(int year, int month, int day)
         {
             _daysUntil = null;
-            DateTimeData = new LocalDateTime(year, month, day, 0, 0, CalendarSystem.Gregorian);
+            DateTimeData = new LocalDateTime(year, month, day, 0, 0);
         }
 
         public RomanDateTime(int year, int month, int day, int hour)
         {
             _daysUntil = null;
-            DateTimeData = new LocalDateTime(year, month, day, hour, 0, 0, CalendarSystem.Gregorian);
+            DateTimeData = new LocalDateTime(year, month, day, hour, 0, 0);
         }
 
         public RomanDateTime(DateTime date)
@@ -144,7 +144,7 @@ namespace RomanDate
                 NundinalLetter.ToString());
         }
 
-        public DateTime ToDateTime()
+        public LocalDateTime ToDateTime()
         {
             return DateTimeData;
         }
@@ -157,7 +157,7 @@ namespace RomanDate
 
             var startPosition = (NundinalLetters)(year % 8);
 
-            var daysFromStart = (DateTimeData - new DateTime(DateTimeData.Year, 1, 1)).Days;
+            var daysFromStart = DateTimeData.Minus(new LocalDateTime(DateTimeData.Year, 1, 1, 0, 0)).Days;
             var daysFromCycle = (((daysFromStart + (int)startPosition) - 1) % 8);
 
             if (daysFromCycle > 8)

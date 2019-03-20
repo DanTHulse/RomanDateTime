@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NodaTime;
 using RomanDate.Enums;
 using RomanDate.Helpers;
 using System;
@@ -77,18 +78,18 @@ namespace RomanDate.Tests
         [TestMethod]
         public void GetTime_ReturnsCorrectWinterTimes()
         {
-            var winterDate = new DateTime(2019, 12, 01);
+            var winterDate = new LocalDateTime(2019, 12, 1, 0, 0);
 
-            var TwelvePM = new RomanDateTime(winterDate.AddHours(12)).Hour;
-            var TwelveFifteenPM = new RomanDateTime(winterDate.AddHours(12).AddMinutes(15)).Hour;
-            var OneAM = new RomanDateTime(winterDate.AddHours(1)).Hour;
-            var NineAM = new RomanDateTime(winterDate.AddHours(9)).Hour;
-            var SevenPM = new RomanDateTime(winterDate.AddHours(19)).Hour;
-            var FourAM = new RomanDateTime(winterDate.AddHours(4)).Hour;
-            var FiveThrityPM = new RomanDateTime(winterDate.AddHours(17).AddMinutes(30)).Hour;
+            var TwelvePM = new RomanDateTime(winterDate.PlusHours(12)).Hour;
+            var TwelveFifteenPM = new RomanDateTime(winterDate.PlusHours(12).PlusMinutes(15)).Hour;
+            var OneAM = new RomanDateTime(winterDate.PlusHours(1)).Hour;
+            var NineAM = new RomanDateTime(winterDate.PlusHours(9)).Hour;
+            var SevenPM = new RomanDateTime(winterDate.PlusHours(19)).Hour;
+            var FourAM = new RomanDateTime(winterDate.PlusHours(4)).Hour;
+            var FiveThrityPM = new RomanDateTime(winterDate.PlusHours(17).PlusMinutes(30)).Hour;
             var Midnight = new RomanDateTime(winterDate).Hour;
-            var ElevenFiftyNinePM = new RomanDateTime(winterDate.AddHours(23).AddMinutes(59)).Hour;
-            var OneMinutePastMidnight = new RomanDateTime(winterDate.AddMinutes(1)).Hour;
+            var ElevenFiftyNinePM = new RomanDateTime(winterDate.PlusHours(23).PlusMinutes(59)).Hour;
+            var OneMinutePastMidnight = new RomanDateTime(winterDate.PlusMinutes(1)).Hour;
 
             Assert.AreEqual("hora VI", TwelvePM);
             Assert.AreEqual("hora VII", TwelveFifteenPM);
@@ -105,18 +106,18 @@ namespace RomanDate.Tests
         [TestMethod]
         public void GetTime_ReturnsCorrectEquinoxTimes()
         {
-            var equinoxDate = new DateTime(2019, 09, 01);
+            var equinoxDate = new LocalDateTime(2019, 9, 1, 0, 0);
 
-            var TwelvePM = new RomanDateTime(equinoxDate.AddHours(12)).Hour;
-            var TwelveFifteenPM = new RomanDateTime(equinoxDate.AddHours(12).AddMinutes(15)).Hour;
-            var OneAM = new RomanDateTime(equinoxDate.AddHours(1)).Hour;
-            var NineAM = new RomanDateTime(equinoxDate.AddHours(9)).Hour;
-            var SevenPM = new RomanDateTime(equinoxDate.AddHours(19)).Hour;
-            var FourAM = new RomanDateTime(equinoxDate.AddHours(4)).Hour;
-            var FiveThrityPM = new RomanDateTime(equinoxDate.AddHours(17).AddMinutes(30)).Hour;
+            var TwelvePM = new RomanDateTime(equinoxDate.PlusHours(12)).Hour;
+            var TwelveFifteenPM = new RomanDateTime(equinoxDate.PlusHours(12).PlusMinutes(15)).Hour;
+            var OneAM = new RomanDateTime(equinoxDate.PlusHours(1)).Hour;
+            var NineAM = new RomanDateTime(equinoxDate.PlusHours(9)).Hour;
+            var SevenPM = new RomanDateTime(equinoxDate.PlusHours(19)).Hour;
+            var FourAM = new RomanDateTime(equinoxDate.PlusHours(4)).Hour;
+            var FiveThrityPM = new RomanDateTime(equinoxDate.PlusHours(17).PlusMinutes(30)).Hour;
             var Midnight = new RomanDateTime(equinoxDate).Hour;
-            var ElevenFiftyNinePM = new RomanDateTime(equinoxDate.AddHours(23).AddMinutes(59)).Hour;
-            var OneMinutePastMidnight = new RomanDateTime(equinoxDate.AddMinutes(1)).Hour;
+            var ElevenFiftyNinePM = new RomanDateTime(equinoxDate.PlusHours(23).PlusMinutes(59)).Hour;
+            var OneMinutePastMidnight = new RomanDateTime(equinoxDate.PlusMinutes(1)).Hour;
 
             Assert.AreEqual("hora VI", TwelvePM);
             Assert.AreEqual("hora VII", TwelveFifteenPM);
@@ -133,18 +134,18 @@ namespace RomanDate.Tests
         [TestMethod]
         public void GetTime_ReturnsCorrectSummerTimes()
         {
-            var summerDate = new DateTime(2019, 06, 01);
+            var summerDate = new LocalDateTime(2019, 6, 1, 0, 0);
 
-            var TwelvePM = new RomanDateTime(summerDate.AddHours(12)).Hour;
-            var TwelveFifteenPM = new RomanDateTime(summerDate.AddHours(12).AddMinutes(15)).Hour;
-            var OneAM = new RomanDateTime(summerDate.AddHours(1)).Hour;
-            var NineAM = new RomanDateTime(summerDate.AddHours(9)).Hour;
-            var SevenPM = new RomanDateTime(summerDate.AddHours(19)).Hour;
-            var FourAM = new RomanDateTime(summerDate.AddHours(4)).Hour;
-            var FiveThrityPM = new RomanDateTime(summerDate.AddHours(17).AddMinutes(30)).Hour;
+            var TwelvePM = new RomanDateTime(summerDate.PlusHours(12)).Hour;
+            var TwelveFifteenPM = new RomanDateTime(summerDate.PlusHours(12).PlusMinutes(15)).Hour;
+            var OneAM = new RomanDateTime(summerDate.PlusHours(1)).Hour;
+            var NineAM = new RomanDateTime(summerDate.PlusHours(9)).Hour;
+            var SevenPM = new RomanDateTime(summerDate.PlusHours(19)).Hour;
+            var FourAM = new RomanDateTime(summerDate.PlusHours(4)).Hour;
+            var FiveThrityPM = new RomanDateTime(summerDate.PlusHours(17).PlusMinutes(30)).Hour;
             var Midnight = new RomanDateTime(summerDate).Hour;
-            var ElevenFiftyNinePM = new RomanDateTime(summerDate.AddHours(23).AddMinutes(59)).Hour;
-            var OneMinutePastMidnight = new RomanDateTime(summerDate.AddMinutes(1)).Hour;
+            var ElevenFiftyNinePM = new RomanDateTime(summerDate.PlusHours(23).PlusMinutes(59)).Hour;
+            var OneMinutePastMidnight = new RomanDateTime(summerDate.PlusMinutes(1)).Hour;
 
             Assert.AreEqual("hora VI", TwelvePM);
             Assert.AreEqual("hora VII", TwelveFifteenPM);
@@ -280,7 +281,7 @@ namespace RomanDate.Tests
         {
             var romanDate = new RomanDateTime(2019, 1, 1, 12);
 
-            var expected = new DateTime(2019, 1, 1, 12, 0, 0);
+            var expected = new LocalDateTime(2019, 1, 1, 12, 0);
 
             Assert.AreEqual(expected, romanDate.ToDateTime());
         }
