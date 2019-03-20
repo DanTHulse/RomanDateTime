@@ -1,4 +1,5 @@
-﻿using RomanDate.Definitions;
+﻿using NodaTime;
+using RomanDate.Definitions;
 using RomanDate.Enums;
 using RomanDate.Helpers;
 using System;
@@ -28,32 +29,38 @@ namespace RomanDate
         public static RomanDateTime MaxValue => new RomanDateTime(DateTime.MaxValue);
         public static RomanDateTime MinValue => new RomanDateTime(DateTime.MinValue);
 
-        private DateTime DateTimeData { get; }
+        private LocalDateTime DateTimeData { get; }
 
         public RomanDateTime(int year)
         {
             _daysUntil = null;
-            DateTimeData = new DateTime(year, 1, 1);
+            DateTimeData = new LocalDateTime(year, 1, 1, 0, 0, CalendarSystem.Gregorian);
         }
 
         public RomanDateTime(int year, int month)
         {
             _daysUntil = null;
-            DateTimeData = new DateTime(year, month, 1);
+            DateTimeData = new LocalDateTime(year, month, 1, 0, 0, CalendarSystem.Gregorian);
         }
         public RomanDateTime(int year, int month, int day)
         {
             _daysUntil = null;
-            DateTimeData = new DateTime(year, month, day);
+            DateTimeData = new LocalDateTime(year, month, day, 0, 0, CalendarSystem.Gregorian);
         }
 
         public RomanDateTime(int year, int month, int day, int hour)
         {
             _daysUntil = null;
-            DateTimeData = new DateTime(year, month, day, hour, 0, 0);
+            DateTimeData = new LocalDateTime(year, month, day, hour, 0, 0, CalendarSystem.Gregorian);
         }
 
         public RomanDateTime(DateTime date)
+        {
+            _daysUntil = null;
+            DateTimeData = date.ToLocalDateTime();
+        }
+
+        public RomanDateTime(LocalDateTime date)
         {
             _daysUntil = null;
             DateTimeData = date;
@@ -61,27 +68,27 @@ namespace RomanDate
 
         public RomanDateTime AddHours(int hours)
         {
-            return new RomanDateTime(DateTimeData.AddHours(hours));
+            return new RomanDateTime(DateTimeData.PlusHours(hours));
         }
 
         public RomanDateTime AddDays(int days)
         {
-            return new RomanDateTime(DateTimeData.AddDays(days));
+            return new RomanDateTime(DateTimeData.PlusDays(days));
         }
 
         public RomanDateTime AddRomanWeeks(int weeks)
         {
-            return new RomanDateTime(DateTimeData.AddDays((weeks * 8)));
+            return new RomanDateTime(DateTimeData.PlusDays((weeks * 8)));
         }
 
         public RomanDateTime AddMonths(int months)
         {
-            return new RomanDateTime(DateTimeData.AddMonths(months));
+            return new RomanDateTime(DateTimeData.PlusMonths(months));
         }
 
         public RomanDateTime AddYears(int years)
         {
-            return new RomanDateTime(DateTimeData.AddYears(years));
+            return new RomanDateTime(DateTimeData.PlusYears(years));
         }
 
         public override string ToString()
