@@ -536,5 +536,21 @@ namespace RomanDate.Tests
             Assert.AreEqual(expected, romanDate.ToDateTime().DateTime);
             Assert.AreEqual(Eras.BC, romanDate.ToDateTime().Era);
         }
+
+        [TestMethod]
+        public void RomanDateTime_ReturnsCorrectAUCYear()
+        {
+            var i1AD = new RomanDateTime(1);
+            var i1BC = new RomanDateTime(1, Eras.BC);
+            var i2019AD = new RomanDateTime(2019);
+            var i753BC = new RomanDateTime(753, Eras.BC);
+            var i754BC = new RomanDateTime(754, Eras.BC);
+
+            Assert.AreEqual("DCCLIV", i1AD.AucYear);
+            Assert.AreEqual("DCCLIII", i1BC.AucYear);
+            Assert.AreEqual("MMDCCLXXII", i2019AD.AucYear);
+            Assert.AreEqual("I", i753BC.AucYear);
+            Assert.AreEqual("", i754BC.AucYear);
+        }
     }
 }
