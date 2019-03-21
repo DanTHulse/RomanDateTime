@@ -14,7 +14,7 @@ namespace RomanDate.Helpers
         public static bool IsNundinae(this RomanDateTime date)
         {
             var dateTime = date.DateTimeData;
-            var startPosition = (NundinalLetters) (dateTime.Year % 8);
+            var startPosition = (NundinalLetters) (dateTime.YearOfEra % 8);
             var enumList = EnumHelpers.EnumToList<NundinalLetters>();
 
             var checkDates = new List<NundinalLetters>
@@ -159,7 +159,7 @@ namespace RomanDate.Helpers
 
         private static NundinalLetters CheckNundialLetter(LocalDateTime from, LocalDateTime to, NundinalLetters startPosition)
         {
-            var daysFromStart = to.Minus(new LocalDateTime(from.Year, 1, 1, 0, 0)).Days;
+            var daysFromStart = Math.Abs(to.Minus(new LocalDateTime(from.Year, 1, 1, 0, 0)).Days);
             var daysFromCycle = (((daysFromStart + (int) startPosition)) % 8);
 
             return (NundinalLetters) daysFromCycle;

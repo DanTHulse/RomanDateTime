@@ -24,6 +24,22 @@ namespace RomanDate.Tests.Helpers
         }
 
         [TestMethod]
+        public void IsNundinae_ReturnsTrueIfMarketDayInBCEra()
+        {
+            var result = new RomanDateTime(45, 1, 21, Eras.BC); // Market day for 45 is A
+
+            Assert.IsTrue(result.IsNundinae());
+        }
+
+        [TestMethod]
+        public void IsNundinae_ReturnsDalseIfNotMarketDayInBCEra()
+        {
+            var result = new RomanDateTime(45, 1, 8, Eras.BC); // Market day for 45 is A
+
+            Assert.IsFalse(result.IsNundinae());
+        }
+
+        [TestMethod]
         public void ToNextSetDay_ReturnsNextSetDay()
         {
             var nextFromKalendae = new RomanDateTime(2019, 1, 2).NextSetDay();
@@ -105,6 +121,36 @@ namespace RomanDate.Tests.Helpers
             Assert.AreEqual(new DateTime(2019, 2, 1), kalRoundPrev.ToDateTime().DateTime);
             Assert.AreEqual(new DateTime(2019, 2, 5), nonRoundPrev.ToDateTime().DateTime);
             Assert.AreEqual(new DateTime(2019, 2, 13), idusRoundPrev.ToDateTime().DateTime);
+        }
+
+        [TestMethod]
+        public void ToNextDay_CorrectlyCrossesToADEra()
+        {
+            var kalNext = new RomanDateTime(1, 12, 1, Eras.BC).NextSetDay(SetDays.Kalendae);
+            var nonNext = new RomanDateTime(1, 12, 5, Eras.BC).NextSetDay(SetDays.Nonae);
+            var idusNext = new RomanDateTime(1, 12, 13, Eras.BC).NextSetDay(SetDays.Idus);
+
+            Assert.AreEqual(new DateTime(1, 1, 1), kalNext.ToDateTime().DateTime);
+            Assert.AreEqual(Eras.AD, kalNext.ToDateTime().Era);
+            Assert.AreEqual(new DateTime(1, 1, 5), nonNext.ToDateTime().DateTime);
+            Assert.AreEqual(Eras.AD, nonNext.ToDateTime().Era);
+            Assert.AreEqual(new DateTime(1, 1, 13), idusNext.ToDateTime().DateTime);
+            Assert.AreEqual(Eras.AD, idusNext.ToDateTime().Era);
+        }
+
+        [TestMethod]
+        public void ToPreviousSetDay_CorrectlyCrossesToBCEra()
+        {
+            var kalNext = new RomanDateTime(1, 1, 1).PreviousSetDay(SetDays.Kalendae);
+            var nonNext = new RomanDateTime(1, 1, 5).PreviousSetDay(SetDays.Nonae);
+            var idusNext = new RomanDateTime(1, 1, 13).PreviousSetDay(SetDays.Idus);
+
+            Assert.AreEqual(new DateTime(1, 12, 1), kalNext.ToDateTime().DateTime);
+            Assert.AreEqual(Eras.BC, kalNext.ToDateTime().Era);
+            Assert.AreEqual(new DateTime(1, 12, 5), nonNext.ToDateTime().DateTime);
+            Assert.AreEqual(Eras.BC, nonNext.ToDateTime().Era);
+            Assert.AreEqual(new DateTime(1, 12, 13), idusNext.ToDateTime().DateTime);
+            Assert.AreEqual(Eras.BC, idusNext.ToDateTime().Era);
         }
     }
 }
