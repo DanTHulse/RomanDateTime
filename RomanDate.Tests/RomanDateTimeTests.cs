@@ -175,7 +175,7 @@ namespace RomanDate.Tests
         [TestMethod]
         public void RomanDateTime_DateTimeConstructorReturnsCorrectDateInBCEra()
         {
-            var roman = new RomanDateTime(new DateTime(201, 11, 20, 21, 9, 55));
+            var roman = new RomanDateTime(new DateTime(201, 11, 20, 21, 9, 55), Eras.BC);
 
             Assert.AreEqual("Vigila Secunda, ante diem XII Kalendas Decembres CCI BC", roman.ToString());
         }
