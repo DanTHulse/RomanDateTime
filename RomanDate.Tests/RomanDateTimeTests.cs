@@ -403,6 +403,28 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
+        public void AddYears_CorrectlyCrossesToADEraMultipleYears()
+        {
+            var romanDate = new RomanDateTime(1, 1, 1, Eras.BC);
+            var newDate = romanDate.AddYears(10);
+
+            var expected = new RomanDateTime(10, 1, 1);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
+        public void AddYears_CorrectlyCrossesToBCEraMultipleYears()
+        {
+            var romanDate = new RomanDateTime(1, 1, 1);
+            var newDate = romanDate.AddYears(-10);
+
+            var expected = new RomanDateTime(10, 1, 1, Eras.BC);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
         public void Add_AddsAllToRomanDate()
         {
             var romanDate = new RomanDateTime(2019, 1, 1, 12);

@@ -9,61 +9,61 @@ namespace RomanDate.Tests
         [TestMethod]
         public void ToRomanNumerals_Subtractive_ReturnsIntInNumerals()
         {
-            var year1991 = 1991.ToRomanNumerals();
-            var year2018 = 2018.ToRomanNumerals();
-            var year4853 = 4853.ToRomanNumerals();
-            var year202 = 202.ToRomanNumerals();
-            var year1764 = 1764.ToRomanNumerals();
+            var i1991 = 1991.ToRomanNumerals();
+            var i2018 = 2018.ToRomanNumerals();
+            var i4853 = 4853.ToRomanNumerals();
+            var i202 = 202.ToRomanNumerals();
+            var i1764 = 1764.ToRomanNumerals();
 
-            Assert.AreEqual("MCMXCI", year1991);
-            Assert.AreEqual("MMXVIII", year2018);
-            Assert.AreEqual("MMMMDCCCLIII", year4853);
-            Assert.AreEqual("CCII", year202);
-            Assert.AreEqual("MDCCLXIV", year1764);
+            Assert.AreEqual("MCMXCI", i1991);
+            Assert.AreEqual("MMXVIII", i2018);
+            Assert.AreEqual("MMMMDCCCLIII", i4853);
+            Assert.AreEqual("CCII", i202);
+            Assert.AreEqual("MDCCLXIV", i1764);
         }
 
         [TestMethod]
         public void ToRomanNumerals_Additive_ReturnsIntInNumerals()
         {
-            var year1991 = 1991.ToRomanNumerals(NumeralStyles.Additive);
-            var year2018 = 2018.ToRomanNumerals(NumeralStyles.Additive);
-            var year4853 = 4853.ToRomanNumerals(NumeralStyles.Additive);
-            var year202 = 202.ToRomanNumerals(NumeralStyles.Additive);
-            var year1764 = 1764.ToRomanNumerals(NumeralStyles.Additive);
+            var i1991 = 1991.ToRomanNumerals(NumeralStyles.Additive);
+            var i2018 = 2018.ToRomanNumerals(NumeralStyles.Additive);
+            var i4853 = 4853.ToRomanNumerals(NumeralStyles.Additive);
+            var i202 = 202.ToRomanNumerals(NumeralStyles.Additive);
+            var i1764 = 1764.ToRomanNumerals(NumeralStyles.Additive);
 
-            Assert.AreEqual("MDCCCCLXXXXI", year1991);
-            Assert.AreEqual("MMXVIII", year2018);
-            Assert.AreEqual("MMMMDCCCLIII", year4853);
-            Assert.AreEqual("CCII", year202);
-            Assert.AreEqual("MDCCLXIIII", year1764);
+            Assert.AreEqual("MDCCCCLXXXXI", i1991);
+            Assert.AreEqual("MMXVIII", i2018);
+            Assert.AreEqual("MMMMDCCCLIII", i4853);
+            Assert.AreEqual("CCII", i202);
+            Assert.AreEqual("MDCCLXIIII", i1764);
         }
 
         [TestMethod]
         public void ToInt_Subtractive_ReturnsValueInInteger()
         {
-            var twoThousand = RomanNumerals.ToInt("MM");
-            var sevenHundredTwentyOne = RomanNumerals.ToInt("DCCXXI");
-            var NinteenHundredNinetyNine = RomanNumerals.ToInt("MCMXCIX");
-            var SeventeenHundredSixtyFour = RomanNumerals.ToInt("MDCCLXIV");
-            var FortyEightHundredFiftyThree = RomanNumerals.ToInt("MMMMDCCCLIII");
-            var twoHundredTwo = RomanNumerals.ToInt("CCII");
+            var i2000 = RomanNumerals.ToInt("MM");
+            var i721 = RomanNumerals.ToInt("DCCXXI");
+            var i1999 = RomanNumerals.ToInt("MCMXCIX");
+            var i1764 = RomanNumerals.ToInt("MDCCLXIV");
+            var i4853 = RomanNumerals.ToInt("MMMMDCCCLIII");
+            var i202 = RomanNumerals.ToInt("CCII");
 
-            Assert.AreEqual(2000, twoThousand);
-            Assert.AreEqual(721, sevenHundredTwentyOne);
-            Assert.AreEqual(1999, NinteenHundredNinetyNine);
-            Assert.AreEqual(1764, SeventeenHundredSixtyFour);
-            Assert.AreEqual(4853, FortyEightHundredFiftyThree);
-            Assert.AreEqual(202, twoHundredTwo);
+            Assert.AreEqual(2000, i2000);
+            Assert.AreEqual(721, i721);
+            Assert.AreEqual(1999, i1999);
+            Assert.AreEqual(1764, i1764);
+            Assert.AreEqual(4853, i4853);
+            Assert.AreEqual(202, i202);
         }
 
         [TestMethod]
         public void ToInt_Additive_ReturnsValueInInteger()
         {
-            var NinteenHundredNinetyNine = RomanNumerals.ToInt("MDCCCCLXXXXVIIII");
-            var SeventeenHundredSixtyFour = RomanNumerals.ToInt("MDCCLXIIII");
+            var i1999 = RomanNumerals.ToInt("MDCCCCLXXXXVIIII");
+            var i1764 = RomanNumerals.ToInt("MDCCLXIIII");
 
-            Assert.AreEqual(1999, NinteenHundredNinetyNine);
-            Assert.AreEqual(1764, SeventeenHundredSixtyFour);
+            Assert.AreEqual(1999, i1999);
+            Assert.AreEqual(1764, i1764);
         }
     }
 }
