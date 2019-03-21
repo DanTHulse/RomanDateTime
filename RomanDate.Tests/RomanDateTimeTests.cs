@@ -93,9 +93,11 @@ namespace RomanDate.Tests
         {
             var min = RomanDateTime.MinValue;
             var max = RomanDateTime.MaxValue;
+            var absMin = RomanDateTime.AbsoluteMinValue;
 
             Assert.AreEqual("Kalendis Ianuariis I", $"{min.Day} {min.Year}");
             Assert.AreEqual("pridie Kalendis Ianuariis MMMMMMMMMCMXCIX", $"{max.Day} {max.Year}");
+            Assert.AreEqual("pridie Kalendis Ianuariis MMMMMMMMMCMXCIX", $"{absMin.Day} {absMin.Year}");
         }
 
         [TestMethod]
@@ -205,6 +207,28 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
+        public void RomanDates_HaveCorrectNundinalLetterInBCEra()
+        {
+            var ADate = new RomanDateTime(1, 1, 1, Eras.BC);
+            var BDate = new RomanDateTime(1, 1, 2, Eras.BC);
+            var CDate = new RomanDateTime(1, 1, 3, Eras.BC);
+            var DDate = new RomanDateTime(1, 1, 4, Eras.BC);
+            var EDate = new RomanDateTime(1, 1, 5, Eras.BC);
+            var FDate = new RomanDateTime(1, 1, 6, Eras.BC);
+            var GDate = new RomanDateTime(1, 1, 7, Eras.BC);
+            var HDate = new RomanDateTime(1, 1, 8, Eras.BC);
+
+            Assert.AreEqual(NundinalLetters.A, ADate.NundinalLetter);
+            Assert.AreEqual(NundinalLetters.B, BDate.NundinalLetter);
+            Assert.AreEqual(NundinalLetters.C, CDate.NundinalLetter);
+            Assert.AreEqual(NundinalLetters.D, DDate.NundinalLetter);
+            Assert.AreEqual(NundinalLetters.E, EDate.NundinalLetter);
+            Assert.AreEqual(NundinalLetters.F, FDate.NundinalLetter);
+            Assert.AreEqual(NundinalLetters.G, GDate.NundinalLetter);
+            Assert.AreEqual(NundinalLetters.H, HDate.NundinalLetter);
+        }
+
+        [TestMethod]
         public void ToFormattedString_ReturnsCorrectElements()
         {
             var romanDate = new RomanDateTime(2018, 1, 17);
@@ -258,12 +282,56 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
+        public void AddHours_CorrectlyCrossesToADEra()
+        {
+            var romanDate = new RomanDateTime(1, 12, 31, 23, Eras.BC);
+            var newDate = romanDate.AddHours(1);
+
+            var expected = new RomanDateTime(1, 1, 1, 0);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
+        public void AddHours_CorrectlyCrossesToBCEra()
+        {
+            var romanDate = new RomanDateTime(1, 1, 1, 0);
+            var newDate = romanDate.AddHours(-1);
+
+            var expected = new RomanDateTime(1, 12, 31, 23, Eras.BC);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
         public void AddDays_AddsToRomanDate()
         {
             var romanDate = new RomanDateTime(2019, 1, 1, 12);
             var newDate = romanDate.AddDays(1);
 
             var expected = new RomanDateTime(2019, 1, 2, 12);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
+        public void AddDays_CorrectlyCrossesToADEra()
+        {
+            var romanDate = new RomanDateTime(1, 12, 31, Eras.BC);
+            var newDate = romanDate.AddDays(1);
+
+            var expected = new RomanDateTime(1, 1, 1);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
+        public void AddDays_CorrectlyCrossesToBCEra()
+        {
+            var romanDate = new RomanDateTime(1, 1, 1);
+            var newDate = romanDate.AddDays(-1);
+
+            var expected = new RomanDateTime(1, 12, 31, Eras.BC);
 
             Assert.AreEqual(expected, newDate);
         }
@@ -280,12 +348,56 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
+        public void AddMonths_CorrectlyCrossesToADEra()
+        {
+            var romanDate = new RomanDateTime(1, 12, 1, Eras.BC);
+            var newDate = romanDate.AddMonths(1);
+
+            var expected = new RomanDateTime(1, 1, 1);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
+        public void AddMonths_CorrectlyCrossesToBCEra()
+        {
+            var romanDate = new RomanDateTime(1, 1, 1);
+            var newDate = romanDate.AddMonths(-1);
+
+            var expected = new RomanDateTime(1, 12, 1, Eras.BC);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
         public void AddYears_AddsToRomanDate()
         {
             var romanDate = new RomanDateTime(2019, 1, 1, 12);
             var newDate = romanDate.AddYears(1);
 
             var expected = new RomanDateTime(2020, 1, 1, 12);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
+        public void AddYears_CorrectlyCrossesToADEra()
+        {
+            var romanDate = new RomanDateTime(1, 1, 1, Eras.BC);
+            var newDate = romanDate.AddYears(1);
+
+            var expected = new RomanDateTime(1, 1, 1);
+
+            Assert.AreEqual(expected, newDate);
+        }
+
+        [TestMethod]
+        public void AddYears_CorrectlyCrossesToBCEra()
+        {
+            var romanDate = new RomanDateTime(1, 1, 1);
+            var newDate = romanDate.AddYears(-1);
+
+            var expected = new RomanDateTime(1, 1, 1, Eras.BC);
 
             Assert.AreEqual(expected, newDate);
         }

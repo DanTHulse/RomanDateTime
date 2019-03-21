@@ -29,6 +29,7 @@ namespace RomanDate
         public static RomanDateTime Now => new RomanDateTime(DateTime.Now);
         public static RomanDateTime MaxValue => new RomanDateTime(DateTime.MaxValue);
         public static RomanDateTime MinValue => new RomanDateTime(DateTime.MinValue);
+        public static RomanDateTime AbsoluteMinValue => new RomanDateTime(DateTime.MaxValue, Eras.BC);
 
         internal LocalDateTime DateTimeData { get; }
 
@@ -175,11 +176,11 @@ namespace RomanDate
 
         private NundinalLetters GetNundinalLetter()
         {
-            var year = DateTimeData.Year;
+            var year = DateTimeData.YearOfEra;
 
             var startPosition = (NundinalLetters)(year % 8);
 
-            var daysFromStart = DateTimeData.Minus(new LocalDateTime(DateTimeData.Year, 1, 1, 0, 0)).Days;
+            var daysFromStart = Math.Abs(DateTimeData.Minus(new LocalDateTime(DateTimeData.Year, 1, 1, 0, 0)).Days);
             var daysFromCycle = (((daysFromStart + (int)startPosition) - 1) % 8);
 
             if (daysFromCycle > 8)
