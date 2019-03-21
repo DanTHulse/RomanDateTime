@@ -19,14 +19,12 @@ namespace RomanDate.Helpers
 
         public static LocalDateTime ToLocalDateTime(int year, int month, int day, int hour, Eras era = Eras.AD)
         {
-            if (year == 0)
-                throw new ArgumentOutOfRangeException("year", "There is no year 0");
             if (year < 0)
                 throw new ArgumentOutOfRangeException("year", "Year must be between 0 - 9999, if you are after BC dates use the optional Era param");
 
             if (era == Eras.BC)
             {
-                var subYear = (year - 1) == 0 ? 0 : year - 1;
+                var subYear = ((year - 1) == 0 || year == 0) ? 0 : year - 1;
                 return new LocalDateTime(-subYear, month, day, hour, 0, 0, 0);
             }
 
