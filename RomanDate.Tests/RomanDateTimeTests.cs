@@ -101,6 +101,86 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
+        public void RomanDateTime_YearConstructorReturnsCorrectDate()
+        {
+            var roman = new RomanDateTime(2019);
+
+            Assert.AreEqual("Vigila Tertia, Kalendis Ianuariis MMXIX", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_MonthConstructorReturnsCorrectDate()
+        {
+            var roman = new RomanDateTime(2019, 3);
+
+            Assert.AreEqual("Vigila Tertia, Kalendis Martiis MMXIX", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_DayConstructorReturnsCorrectDate()
+        {
+            var roman = new RomanDateTime(2019, 4, 7);
+
+            Assert.AreEqual("Vigila Tertia, ante diem VII Idus Apriles MMXIX", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_HourConstructorReturnsCorrectDate()
+        {
+            var roman = new RomanDateTime(2019, 5, 12, 13);
+
+            Assert.AreEqual("hora VII, ante diem IV Idus Maias MMXIX", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_DateTimeConstructorReturnsCorrectDate()
+        {
+            var roman = new RomanDateTime(new DateTime(2018, 2, 16, 18, 14, 39));
+
+            Assert.AreEqual("Vigila Prima, ante diem XIV Kalendas Martias MMXVIII", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_YearConstructorReturnsCorrectDateInBCEra()
+        {
+            var roman = new RomanDateTime(201, Eras.BC);
+
+            Assert.AreEqual("Vigila Tertia, Kalendis Ianuariis CCI BC", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_MonthConstructorReturnsCorrectDateInBCEra()
+        {
+            var roman = new RomanDateTime(201, 8, Eras.BC);
+
+            Assert.AreEqual("Vigila Tertia, Kalendis Augustis CCI BC", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_DayConstructorReturnsCorrectDateInBCEra()
+        {
+            var roman = new RomanDateTime(201, 5, 3, Eras.BC);
+
+            Assert.AreEqual("Vigila Tertia, ante diem V Nonas Maias CCI BC", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_HourConstructorReturnsCorrectDateInBCEra()
+        {
+            var roman = new RomanDateTime(201, 9, 11, 9, Eras.BC);
+
+            Assert.AreEqual("hora III, ante diem III Idus Septembres CCI BC", roman.ToString());
+        }
+
+        [TestMethod]
+        public void RomanDateTime_DateTimeConstructorReturnsCorrectDateInBCEra()
+        {
+            var roman = new RomanDateTime(new DateTime(201, 11, 20, 21, 9, 55));
+
+            Assert.AreEqual("Vigila Secunda, ante diem XII Kalendas Decembres CCI BC", roman.ToString());
+        }
+
+        [TestMethod]
         public void GetTime_ReturnsCorrectWinterTimes()
         {
             var winterDate = new DateTime(2019, 12, 1);
