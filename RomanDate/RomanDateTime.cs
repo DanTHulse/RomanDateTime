@@ -34,27 +34,27 @@ namespace RomanDate
         public RomanDateTime(int year, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = new LocalDateTime(year, 1, 1, 0, 0);
+            DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, 1, 1, 0, era);
             Era = era;
         }
 
         public RomanDateTime(int year, int month, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = new LocalDateTime(year, month, 1, 0, 0);
+            DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, 1, 0, era);
             Era = era;
         }
         public RomanDateTime(int year, int month, int day, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = new LocalDateTime(year, month, day, 0, 0);
+            DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, day, 0, era);
             Era = era;
         }
 
         public RomanDateTime(int year, int month, int day, int hour, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = new LocalDateTime(year, month, day, hour, 0, 0);
+            DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, day, hour, era);
             Era = era;
         }
 
@@ -114,7 +114,7 @@ namespace RomanDate
         /// > {d} = Days until Set Day 
         /// > {sx/Sx} = short/full Set Day
         /// > {m/M} = short/full Month
-        /// > {y/Yx} = Year / {e} = Era
+        /// > {y} = Year / {e} = Era
         /// > {Dx} = Calendar day / {Dn} = Nundinal Letter
         /// > {cx/Cx} = short/full Calendar month
         /// </summary>
@@ -161,6 +161,11 @@ namespace RomanDate
         }
 
         #region Private Methods
+
+        public RomanDateTime AddTime(LocalDateTime date)
+        {
+            return new RomanDateTime();
+        }
 
         private NundinalLetters GetNundinalLetter()
         {

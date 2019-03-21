@@ -60,25 +60,25 @@ namespace RomanDate.Tests
         [TestMethod]
         public void RomanDateTime_ReturnsBCDayInRomanCalendar()
         {
-            var twentyThirdOfMarch = new RomanDateTime(50, 3, 23);
-            var thirtyFirstOfMarch = new RomanDateTime(110, 3, 31);
-            var twentyFourthOfMarch = new RomanDateTime(216, 3, 24);
-            var twentyFifthOfMarch = new RomanDateTime(45, 3, 25);
+            var twentyThirdOfMarch = new RomanDateTime(50, 3, 23, Eras.BC);
+            var thirtyFirstOfMarch = new RomanDateTime(110, 3, 31, Eras.BC);
+            var twentyFourthOfMarch = new RomanDateTime(216, 3, 24, Eras.BC);
+            var twentyFifthOfMarch = new RomanDateTime(45, 3, 25, Eras.BC);
 
-            var twentyThirdOfFebruary = new RomanDateTime(2016, 2, 23);
-            var twentyNinthOfFebruary = new RomanDateTime(1, 2, 29);
-            var twentyFourthOfFebruary = new RomanDateTime(12, 2, 24);
-            var twentyFifthOfFebruary = new RomanDateTime(0, 2, 25);
+            var twentyThirdOfFebruary = new RomanDateTime(2016, 2, 23, Eras.BC);
+            var twentyNinthOfFebruary = new RomanDateTime(1, 2, 29, Eras.BC);
+            var twentyFourthOfFebruary = new RomanDateTime(12, 2, 24, Eras.BC);
+            var twentyFifthOfFebruary = new RomanDateTime(1, 2, 25, Eras.BC);
 
-            Assert.AreEqual("ante diem X Kalendas Apriles", twentyThirdOfMarch.ToString());
-            Assert.AreEqual("pridie Kalendis Aprilibus", thirtyFirstOfMarch.ToString());
-            Assert.AreEqual("ante diem IX Kalendas Apriles", twentyFourthOfMarch.ToString());
-            Assert.AreEqual("ante diem VIII Kalendas Apriles", twentyFifthOfMarch.ToString());
+            Assert.AreEqual("L BC", twentyThirdOfMarch.ToString("y e"));
+            Assert.AreEqual("CX BC", thirtyFirstOfMarch.ToString("y e"));
+            Assert.AreEqual("CCXVI BC", twentyFourthOfMarch.ToString("y e"));
+            Assert.AreEqual("XLV BC", twentyFifthOfMarch.ToString("y e"));
 
-            Assert.AreEqual("ante diem VII Kalendas Martias", twentyThirdOfFebruary.ToString());
-            Assert.AreEqual("pridie Kalendis Martiis II BC", twentyNinthOfFebruary.ToString());
-            Assert.AreEqual("ante diem bis VI Kalendas Martias XII BC", twentyFourthOfFebruary.ToString());
-            Assert.AreEqual("ante diem VI Kalendas Martias I BC", twentyFifthOfFebruary.ToString());
+            Assert.AreEqual("MMXVI BC", twentyThirdOfFebruary.ToString("y e"));
+            Assert.AreEqual("I BC", twentyNinthOfFebruary.ToString("y e"));
+            Assert.AreEqual("XII BC", twentyFourthOfFebruary.ToString("y e"));
+            Assert.AreEqual("I BC", twentyFifthOfFebruary.ToString("y e"));
         }
 
         [TestMethod]
