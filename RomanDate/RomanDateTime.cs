@@ -24,7 +24,6 @@ namespace RomanDate
         public Eras Era { get; set; }
 
         private int? _daysUntil;
-        private RomanMonths CalendarMonth => GetCalendarMonth();
 
         public static RomanDateTime Now => new RomanDateTime(DateTime.Now);
         public static RomanDateTime MaxValue => new RomanDateTime(DateTime.MaxValue);
@@ -32,6 +31,7 @@ namespace RomanDate
         public static RomanDateTime AbsoluteMinValue => new RomanDateTime(DateTime.MaxValue, Eras.BC);
 
         internal LocalDateTime DateTimeData { get; }
+        internal RomanMonths CalendarMonth => GetCalendarMonth();
 
         public RomanDateTime(int year, Eras era = Eras.AD)
         {
@@ -159,7 +159,7 @@ namespace RomanDate
                 NundinalLetter.ToString(), Era.ToString());
         }
 
-        public (DateTime DateTime, Eras Era) ToDateTime()
+        public(DateTime DateTime, Eras Era)ToDateTime()
         {
             var date = DateTimeData;
             var dateTime = new DateTime(date.YearOfEra, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);

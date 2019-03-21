@@ -101,5 +101,20 @@ namespace RomanDate.Definitions
                     return new RomanMonths();
             }
         }
+
+        public int GetSetDay(SetDays setDay)
+        {
+            switch (setDay)
+            {
+                case SetDays.Kalendae:
+                    return Kalendae;
+                case SetDays.Nonae:
+                    return Nonae;
+                case SetDays.Idus:
+                    return Idus;
+                default:
+                    return 1;
+            }
+        }
     }
 }
