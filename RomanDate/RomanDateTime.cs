@@ -12,6 +12,7 @@ namespace RomanDate
     public struct RomanDateTime
     {
         public string Year => GetRomanYear();
+        public string AucYear => GetAucYear();
         public string Day => GetRomanDayString();
         public NundinalLetters NundinalLetter => GetNundinalLetter();
         public RomanSetDays SetDay => GetSetDay();
@@ -65,36 +66,36 @@ namespace RomanDate
             Era = era;
         }
 
-        private RomanDateTime(LocalDateTime date, bool auc)
+        private RomanDateTime(LocalDateTime date)
         {
             _daysUntil = null;
             DateTimeData = date;
-            Era = auc ? Eras.AUC : date.Year > 0 ? Eras.AD : Eras.BC;
+            Era = date.Year > 0 ? Eras.AD : Eras.BC;
         }
 
         public RomanDateTime AddHours(int hours)
         {
-            return new RomanDateTime(DateTimeData.PlusHours(hours), Era == Eras.AUC);
+            return new RomanDateTime(DateTimeData.PlusHours(hours));
         }
 
         public RomanDateTime AddDays(int days)
         {
-            return new RomanDateTime(DateTimeData.PlusDays(days), Era == Eras.AUC);
+            return new RomanDateTime(DateTimeData.PlusDays(days));
         }
 
         public RomanDateTime AddRomanWeeks(int weeks)
         {
-            return new RomanDateTime(DateTimeData.PlusDays((weeks * 8)), Era == Eras.AUC);
+            return new RomanDateTime(DateTimeData.PlusDays((weeks * 8)));
         }
 
         public RomanDateTime AddMonths(int months)
         {
-            return new RomanDateTime(DateTimeData.PlusMonths(months), Era == Eras.AUC);
+            return new RomanDateTime(DateTimeData.PlusMonths(months));
         }
 
         public RomanDateTime AddYears(int years)
         {
-            return new RomanDateTime(DateTimeData.PlusYears(years), Era == Eras.AUC);
+            return new RomanDateTime(DateTimeData.PlusYears(years));
         }
 
         public override string ToString()
@@ -132,11 +133,12 @@ namespace RomanDate
             format = format.Replace("cx", "{8}");
             format = format.Replace("Cx", "{9}");
             format = format.Replace("y", "{10}");
-            format = format.Replace("t", "{11}");
-            format = format.Replace("h", "{12}");
-            format = format.Replace("v", "{13}");
-            format = format.Replace("Dn", "{14}");
-            format = format.Replace("e", "{15}");
+            format = format.Replace("Yx", "{11}");
+            format = format.Replace("t", "{12}");
+            format = format.Replace("h", "{13}");
+            format = format.Replace("v", "{14}");
+            format = format.Replace("Dn", "{15}");
+            format = format.Replace("e", "{16}");
 
             var sdAcc = DaysUntilSetDay != 0;
             var mAcc = DaysUntilSetDay > 1;
@@ -151,7 +153,7 @@ namespace RomanDate
                 dPrefix.Short, dPrefix.Long, DaysUntilSetDay.ToRomanNumerals(), calendarDay,
                 sDay.Short, (sdAcc ? sDay.Accusative : sDay.Ablative),
                 rMonth.Short, (mAcc ? rMonth.Accusative : rMonth.Ablative),
-                cMonth.Short, cMonth.Month.ToString(), Year, Time, Hour, vigila,
+                cMonth.Short, cMonth.Month.ToString(), Year, AucYear, Time, Hour, vigila,
                 NundinalLetter.ToString(), Era.ToString());
         }
 
@@ -211,16 +213,14 @@ namespace RomanDate
 
         private string GetRomanYear()
         {
-            if (Era == Eras.AUC)
-                return GetAucYear().ToRomanNumerals();
-
             return DateTimeData.YearOfEra.ToRomanNumerals();
         }
 
-        private int GetAucYear()
+        private string GetAucYear()
         {
             var auc = 753;
-            return auc += DateTimeData.Year;
+            var year = (auc += DateTimeData.Year);
+            return year <= 0 ? "" : year.ToRomanNumerals();
         }
 
         private string GetTime(bool hour = false)
