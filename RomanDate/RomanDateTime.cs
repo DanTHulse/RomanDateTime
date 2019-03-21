@@ -30,7 +30,7 @@ namespace RomanDate
         public static RomanDateTime MaxValue => new RomanDateTime(DateTime.MaxValue);
         public static RomanDateTime MinValue => new RomanDateTime(DateTime.MinValue);
 
-        private LocalDateTime DateTimeData { get; }
+        internal LocalDateTime DateTimeData { get; }
 
         public RomanDateTime(int year, Eras era = Eras.AD)
         {
@@ -115,7 +115,8 @@ namespace RomanDate
         /// > {d} = Days until Set Day 
         /// > {sx/Sx} = short/full Set Day
         /// > {m/M} = short/full Month
-        /// > {y} = Year / {e} = Era
+        /// > {y/Yx} = Year/AUC Year
+        /// > {e} = Era
         /// > {Dx} = Calendar day / {Dn} = Nundinal Letter
         /// > {cx/Cx} = short/full Calendar month
         /// </summary>
@@ -157,9 +158,12 @@ namespace RomanDate
                 NundinalLetter.ToString(), Era.ToString());
         }
 
-        public LocalDateTime ToDateTime()
+        public (DateTime DateTime, Eras Era) ToDateTime()
         {
-            return DateTimeData;
+            var date = DateTimeData;
+            var dateTime = new DateTime(date.YearOfEra, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
+
+            return (dateTime, date.Year <= 0 ? Eras.BC : Eras.AD);
         }
 
         #region Private Methods

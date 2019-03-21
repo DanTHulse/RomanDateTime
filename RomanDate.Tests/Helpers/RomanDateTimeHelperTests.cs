@@ -1,6 +1,5 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NodaTime;
 using RomanDate.Enums;
 using RomanDate.Helpers;
 namespace RomanDate.Tests.Helpers
@@ -31,9 +30,9 @@ namespace RomanDate.Tests.Helpers
             var nextFromNonae = new RomanDateTime(2019, 1, 6).NextSetDay();
             var nextFromIdus = new RomanDateTime(2019, 1, 16).NextSetDay();
 
-            Assert.AreEqual(new LocalDate(2019, 1, 5), nextFromKalendae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 1, 13), nextFromNonae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 2, 1), nextFromIdus.ToDateTime().Date);
+            Assert.AreEqual(new DateTime(2019, 1, 5), nextFromKalendae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 1, 13), nextFromNonae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 2, 1), nextFromIdus.ToDateTime().DateTime);
         }
 
         [TestMethod]
@@ -46,12 +45,12 @@ namespace RomanDate.Tests.Helpers
             var nextKalendaeFromNonae = new RomanDateTime(2019, 1, 5).NextSetDay(SetDays.Kalendae);
             var nextNonaeFromIdus = new RomanDateTime(2019, 1, 13).NextSetDay(SetDays.Nonae);
 
-            Assert.AreEqual(new LocalDate(2019, 2, 1), nextKalendae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 2, 5), nextNonae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 2, 13), nextIdus.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 1, 13), nextIdusFromKalendae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 2, 1), nextKalendaeFromNonae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 2, 5), nextNonaeFromIdus.ToDateTime().Date);
+            Assert.AreEqual(new DateTime(2019, 2, 1), nextKalendae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 2, 5), nextNonae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 2, 13), nextIdus.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 1, 13), nextIdusFromKalendae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 2, 1), nextKalendaeFromNonae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 2, 5), nextNonaeFromIdus.ToDateTime().DateTime);
         }
 
         [TestMethod]
@@ -61,9 +60,9 @@ namespace RomanDate.Tests.Helpers
             var prevFromNonae = new RomanDateTime(2019, 1, 4).PreviousSetDay();
             var prevFromIdus = new RomanDateTime(2019, 1, 12).PreviousSetDay();
 
-            Assert.AreEqual(new LocalDate(2019, 1, 13), prevFromKalendae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 1, 1), prevFromNonae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 1, 5), prevFromIdus.ToDateTime().Date);
+            Assert.AreEqual(new DateTime(2019, 1, 13), prevFromKalendae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 1, 1), prevFromNonae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 1, 5), prevFromIdus.ToDateTime().DateTime);
         }
 
         [TestMethod]
@@ -76,12 +75,12 @@ namespace RomanDate.Tests.Helpers
             var prevIdusFromNonae = new RomanDateTime(2019, 1, 4).PreviousSetDay(SetDays.Idus);
             var prevKalendaeFromIdus = new RomanDateTime(2019, 1, 12).PreviousSetDay(SetDays.Kalendae);
 
-            Assert.AreEqual(new LocalDate(2019, 1, 1), prevKalendae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2018, 12, 5), prevNonae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2018, 12, 13), prevIdus.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 1, 5), prevNonaeFromKalendae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2018, 12, 13), prevIdusFromNonae.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 1, 1), prevKalendaeFromIdus.ToDateTime().Date);
+            Assert.AreEqual(new DateTime(2019, 1, 1), prevKalendae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2018, 12, 5), prevNonae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2018, 12, 13), prevIdus.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 1, 5), prevNonaeFromKalendae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2018, 12, 13), prevIdusFromNonae.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 1, 1), prevKalendaeFromIdus.ToDateTime().DateTime);
         }
 
         [TestMethod]
@@ -91,9 +90,9 @@ namespace RomanDate.Tests.Helpers
             var nonRoundNext = new RomanDateTime(2019, 2, 5).NextSetDay().NextSetDay().NextSetDay();
             var idusRoundNext = new RomanDateTime(2019, 2, 13).NextSetDay().NextSetDay().NextSetDay();
 
-            Assert.AreEqual(new LocalDate(2019, 3, 1), kalRoundNext.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 3, 7), nonRoundNext.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 3, 15), idusRoundNext.ToDateTime().Date);
+            Assert.AreEqual(new DateTime(2019, 3, 1), kalRoundNext.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 3, 7), nonRoundNext.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 3, 15), idusRoundNext.ToDateTime().DateTime);
         }
 
         [TestMethod]
@@ -103,9 +102,9 @@ namespace RomanDate.Tests.Helpers
             var nonRoundPrev = new RomanDateTime(2019, 3, 7).PreviousSetDay().PreviousSetDay().PreviousSetDay();
             var idusRoundPrev = new RomanDateTime(2019, 3, 15).PreviousSetDay().PreviousSetDay().PreviousSetDay();
 
-            Assert.AreEqual(new LocalDate(2019, 2, 1), kalRoundPrev.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 2, 5), nonRoundPrev.ToDateTime().Date);
-            Assert.AreEqual(new LocalDate(2019, 2, 13), idusRoundPrev.ToDateTime().Date);
+            Assert.AreEqual(new DateTime(2019, 2, 1), kalRoundPrev.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 2, 5), nonRoundPrev.ToDateTime().DateTime);
+            Assert.AreEqual(new DateTime(2019, 2, 13), idusRoundPrev.ToDateTime().DateTime);
         }
     }
 }

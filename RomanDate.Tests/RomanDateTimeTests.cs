@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NodaTime;
 using RomanDate.Enums;
 using RomanDate.Helpers;
 
@@ -221,6 +220,7 @@ namespace RomanDate.Tests
             var shortMonth = romanDate.ToString("m");
             var fullMonth = romanDate.ToString("M");
             var year = romanDate.ToString("y");
+            var aucYear = romanDate.ToString("Yx");
             var era = romanDate.ToString("e");
             var calDay = romanDate.ToString("Dx");
             var nundinal = romanDate.ToString("Dn");
@@ -238,6 +238,7 @@ namespace RomanDate.Tests
             Assert.AreEqual("Feb.", shortMonth);
             Assert.AreEqual("Februarias", fullMonth);
             Assert.AreEqual("MMXVIII", year);
+            Assert.AreEqual("MMDCCLXXI", aucYear);
             Assert.AreEqual("AD", era);
             Assert.AreEqual("XVII", calDay);
             Assert.AreEqual("B", nundinal);
@@ -301,13 +302,25 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
-        public void ToDateTime_ReturnsOriginalDateTime()
+        public void ToDateTime_ReturnsOriginalDateTimeAD()
         {
             var romanDate = new RomanDateTime(2019, 1, 1, 12);
 
-            var expected = new LocalDateTime(2019, 1, 1, 12, 0);
+            var expected = new DateTime(2019, 1, 1, 12, 0, 0);
 
-            Assert.AreEqual(expected, romanDate.ToDateTime());
+            Assert.AreEqual(expected, romanDate.ToDateTime().DateTime);
+            Assert.AreEqual(Eras.AD, romanDate.ToDateTime().Era);
+        }
+
+        [TestMethod]
+        public void ToDateTime_ReturnsOriginalDateTimeBC()
+        {
+            var romanDate = new RomanDateTime(2019, 1, 1, 12, Eras.BC);
+
+            var expected = new DateTime(2019, 1, 1, 12, 0, 0);
+
+            Assert.AreEqual(expected, romanDate.ToDateTime().DateTime);
+            Assert.AreEqual(Eras.BC, romanDate.ToDateTime().Era);
         }
     }
 }

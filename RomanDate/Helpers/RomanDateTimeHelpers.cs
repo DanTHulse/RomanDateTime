@@ -13,7 +13,7 @@ namespace RomanDate.Helpers
     {
         public static bool IsNundinae(this RomanDateTime date)
         {
-            var dateTime = date.ToDateTime();
+            var dateTime = date.DateTimeData;
             var startPosition = (NundinalLetters) (dateTime.Year % 8);
             var enumList = EnumHelpers.EnumToList<NundinalLetters>();
 
@@ -48,7 +48,7 @@ namespace RomanDate.Helpers
 
         public static RomanDateTime NextSetDay(this RomanDateTime date, SetDays? setDay = null)
         {
-            var dateTime = date.ToDateTime();
+            var dateTime = date.DateTimeData;
             var daysToAdd = date.DaysUntilSetDay.Value != 0 ? date.DaysUntilSetDay.Value - 1 : 0;
             var currSetDay = date.SetDay.SetDay;
             var nextMonth = RomanMonths.GetRomanMonth(((Months) dateTime.Month).Next());
@@ -96,7 +96,7 @@ namespace RomanDate.Helpers
 
         public static RomanDateTime PreviousSetDay(this RomanDateTime date, SetDays? setDay = null)
         {
-            var dateTime = date.ToDateTime();
+            var dateTime = date.DateTimeData;
             var currSetDay = date.SetDay.SetDay;
             var daysUntil = date.DaysUntilSetDay.Value;
             var prevMonth = RomanMonths.GetRomanMonth(((Months) dateTime.Month).Previous());
