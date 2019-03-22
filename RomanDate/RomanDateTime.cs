@@ -169,11 +169,6 @@ namespace RomanDate
 
         #region Private Methods
 
-        public RomanDateTime AddTime(LocalDateTime date)
-        {
-            return new RomanDateTime();
-        }
-
         private NundinalLetters GetNundinalLetter()
         {
             var year = DateTimeData.YearOfEra;
