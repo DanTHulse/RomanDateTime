@@ -84,7 +84,7 @@ namespace RomanDate
             return new RomanDateTime(DateTimeData.PlusDays(days));
         }
 
-        public RomanDateTime AddRomanWeeks(int weeks)
+        public RomanDateTime AddWeeks(int weeks)
         {
             return new RomanDateTime(DateTimeData.PlusDays((weeks * 8)));
         }
