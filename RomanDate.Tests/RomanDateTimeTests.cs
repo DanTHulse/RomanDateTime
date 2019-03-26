@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RomanDate.Definitions;
 using RomanDate.Enums;
-using RomanDate.Helpers;
+using System;
 
 namespace RomanDate.Tests
 {
@@ -584,6 +584,12 @@ namespace RomanDate.Tests
             Assert.AreEqual("MMDCCLXXII", i2019AD.AucYear);
             Assert.AreEqual("I", i753BC.AucYear);
             Assert.AreEqual("", i754BC.AucYear);
+        }
+
+        [TestMethod]
+        public void Test()
+        {
+            var date = RomanDayPrefixes.AnteDiem;
         }
     }
 }

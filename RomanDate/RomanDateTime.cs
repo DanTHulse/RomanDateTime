@@ -1,38 +1,110 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NodaTime;
+﻿using NodaTime;
 using RomanDate.Definitions;
 using RomanDate.Enums;
 using RomanDate.Helpers;
+using System;
+using System.Text;
 
 namespace RomanDate
 {
+    /// <summary>
+    /// Represents an instant in time, formatted with and using the rules of the Roman calendar post Julian reforms
+    /// </summary>
     public struct RomanDateTime
     {
+        /// <summary>
+        /// Gets the year component of the Roman date represented by this instance in Roman Numerals.
+        /// </summary>
         public string Year => GetRomanYear();
+        /// <summary>
+        /// Gets the AUC year component of the Roman date represented by this instance in Roman Numerals.
+        /// </summary>
+        /// <remarks>AUC refers to from the founding of the City of Rome (753 BC)</remarks>
         public string AucYear => GetAucYear();
+        /// <summary>
+        /// Gets the day component of the Roman date represented by this instance.
+        /// </summary>
+        /// <remarks>A day in the Roman calendar takes the form of counting towards the next "set" day 
+        /// using inclusing counting, so </remarks>
         public string Day => GetRomanDayString();
+        /// <summary>
+        /// Gets the Nundinal letter component of the Roman date represented by this instance.
+        /// </summary>
+        /// <remarks>Nundinal letters represent the day of the week.
+        /// The Romans had an 8-day week (A-H) though every 2 years the days would shift to keep the calendar aligned 
+        /// so 28th Feb might be an (A) but 1st Mar could be (D)</remarks>
         public NundinalLetters NundinalLetter => GetNundinalLetter();
+        /// <summary>
+        /// Gets the set day component of the Roman date represented by this instance.
+        /// </summary>
+        /// <remarks>Set days are the three sacred days of the month in the Roman calendar:
+        /// Kalendae, Nonae, Idus</remarks>
         public RomanSetDays SetDay => GetSetDay();
+        /// <summary>
+        /// Gets the day prefix component of the Roman date represented by this instance.
+        /// </summary>
         public RomanDayPrefixes DayPrefix => GetDayPrefix();
+        /// <summary>
+        /// Gets the reference month component of the Roman date represented by this instance.
+        /// </summary>
+        /// <remarks>In the latter half of the month the Romans would start counting down to the Kalends of next month</remarks>
         public RomanMonths ReferenceMonth => GetReferenceMonth();
+        /// <summary>
+        /// Gets the time component of the Roman date represented by this instance.
+        /// </summary>
+        /// <remarks>The Romans would start counting from Hour 1 always from sunrise and have 12 hours until sunset 
+        /// This means the length of the hour varies throughout the year, also night time was tracked by the passage of 
+        /// the watches, or Vigia, which each for a quarter of the length of night time</remarks>
         public string Time => GetTime();
+        /// <summary>
+        /// Gets the hour component of the Roman date represented by this instance.
+        /// </summary>
+        /// <remarks>This is just another way to represent the time, with hours replacing the Vigila at night</remarks>
         public string Hour => GetTime(true);
+        /// <summary>
+        /// Gets the days until the next set day component of the Roman date represented by this instance.
+        /// </summary>
+        /// <remarks>This is an integer representation of the number of days until the next sacred day of the month 
+        /// that makes up the representation of the day</remarks>
         public int? DaysUntilSetDay => _daysUntil == null ? GetDaysUntil() : _daysUntil;
+        /// <summary>
+        /// Gets the era component of the Roman date represented by this instance.
+        /// </summary>
         public Eras Era { get; set; }
 
         private int? _daysUntil;
 
+        /// <summary>
+        /// Gets a new instance of <see cref="RomanDateTime" /> that represents the current date and time.
+        /// </summary>
         public static RomanDateTime Now => new RomanDateTime(DateTime.Now);
+        /// <summary>
+        /// Gets a new instance of <see cref="RomanDateTime" /> that represents the maximun value of <seealso cref="DateTime"/>.
+        /// </summary>
         public static RomanDateTime MaxValue => new RomanDateTime(DateTime.MaxValue);
+        /// <summary>
+        /// Gets a new instance of <see cref="RomanDateTime" /> that represents the minimum value of <seealso cref="DateTime"/>.
+        /// </summary>
         public static RomanDateTime MinValue => new RomanDateTime(DateTime.MinValue);
+        /// <summary>
+        /// Gets a new instance of <see cref="RomanDateTime" /> that represents the maximun value of <seealso cref="DateTime"/> in the BC era.
+        /// </summary>
         public static RomanDateTime AbsoluteMinValue => new RomanDateTime(DateTime.MaxValue, Eras.BC);
 
+        /// <summary>
+        /// Gets the date time data using NodaTime for reference and calculations.
+        /// </summary>
         internal LocalDateTime DateTimeData { get; }
+        /// <summary>
+        /// Gets the calendar month for use in calculations where the reference month would not work.
+        /// </summary>
         internal RomanMonths CalendarMonth => GetCalendarMonth();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the specified year.
+        /// </summary>
+        /// <param name="year">The year (1-9999).</param>
+        /// <param name="era">The era (AD/BC) defaults to AD if null.</param>
         public RomanDateTime(int year, Eras era = Eras.AD)
         {
             _daysUntil = null;
@@ -40,12 +112,26 @@ namespace RomanDate
             Era = era;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the specified year and month.
+        /// </summary>
+        /// <param name="year">The year (1-9999).</param>
+        /// <param name="month">The month (1-12).</param>
+        /// <param name="era">The era (AD/BC) defaults to AD if null.</param>
         public RomanDateTime(int year, int month, Eras era = Eras.AD)
         {
             _daysUntil = null;
             DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, 1, 0, era);
             Era = era;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the specified year, month and day.
+        /// </summary>
+        /// <param name="year">The year (1-9999).</param>
+        /// <param name="month">The month (1-12).</param>
+        /// <param name="day">The day of the month (1 to the total days in the month)</param>
+        /// <param name="era">The era (AD/BC) defaults to AD if null.</param>
         public RomanDateTime(int year, int month, int day, Eras era = Eras.AD)
         {
             _daysUntil = null;
@@ -53,6 +139,14 @@ namespace RomanDate
             Era = era;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the specified year, month, day and hour.
+        /// </summary>
+        /// <param name="year">The year (1-9999).</param>
+        /// <param name="month">The month (1-12).</param>
+        /// <param name="day">The day of the month (1 to the total days in the month)</param>
+        /// <param name="hour">The hour in 24h format (0-23)</param>
+        /// <param name="era">The era (AD/BC) defaults to AD if null.</param>
         public RomanDateTime(int year, int month, int day, int hour, Eras era = Eras.AD)
         {
             _daysUntil = null;
@@ -60,6 +154,10 @@ namespace RomanDate
             Era = era;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the <seealso cref="DateTime"/> provided.
+        /// </summary>
+        /// <param name="era">The era (AD/BC) defaults to AD if null.</param>        
         public RomanDateTime(DateTime date, Eras era = Eras.AD)
         {
             _daysUntil = null;
@@ -67,6 +165,9 @@ namespace RomanDate
             Era = era;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the <seealso cref="LocalDateTime"/> provided.
+        /// </summary>
         private RomanDateTime(LocalDateTime date)
         {
             _daysUntil = null;
@@ -74,31 +175,61 @@ namespace RomanDate
             Era = date.Year > 0 ? Eras.AD : Eras.BC;
         }
 
+        /// <summary>
+        /// Returns a new <see cref="DateTime"/> that adds the specified number of hours to the value of this instance
+        /// </summary>
+        /// <param name="hours">A whole number of hours, can be positive or negative.</param>
+        /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddHours(int hours)
         {
             return new RomanDateTime(DateTimeData.PlusHours(hours));
         }
 
+        /// <summary>
+        /// Returns a new <see cref="DateTime"/> that adds the specified number of days to the value of this instance
+        /// </summary>
+        /// <param name="days">A whole number of days, can be positive or negative.</param>
+        /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddDays(int days)
         {
             return new RomanDateTime(DateTimeData.PlusDays(days));
         }
 
+        /// <summary>
+        /// Returns a new <see cref="DateTime"/> that adds the specified number of Roman weeks to the value of this instance
+        /// </summary>
+        /// <remarks>A Roman week is 8 days long so +1 weeks is the same as +8 days</remarks>
+        /// <param name="weeks">A whole number of Roman weeks, can be positive or negative.</param>
+        /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddWeeks(int weeks)
         {
             return new RomanDateTime(DateTimeData.PlusDays((weeks * 8)));
         }
 
+        /// <summary>
+        /// Returns a new <see cref="DateTime"/> that adds the specified number of months to the value of this instance
+        /// </summary>
+        /// <param name="months">A whole number of months, can be positive or negative.</param>
+        /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddMonths(int months)
         {
             return new RomanDateTime(DateTimeData.PlusMonths(months));
         }
 
+        /// <summary>
+        /// Returns a new <see cref="DateTime"/> that adds the specified number of years to the value of this instance
+        /// </summary>
+        /// <param name="years">A whole number of years, can be positive or negative.</param>
+        /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddYears(int years)
         {
             return new RomanDateTime(DateTimeData.PlusYears(years));
         }
 
+        /// <summary>
+        /// Converts this instance to a string in the format of {Time}, {Day} {Year} {Era}.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             var date = $"{Time}, {Day} {Year}";
@@ -159,7 +290,11 @@ namespace RomanDate
                 NundinalLetter.ToString(), Era.ToString());
         }
 
-        public(DateTime DateTime, Eras Era)ToDateTime()
+        /// <summary>
+        /// Converts this instance to a standard <see cref="DateTime"/> as well as the era it represents
+        /// </summary>
+        /// <returns>A <see cref="ValueTuple"/> containing a <seealso cref="DateTime"/> and <seealso cref="Eras"/></returns>
+        public (DateTime DateTime, Eras Era) ToDateTime()
         {
             var date = DateTimeData;
             var dateTime = new DateTime(date.YearOfEra, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
