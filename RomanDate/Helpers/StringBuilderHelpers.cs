@@ -2,9 +2,9 @@
 
 namespace RomanDate.Helpers
 {
-    public static class StringBuilderHelpers
+    internal static class StringBuilderHelpers
     {
-        public static void AppendIf(this StringBuilder sb, object s, bool condition)
+        internal static void AppendIf(this StringBuilder sb, object s, bool condition)
         {
             if (condition)
             {
@@ -12,7 +12,7 @@ namespace RomanDate.Helpers
             }
         }
 
-        public static void AppendRepeat(this StringBuilder sb, object s, int repeat)
+        internal static void AppendRepeat(this StringBuilder sb, object s, int repeat)
         {
             for (int x = 0; x < repeat; x++)
             {
@@ -20,7 +20,7 @@ namespace RomanDate.Helpers
             }
         }
 
-        public static void AppendIfRepeat(this StringBuilder sb, object s, bool condition, int repeat)
+        internal static void AppendIfRepeat(this StringBuilder sb, object s, bool condition, int repeat)
         {
             if (condition)
             {

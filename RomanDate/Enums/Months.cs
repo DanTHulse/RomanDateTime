@@ -1,5 +1,8 @@
 ﻿namespace RomanDate.Enums
 {
+    /// <summary>
+    /// Enum representing the months used in order from the Roman calendar
+    /// </summary>
     public enum Months
     {
         Ianuarius = 1,

@@ -1,24 +1,37 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NodaTime;
 using RomanDate.Definitions;
 using RomanDate.Enums;
-using RomanDate.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RomanDate.Helpers
 {
+    /// <summary>
+    /// Helper methods for <see cref="RomanDateTime"/>
+    /// </summary>
     public static class RomanDateTimeHelpers
     {
+        /// <summary>
+        /// Determines whether this instance is a nundinae (market day).
+        /// </summary>
+        /// <remarks>The Nundinae is the market day for the Romans, due to superstitions a nundinae cannot fall 
+        /// on a Nonae or on the Kalends of Jan. As a result the letter used for the nundinae changes accordingly to avoid these clashes</remarks>
+        /// <param name="date">The instance of <see cref="RomanDateTime"/> to check.</param>
+        /// <returns><c>true</c> if the specified date is a nundinae (market day); otherwise, <c>false</c>.</returns>
         public static bool IsNundinae(this RomanDateTime date)
         {
             var dateTime = date.DateTimeData;
             var nundinae = ReturnNundinaeForYear(dateTime);
-            
+
             return nundinae == date.NundinalLetter;
         }
 
+        /// <summary>
+        /// Returns an instance of <see cref="RomanDateTime"/> that represents the date of the next nundinae date from the current instance
+        /// </summary>
+        /// <param name="date">The instance of <see cref="RomanDateTime"/>.</param>
+        /// <returns>A new instance of <see cref="RomanDateTime"/> representing the next nundinae (market day)</returns>
         public static RomanDateTime NextNundinae(this RomanDateTime date)
         {
             var dateTime = date.DateTimeData;
@@ -29,6 +42,11 @@ namespace RomanDate.Helpers
             return date.AddDays(daysUntil <= 0 ? 8 - Math.Abs(daysUntil) : daysUntil);
         }
 
+        /// <summary>
+        /// Returns an instance of <see cref="RomanDateTime"/> that represents the date of the previous nundinae date from the current instance
+        /// </summary>
+        /// <param name="date">The instance of <see cref="RomanDateTime"/>.</param>
+        /// <returns>A new instance of <see cref="RomanDateTime"/> representing the previous nundinae (market day)</returns>
         public static RomanDateTime PreviousNundinae(this RomanDateTime date)
         {
             var dateTime = date.DateTimeData;
@@ -39,6 +57,12 @@ namespace RomanDate.Helpers
             return date.AddDays(daysFrom >= 0 ? -(8 - Math.Abs(daysFrom)) : daysFrom);
         }
 
+        /// <summary>
+        /// Returns an instance of <see cref="RomanDateTime"/> that represents the date of the next sacred day from the current instance
+        /// </summary>
+        /// <param name="date">The instance of <see cref="RomanDateTime"/>.</param>
+        /// <param name="setDay">The set day that is desired, if left null the next sequential set day is used</param>
+        /// <returns>A new instance of <see cref="RomanDateTime"/> representing the next set day specified</returns>
         public static RomanDateTime NextSetDay(this RomanDateTime date, SetDays? setDay = null)
         {
             var dateTime = date.DateTimeData;
@@ -87,6 +111,12 @@ namespace RomanDate.Helpers
             return date.AddDays(daysToAdd);
         }
 
+        /// <summary>
+        /// Returns an instance of <see cref="RomanDateTime"/> that represents the date of the previous sacred day from the current instance
+        /// </summary>
+        /// <param name="date">The instance of <see cref="RomanDateTime"/>.</param>
+        /// <param name="setDay">The set day that is desired, if left null the previous sequential set day is used</param>
+        /// <returns>A new instance of <see cref="RomanDateTime"/> representing the previous set day specified</returns>
         public static RomanDateTime PreviousSetDay(this RomanDateTime date, SetDays? setDay = null)
         {
             var dateTime = date.DateTimeData;

@@ -2,9 +2,9 @@
 
 namespace RomanDate.Helpers
 {
-    public static class StringHelpers
+    internal static class StringHelpers
     {
-        public static string Left(this string value, int maxLength)
+        internal static string Left(this string value, int maxLength)
         {
             if (string.IsNullOrEmpty(value)) return value;
             maxLength = Math.Abs(maxLength);

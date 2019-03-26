@@ -1,5 +1,8 @@
 ﻿namespace RomanDate.Enums
 {
+    /// <summary>
+    /// Enum representing the Roman numerals and their associated values
+    /// </summary>
     public enum Numerals
     {
         I = 1,

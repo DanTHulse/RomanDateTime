@@ -6,8 +6,16 @@ using System.Text;
 
 namespace RomanDate
 {
+    /// <summary>
+    /// Class used to handle and convert Roman numerals
+    /// </summary>
     public static class RomanNumerals
     {
+        /// <summary>
+        /// Converts a string of Roman numerals to an integer.
+        /// </summary>
+        /// <param name="numerals">The Roman numerals to convert.</param>
+        /// <returns>The integer representation of the Roman numerals</returns>
         public static int ToInt(string numerals)
         {
             var interger = 0;
@@ -34,11 +42,23 @@ namespace RomanDate
             return interger;
         }
 
+        /// <summary>
+        /// Converts an integer to Roman numerals, in the specified style.
+        /// </summary>
+        /// <param name="num">The integer to convert to numerals.</param>
+        /// <param name="style">The style to use, if left defaults to subtractive.</param>
+        /// <returns>A string of Roman numerals representing the integer</returns>
         public static string ToRomanNumerals(this int num, NumeralStyles style = NumeralStyles.Subtractive)
         {
             return ToRomanNumerals((int?)num, style);
         }
 
+        /// <summary>
+        /// Converts an integer to Roman numerals, in the specified style.
+        /// </summary>
+        /// <param name="num">The integer to convert to numerals.</param>
+        /// <param name="style">The style to use, if left defaults to subtractive.</param>
+        /// <returns>A string of Roman numerals representing the integer</returns>
         public static string ToRomanNumerals(this int? num, NumeralStyles style = NumeralStyles.Subtractive)
         {
             var sb = new StringBuilder();

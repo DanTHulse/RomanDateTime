@@ -1,5 +1,8 @@
 ﻿namespace RomanDate.Enums
 {
+    /// <summary>
+    /// Enum representing the nundinal letters used in the Roman calendar to specify the day of the week
+    /// </summary>
     public enum NundinalLetters
     {
         A = 0,
