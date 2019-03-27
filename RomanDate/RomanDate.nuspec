@@ -21,6 +21,9 @@
       <dependency id="NodaTime" version="2.4.*" />
     </dependencies>
     <!-- ... -->
+    <packageTypes>
+      <packageType name="DotnetCliTool" />
+    </packageTypes>
   </metadata>
   <!-- Optional 'files' node -->
 </package>
