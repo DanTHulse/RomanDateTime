@@ -18,7 +18,12 @@
     <tags>roman calendar rome numerals date time datetime julian ad bc</tags>
     <repository type="git" url="https://github.com/DanTHulse/RomanDateTime" />
     <dependencies>
-      <dependency id="NodaTime" version="2.4.*" />
+      <group>
+        <dependency id="NodaTime" version="2.4.*" />
+      </group>
+      <group targetFramework="net40">
+        <dependency id="NodaTime" version="2.4.*" />
+      </group>
     </dependencies>
     <!-- ... -->
   </metadata>
