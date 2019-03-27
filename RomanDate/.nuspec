@@ -4,9 +4,7 @@
     <id>RomanDateTime</id>
     <version>1.0.5</version>
     <description>
-      This package contains an implementation of the Roman calendar system that is used similarly to DateTime.
-      The calendar system used is the post-Julian reforms in 46 BC.
-      It represents all the systems and quirks the calendar had, and is as accurate as I could make it from my research
+      This package contains an implementation of the Roman calendar system that is used similarly to DateTime. The calendar system used is the post-Julian reforms in 46 BC. It represents all the systems and quirks the calendar had, and is as accurate as I could make it from my research
     </description>
     <authors>Daniel T Hulse</authors>
 
@@ -18,9 +16,9 @@
     <summary>Implementation of the post-Julian Roman Calendar system</summary>
     <tags>roman calendar rome numerals date time datetime julian ad bc</tags>
     <repository type="git" url="https://github.com/DanTHulse/RomanDateTime" />
-    <dependecies>
+    <dependencies>
       <dependency id="NodaTime" version="2.4.*" />
-    </dependecies>
+    </dependencies>
     <!-- ... -->
   </metadata>
   <!-- Optional 'files' node -->
