@@ -46,6 +46,8 @@ There's also some helper methods available to extend the functionality that I di
 `.NextSetDay()``.PreviousSetDay()` both will move the instance to the next or last set (sacred) day of the month
 `.NextNundinae()``.PreviousNundinae()` both will move the instance to the next or last nundinae (market) day.
 
+And finally since I needed this anyway, there's a set of Roman Numeral conversion helpers that works in both the more common (to us) subtractive method (i.e. 4 = IV) as well as the additive method (4 = IIII) which may have been more common at the time. Also the way it's written, I think, would allow almost any combination of numerals, even those never used such as IC = 99. But don't quote me on that I've not tested all permutations.
+
 ## Calendar Details
 Here is some of the things to note about the way the calendar worked at this point in history, hopefully explaining some of the quirks. Like I say I am not a historian and just casually researched this in my spare time so I accept that there could be mistakes, if there are any I am keen to fix them as I tried to get as accurate as I could!
 ### Years
