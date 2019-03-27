@@ -5,10 +5,13 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors></Authors>
     <PackageId>RomanDateTime</PackageId>
-    <NuspecFile>.nuspec</NuspecFile>
+    <NuspecFile>RomanDate.nuspec</NuspecFile>
     <NuspecProperties>version=$(Version)</NuspecProperties>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NodaTime" Version="2.4.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RomanDate.nuspec" Pack="true" PackagePath="$(NuspecFile)"/>
   </ItemGroup>
 </Project>
