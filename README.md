@@ -72,7 +72,7 @@ Straight away you might think: "Why is the 13th of March **3** days before the 1
 Now lets say 14th March: "pridie Idus Martiis" or "The day before the Ides of March" (could also say "The Eve of").
 Finally 16th March: "ante diem XVII Kalendas Apriles" or "17 days before the Kalends of April".
 
-This is the second curve ball, after the Ides the next sacred day is next months Kalends, so you start counting down to that instead. This has the side effect of you spending half the month of March referencing April when talking about the date. It's a ittle confusing at first but you get the hang of it pretty quickly
+This is the second curve ball, after the Ides the next sacred day is next months Kalends, so you start counting down to that instead. This has the side effect of you spending half the month of March referencing April when talking about the date. It's a little confusing at first but you get the hang of it pretty quickly
 ### Hours
 Romans treated sunrise as Hour 1 and sunset as the end of Hour 12. This was true thoughout the year which has the effect of making an hour longer in the summer than in the winter (this is represented in a way within this project as well so 1pm will give a different hour in the summer than in the winter).
 
