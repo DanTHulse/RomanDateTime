@@ -1,8 +1,9 @@
-﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+﻿<?xml version="1.0"?>
+<package>
   <metadata>
     <!-- Required elements-->
     <id>RomanDateTime</id>
-    <version>1.0.5</version>
+    <version>$version$</version>
     <description>
       This package contains an implementation of the Roman calendar system that is used similarly to DateTime. The calendar system used is the post-Julian reforms in 46 BC. It represents all the systems and quirks the calendar had, and is as accurate as I could make it from my research
     </description>
