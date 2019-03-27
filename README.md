@@ -97,3 +97,7 @@ Whereas non-leap years look like this:
 * a.d. VII Kalendas Martias
 * a.d. VI Kalendas Martias
 * a.d. V Kalendas Martias
+
+This was done to prevent the numbering of the days from become messed up throughout the month, as it would mean the day after the Ides of February would be:
+* a.d. XVI Kalends Martias (non-leap year)
+* a.d. XVII Kalends Martias (leap year)
