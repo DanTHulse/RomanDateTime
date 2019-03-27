@@ -10,4 +10,19 @@ An implementation of the Roman calendar system. The calendar system used is post
 If there are any features or issues with current systems feel free to raise issues if they are not already mentioned here!
 
 ## Features
-I mirrored the functionality of `System.DateTime` so the bulk of public methods are copies and all do functionally the same thing. The most obvious examples are `.AddDays()` `.AddMonths()` etc.
+I mirrored the functionality of `System.DateTime` so the bulk of public methods are copies and all do functionally the same thing.
+```csharp
+// new date with year - 1st January 2019
+var dateY = new RomanDateTime(2019);
+// new date with year and month - 1st March 2019
+var dateYM = new RomanDateTime(2019, 3);
+// new date with year, month and day - 15th March 2019
+var dateYMD = new RomanDateTime(2019, 3, 15);
+// new date with year, month, day and hour - 1pm 15th March 2019
+// you can only specify upto the Hour since Romans didn't subdivide the hours
+var dateAndHour = new RomanDateTime(2019, 3, 15, 13);
+// new date with DateTime
+var dateTime = new DateTime(2019, 3, 15);
+var romanDateTime = new RomanDateTime(dateTime);
+```
+Any of these constructors can also use the optional [Eras](../RomanDateTime/RomanDate/Enums/Eras.cs) enum 
