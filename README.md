@@ -25,4 +25,4 @@ var dateAndHour = new RomanDateTime(2019, 3, 15, 13);
 var dateTime = new DateTime(2019, 3, 15);
 var romanDateTime = new RomanDateTime(dateTime);
 ```
-Any of these constructors can also use the optional [Eras](../RomanDateTime/RomanDate/Enums/Eras.cs) enum 
+Any of these constructors can also use the optional [Eras](../blob/master/RomanDate/Enums/Eras.cs) enum 
