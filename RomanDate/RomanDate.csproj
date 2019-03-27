@@ -1,12 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Daniel T Hulse</Authors>
     <PackageId>RomanDateTime</PackageId>
     <Product>Roman DateTime</Product>
     <Description>This package contains an implementation of the Roman calendar system that is used similarly to DateTime. The calendar system used is the post-Julian reforms in 46 BC. It represents all the systems and quirks the calendar had, and is as accurate as I could make it from my research</Description>
+    <PackageProjectUrl>https://github.com/DanTHulse/RomanDateTime</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DanTHulse/RomanDateTime</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>roman date time datetime romandatetime calendar julian bc ad</PackageTags>
+    <PackageReleaseNotes />
+    <SignAssembly>false</SignAssembly>
+    <PackageLicenseUrl>https://github.com/DanTHulse/RomanDateTime/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NodaTime" Version="2.4.4" />

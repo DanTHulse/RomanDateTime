@@ -60,3 +60,4 @@ dkms.conf
 /DateTimeEra.Tests/obj
 /DateTimeEra/bin/Debug/netstandard2.0
 /DateTimeEra.Tests/bin/Debug/netcoreapp2.2
+/RomanDate/bin/Debug/RomanDateTime.1.0.0.nupkg
