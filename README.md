@@ -85,6 +85,7 @@ Just a quick section of the prefixes, they've already been seen above in Days, b
 
 Sacred days have no prefix.
 
+### Leap Years
 *ante diem bis* is special in that it is used to denote the leap day, unlike our calendar where we add the 29th to February, this calendar instead inserts the leap day **before** "a.d. VI Kalendas Martias" or "6 days before the Kalends of March"
 
 This gives us "ante diem bis VI Kalendas Martias" or "6 days before the Kalends of March...twice? again?" I actually don't know how to translate that in a way that makes sense but essentially they repeat "a.d. VI Kalendas Martias" so you end up with:
