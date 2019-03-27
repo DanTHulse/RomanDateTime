@@ -39,16 +39,16 @@ namespace RomanDate
         /// </summary>
         /// <remarks>Set days are the three sacred days of the month in the Roman calendar:
         /// Kalendae, Nonae, Idus</remarks>
-        public RomanSetDays SetDay => GetSetDay();
+        public SetDays SetDay => RomanSetDay.SetDay;
         /// <summary>
         /// Gets the day prefix component of the Roman date represented by this instance.
         /// </summary>
-        public RomanDayPrefixes DayPrefix => GetDayPrefix();
+        public DayPrefixes DayPrefix => RomanDayPrefix.Prefix;
         /// <summary>
         /// Gets the reference month component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>In the latter half of the month the Romans would start counting down to the Kalends of next month</remarks>
-        public RomanMonths ReferenceMonth => GetReferenceMonth();
+        public Months Month => ReferenceMonth.Month;
         /// <summary>
         /// Gets the time component of the Roman date represented by this instance.
         /// </summary>
@@ -91,14 +91,11 @@ namespace RomanDate
         /// </summary>
         public static RomanDateTime AbsoluteMinValue => new RomanDateTime(DateTime.MaxValue, Eras.BC);
 
-        /// <summary>
-        /// Gets the date time data using NodaTime for reference and calculations.
-        /// </summary>
         internal LocalDateTime DateTimeData { get; }
-        /// <summary>
-        /// Gets the calendar month for use in calculations where the reference month would not work.
-        /// </summary>
         internal RomanMonths CalendarMonth => GetCalendarMonth();
+        internal RomanMonths ReferenceMonth => GetReferenceMonth();
+        internal RomanSetDays RomanSetDay => GetSetDay();
+        internal RomanDayPrefixes RomanDayPrefix => GetDayPrefix();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the specified year.
@@ -277,8 +274,8 @@ namespace RomanDate
             var mAcc = DaysUntilSetDay > 1;
             var cMonth = CalendarMonth;
             var rMonth = ReferenceMonth;
-            var sDay = SetDay;
-            var dPrefix = DayPrefix;
+            var sDay = RomanSetDay;
+            var dPrefix = RomanDayPrefix;
             var vigila = Time.StartsWith("Vigila") ? Time : null;
             var calendarDay = DateTimeData.Day.ToRomanNumerals();
 
@@ -325,8 +322,8 @@ namespace RomanDate
         {
             var sb = new StringBuilder();
             var rMonth = ReferenceMonth;
-            var sDay = SetDay;
-            var dPrefix = DayPrefix;
+            var sDay = RomanSetDay;
+            var dPrefix = RomanDayPrefix;
 
             sb.Append($"{(shorten ? dPrefix.Short : dPrefix.Long)} ");
 
@@ -400,7 +397,7 @@ namespace RomanDate
 
         private RomanMonths GetReferenceMonth()
         {
-            if (DateTimeData.Day != 1 && SetDay.SetDay == SetDays.Kalendae)
+            if (DateTimeData.Day != 1 && RomanSetDay.SetDay == SetDays.Kalendae)
                 return RomanMonths.GetRomanMonth(CalendarMonth.Month.Next());
 
             return CalendarMonth;
