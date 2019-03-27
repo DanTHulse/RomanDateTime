@@ -29,7 +29,7 @@ Any of these constructors can also use the optional [Eras](../master/RomanDate/E
 // new BC date - 15th March 47 BC
 var bcDate = new RomanDateTime(47, 3, 15, Eras.BC)
 ```
-*It's worth noting that while there is no year 0 in the Gregorian calendar, for simplicity I am treating a 0 in the year as if it's **1 BC***
+*It's worth noting that while there is no year 0 in the Gregorian calendar, for simplicity I am treating a 0 in the year as if it's **1 BC** but RomanDateTime(1, Eras.BC); will also be 1 BC*
 
 You can also get some static values from the struct
 ```csharp
