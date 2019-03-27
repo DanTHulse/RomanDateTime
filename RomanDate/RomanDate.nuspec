@@ -3,7 +3,7 @@
   <metadata>
     <!-- Required elements-->
     <id>RomanDateTime</id>
-    <version>1.0.0</version>
+    <version>$version$</version>
     <description>
       This package contains an implementation of the Roman calendar system that is used similarly to DateTime. The calendar system used is the post-Julian reforms in 46 BC. It represents all the systems and quirks the calendar had, and is as accurate as I could make it from my research
     </description>
