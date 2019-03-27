@@ -1,0 +1,27 @@
+﻿<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <!-- Required elements-->
+    <id>RomanDateTime</id>
+    <version>1.0.5</version>
+    <description>
+      This package contains an implementation of the Roman calendar system that is used similarly to DateTime.
+      The calendar system used is the post-Julian reforms in 46 BC.
+      It represents all the systems and quirks the calendar had, and is as accurate as I could make it from my research
+    </description>
+    <authors>Daniel T Hulse</authors>
+
+    <!-- Optional elements -->
+    <title>Roman Calendar (RomanDateTime)</title>
+    <projectUrl>https://github.com/DanTHulse/RomanDateTime</projectUrl>
+    <license type="expression">MIT</license>
+    <iconUrl>https://dl1.cbsistatic.com/i/r/2017/12/01/a2e83dd1-e555-47b8-89f8-640feafa4c9a/thumbnail/64x64/996ca943e384a159d473542ec53b8aba/fmimg5457243896014463203.jpg</iconUrl>
+    <summary>Implementation of the post-Julian Roman Calendar system</summary>
+    <tags>roman calendar rome numerals date time datetime julian ad bc</tags>
+    <repository type="git" url="https://github.com/DanTHulse/RomanDateTime" />
+    <dependecies>
+      <dependency id="NodaTime" version="2.4.*" />
+    </dependecies>
+    <!-- ... -->
+  </metadata>
+  <!-- Optional 'files' node -->
+</package>
