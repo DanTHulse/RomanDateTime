@@ -8,6 +8,8 @@
 
 An implementation of the Roman calendar system. The calendar system used is post-Julian reforms (46 BC) however it represents dates in the [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar) for ease of conversion for now. It represents all the systems and quirks the calendar had, and is as accurate as I could make it from my research, though I am *not* a historian and got a C in GSCE History so I accept that there could be mistakes or inaccuracies! If there are any features or issues with current systems feel free to raise issues if they are not already mentioned here!
 
+_**This package currently requires NodaTime >2.4.x as I use it internally to handle BC dates, however it's not needed to interact with the package**_
+
 ## Features
 I mirrored the functionality of `System.DateTime` so the bulk of public methods are copies and all do functionally the same thing.
 ```csharp
