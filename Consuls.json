@@ -1,0 +1,33 @@
+[
+    {
+        "id": "245",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Lucius Junius Brutus",
+                "shortName": "Brutus",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Lucius Tarquinius Collatinus",
+                "shortName": "Collatinus",
+                "type": "Consul posterior"
+            },
+            {
+                "fullName": "Spurius Lucretius Tricipitinus",
+                "shortName": "Tricipitinus",
+                "type": "Consul suffectus"
+            },
+            {
+                "fullName": "Marcus Horatius Pulvillus",
+                "shortName": "Horatius",
+                "type": "Consul suffectus"
+            },
+            {
+                "fullName": "Publius Valerius Poplicola",
+                "shortName": "Poplicola",
+                "type": "Consul suffectus"
+            }
+        ]
+    }
+]
