@@ -13,7 +13,4 @@
   <ItemGroup>
     <PackageReference Include="NodaTime" Version="2.4.4" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="RomanDate.nuspec" Pack="true" PackagePath="$(NuspecFile)"/>
-  </ItemGroup>
 </Project>

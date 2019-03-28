@@ -18,7 +18,15 @@
     <tags>roman calendar rome numerals date time datetime julian ad bc</tags>
     <repository type="git" url="https://github.com/DanTHulse/RomanDateTime" />
     <dependencies>
-      <dependency id="NodaTime" version="2.4.*" />
+      <group targetFramework="netstandard2.0">
+        <dependency id="NodaTime" version="2.4.*" />
+      </group>
+      <group targetFramework="netcoreapp2.1">
+        <dependency id="NodaTime" version="2.4.*" />
+      </group>
+      <group targetFramework="net47">
+        <dependency id="NodaTime" version="2.4.*" />
+      </group>
     </dependencies>
     <!-- ... -->
     <packageTypes>
@@ -26,4 +34,7 @@
     </packageTypes>
   </metadata>
   <!-- Optional 'files' node -->
+  <files>
+    <file src="bin\Release\netstandard2.0\*.*" target="lib\netstandard2.0" />
+  </files>
 </package>
