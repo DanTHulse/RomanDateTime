@@ -65,7 +65,7 @@ namespace RomanDate.Tests
             var twentyFifthOfMarch = new RomanDateTime(45, 3, 25, Eras.BC);
 
             var twentyThirdOfFebruary = new RomanDateTime(2016, 2, 23, Eras.BC);
-            var twentyNinthOfFebruary = new RomanDateTime(1, 2, 29, Eras.BC);
+            var twentyNinthOfFebruary = new RomanDateTime(1, 2, 28, Eras.BC);
             var twentyFourthOfFebruary = new RomanDateTime(12, 2, 24, Eras.BC);
             var twentyFifthOfFebruary = new RomanDateTime(1, 2, 25, Eras.BC);
 

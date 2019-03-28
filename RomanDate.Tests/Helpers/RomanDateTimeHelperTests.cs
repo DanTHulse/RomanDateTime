@@ -11,7 +11,7 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void IsNundinae_ReturnsTrueIfMarketDay()
         {
-            var result = new RomanDateTime(2018, 1, 17); // Market day for 2018 is B
+            var result = new RomanDateTime(2018, 1, 15); // Market day for 2018 is H
 
             Assert.IsTrue(result.IsNundinae());
         }
@@ -19,7 +19,7 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void IsNundinae_ReturnsDalseIfNotMarketDay()
         {
-            var result = new RomanDateTime(2018, 1, 8); // Market day for 2018 is B
+            var result = new RomanDateTime(2018, 1, 8); // Market day for 2018 is H
 
             Assert.IsFalse(result.IsNundinae());
         }
@@ -27,7 +27,7 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void IsNundinae_ReturnsTrueIfMarketDayInBCEra()
         {
-            var result = new RomanDateTime(45, 1, 21, Eras.BC); // Market day for 45 is A
+            var result = new RomanDateTime(45, 1, 23, Eras.BC); // Market day for 45 is A
 
             Assert.IsTrue(result.IsNundinae());
         }
@@ -157,9 +157,9 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void ToNextNundinae_ReturnsNextMarketDayInWeek()
         {
-            var date = new RomanDateTime(2018, 1, 16).NextNundinae(); // Market day for 2018 is B
+            var date = new RomanDateTime(2018, 1, 14).NextNundinae(); // Market day for 2018 is H
 
-            var expected = new RomanDateTime(2018, 1, 17);
+            var expected = new RomanDateTime(2018, 1, 15);
 
             Assert.AreEqual(expected, date);
         }
@@ -167,9 +167,9 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void ToNextNundinae_ReturnsNextMarketDayNextWeek()
         {
-            var date = new RomanDateTime(2018, 1, 18).NextNundinae(); // Market day for 2018 is B
+            var date = new RomanDateTime(2018, 1, 16).NextNundinae(); // Market day for 2018 is H
 
-            var expected = new RomanDateTime(2018, 1, 25);
+            var expected = new RomanDateTime(2018, 1, 23);
 
             Assert.AreEqual(expected, date);
         }
@@ -177,9 +177,9 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void ToNextNundinae_ReturnsNextMarketDayOnMarketDay()
         {
-            var date = new RomanDateTime(2018, 1, 17).NextNundinae(); // Market day for 2018 is B
+            var date = new RomanDateTime(2018, 1, 15).NextNundinae(); // Market day for 2018 is H
 
-            var expected = new RomanDateTime(2018, 1, 25);
+            var expected = new RomanDateTime(2018, 1, 23);
 
             Assert.AreEqual(expected, date);
         }
@@ -187,9 +187,9 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void ToPreviousNundinae_ReturnsPreviousMarketDayInWeek()
         {
-            var date = new RomanDateTime(2018, 1, 18).PreviousNundinae(); // Market day for 2018 is B
+            var date = new RomanDateTime(2018, 1, 16).PreviousNundinae(); // Market day for 2018 is H
 
-            var expected = new RomanDateTime(2018, 1, 17);
+            var expected = new RomanDateTime(2018, 1, 15);
 
             Assert.AreEqual(expected, date);
         }
@@ -197,9 +197,9 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void ToPreviousNundinae_ReturnsPreviousMarketDayPreviousWeek()
         {
-            var date = new RomanDateTime(2018, 1, 16).PreviousNundinae(); // Market day for 2018 is B
+            var date = new RomanDateTime(2018, 1, 14).PreviousNundinae(); // Market day for 2018 is H
 
-            var expected = new RomanDateTime(2018, 1, 9);
+            var expected = new RomanDateTime(2018, 1, 7);
 
             Assert.AreEqual(expected, date);
         }
@@ -207,9 +207,9 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void ToPreviousNundinae_ReturnsPreviousMarketDayOnMarketDay()
         {
-            var date = new RomanDateTime(2018, 1, 17).PreviousNundinae(); // Market day for 2018 is B
+            var date = new RomanDateTime(2018, 1, 15).PreviousNundinae(); // Market day for 2018 is H
 
-            var expected = new RomanDateTime(2018, 1, 9);
+            var expected = new RomanDateTime(2018, 1, 7);
 
             Assert.AreEqual(expected, date);
         }

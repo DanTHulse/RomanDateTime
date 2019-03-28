@@ -91,7 +91,7 @@ namespace RomanDate
         /// </summary>
         public static RomanDateTime AbsoluteMinValue => new RomanDateTime(DateTime.MaxValue, Eras.BC);
 
-        internal LocalDateTime DateTimeData { get; }
+        internal DateTime DateTimeData { get; }
         internal RomanMonths CalendarMonth => GetCalendarMonth();
         internal RomanMonths ReferenceMonth => GetReferenceMonth();
         internal RomanSetDays RomanSetDay => GetSetDay();
@@ -105,7 +105,7 @@ namespace RomanDate
         public RomanDateTime(int year, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, 1, 1, 0, era);
+            DateTimeData = new DateTime(year, 1, 1);
             Era = era;
         }
 
@@ -118,7 +118,7 @@ namespace RomanDate
         public RomanDateTime(int year, int month, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, 1, 0, era);
+            DateTimeData = new DateTime(year, month, 1);
             Era = era;
         }
 
@@ -132,7 +132,7 @@ namespace RomanDate
         public RomanDateTime(int year, int month, int day, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, day, 0, era);
+            DateTimeData = new DateTime(year, month, day);
             Era = era;
         }
 
@@ -147,7 +147,7 @@ namespace RomanDate
         public RomanDateTime(int year, int month, int day, int hour, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, day, hour, era);
+            DateTimeData = new DateTime(year, month, day, hour, 0, 0);
             Era = era;
         }
 
@@ -158,18 +158,8 @@ namespace RomanDate
         public RomanDateTime(DateTime date, Eras era = Eras.AD)
         {
             _daysUntil = null;
-            DateTimeData = date.ToLocalDateTime(era);
-            Era = era;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the <seealso cref="LocalDateTime"/> provided.
-        /// </summary>
-        private RomanDateTime(LocalDateTime date)
-        {
-            _daysUntil = null;
             DateTimeData = date;
-            Era = date.Year > 0 ? Eras.AD : Eras.BC;
+            Era = era;
         }
 
         /// <summary>
@@ -179,7 +169,7 @@ namespace RomanDate
         /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddHours(int hours)
         {
-            return new RomanDateTime(DateTimeData.PlusHours(hours));
+            return new RomanDateTime(DateTimeData.AddHours(hours));
         }
 
         /// <summary>
@@ -189,7 +179,7 @@ namespace RomanDate
         /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddDays(int days)
         {
-            return new RomanDateTime(DateTimeData.PlusDays(days));
+            return new RomanDateTime(DateTimeData.AddDays(days));
         }
 
         /// <summary>
@@ -200,7 +190,7 @@ namespace RomanDate
         /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddWeeks(int weeks)
         {
-            return new RomanDateTime(DateTimeData.PlusDays((weeks * 8)));
+            return new RomanDateTime(DateTimeData.AddDays((weeks * 8)));
         }
 
         /// <summary>
@@ -210,7 +200,7 @@ namespace RomanDate
         /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddMonths(int months)
         {
-            return new RomanDateTime(DateTimeData.PlusMonths(months));
+            return new RomanDateTime(DateTimeData.AddMonths(months));
         }
 
         /// <summary>
@@ -220,7 +210,7 @@ namespace RomanDate
         /// <returns>new <see cref="RomanDateTime"/></returns>
         public RomanDateTime AddYears(int years)
         {
-            return new RomanDateTime(DateTimeData.PlusYears(years));
+            return new RomanDateTime(DateTimeData.AddYears(years));
         }
 
         /// <summary>
@@ -293,21 +283,18 @@ namespace RomanDate
         /// <returns>A <see cref="ValueTuple"/> containing a <seealso cref="DateTime"/> and <seealso cref="Eras"/></returns>
         public (DateTime DateTime, Eras Era) ToDateTime()
         {
-            var date = DateTimeData;
-            var dateTime = new DateTime(date.YearOfEra, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
-
-            return (dateTime, date.Year <= 0 ? Eras.BC : Eras.AD);
+            return (DateTimeData, Era);
         }
 
         #region Private Methods
 
         private NundinalLetters GetNundinalLetter()
         {
-            var year = DateTimeData.YearOfEra;
+            var year = DateTimeData.Year;
 
             var startPosition = (NundinalLetters)(year % 8);
 
-            var daysFromStart = Math.Abs(DateTimeData.Minus(new LocalDateTime(DateTimeData.Year, 1, 1, 0, 0)).Days);
+            var daysFromStart = Math.Abs((DateTimeData - new DateTime(DateTimeData.Year, 1, 1)).Days);
             var daysFromCycle = (((daysFromStart + (int)startPosition) - 1) % 8);
 
             if (daysFromCycle > 8)
@@ -345,13 +332,13 @@ namespace RomanDate
 
         private string GetRomanYear()
         {
-            return DateTimeData.YearOfEra.ToRomanNumerals();
+            return DateTimeData.Year.ToRomanNumerals();
         }
 
         private string GetAucYear()
         {
             var auc = 753;
-            var year = (auc += DateTimeData.Year);
+            var year = Era == Eras.AD ? (auc + DateTimeData.Year) : (auc - (DateTimeData.Year - 1));
             return year <= 0 ? "" : year.ToRomanNumerals();
         }
 
