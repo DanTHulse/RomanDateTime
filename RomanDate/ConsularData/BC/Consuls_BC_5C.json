@@ -2,7 +2,18 @@
     {
         "id": "254",
         "type": "",
-        "magistrates": []
+        "magistrates": [
+            {
+                "fullName": "Servius Sulpicius Camerinus Cornutus",
+                "shortName": "Camerinus",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Manius Tullius Longus",
+                "shortName": "Longus",
+                "type": "Consul posterior"
+            }
+        ]
     },
     {
         "id": "255",
