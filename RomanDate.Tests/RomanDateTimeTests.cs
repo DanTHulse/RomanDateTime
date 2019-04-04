@@ -585,11 +585,5 @@ namespace RomanDate.Tests
             Assert.AreEqual("I", i753BC.AucYear);
             Assert.AreEqual("", i754BC.AucYear);
         }
-
-        [TestMethod]
-        public void Test()
-        {
-            var date = RomanDayPrefixes.AnteDiem;
-        }
     }
 }
