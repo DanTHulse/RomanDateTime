@@ -9,7 +9,7 @@ namespace RomanDate.Tests.Helpers
         [TestMethod]
         public void ReturnConsularYear_ReturnsCorrectYearString()
         {
-            var item = ConsularNaming.ReturnConsularYear(245);
+            var item = ConsularNaming.ReturnConsularYearData(245);
 
             
         }
