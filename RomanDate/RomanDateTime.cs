@@ -1,9 +1,9 @@
-﻿using NodaTime;
+﻿using System;
+using System.Text;
+using NodaTime;
 using RomanDate.Definitions;
 using RomanDate.Enums;
 using RomanDate.Helpers;
-using System;
-using System.Text;
 
 namespace RomanDate
 {
@@ -21,6 +21,11 @@ namespace RomanDate
         /// </summary>
         /// <remarks>AUC refers to from the founding of the City of Rome (753 BC)</remarks>
         public string AucYear => GetAucYear();
+        /// <summary>
+        /// Gets the Consular year component of the Roman date represented by this instance.
+        /// </summary>
+        /// <remarks>The Romans named their years by who was in office as Consul (or other high ranking office)</remarks>
+        public string ConsularYear => GetConsularYear();
         /// <summary>
         /// Gets the day component of the Roman date represented by this instance.
         /// </summary>
@@ -71,6 +76,7 @@ namespace RomanDate
         /// Gets the era component of the Roman date represented by this instance.
         /// </summary>
         public Eras Era { get; set; }
+        public object Magistrates => GetMagistrates();
 
         private int? _daysUntil;
 
@@ -96,6 +102,7 @@ namespace RomanDate
         internal RomanMonths ReferenceMonth => GetReferenceMonth();
         internal RomanSetDays RomanSetDay => GetSetDay();
         internal RomanDayPrefixes RomanDayPrefix => GetDayPrefix();
+        internal ConsularDate ConsularData => GetConsularDate();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the specified year.
@@ -291,7 +298,7 @@ namespace RomanDate
         /// Converts this instance to a standard <see cref="DateTime"/> as well as the era it represents
         /// </summary>
         /// <returns>A <see cref="ValueTuple"/> containing a <seealso cref="DateTime"/> and <seealso cref="Eras"/></returns>
-        public (DateTime DateTime, Eras Era) ToDateTime()
+        public(DateTime DateTime, Eras Era) ToDateTime()
         {
             var date = DateTimeData;
             var dateTime = new DateTime(date.YearOfEra, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Millisecond);
@@ -301,19 +308,36 @@ namespace RomanDate
 
         #region Private Methods
 
+        private ConsularDate GetConsularDate()
+        {
+            var auc = 753;
+            var year = (auc += DateTimeData.Year);
+            return ConsularNaming.ReturnConsularYearData(year);
+        }
+
+        private object GetMagistrates()
+        {
+            if (ConsularData != null)
+            {
+                return new Magistrates(ConsularData);
+            }
+
+            return null;
+        }
+
         private NundinalLetters GetNundinalLetter()
         {
             var year = DateTimeData.YearOfEra;
 
-            var startPosition = (NundinalLetters)(year % 8);
+            var startPosition = (NundinalLetters) (year % 8);
 
             var daysFromStart = Math.Abs(DateTimeData.Minus(new LocalDateTime(DateTimeData.Year, 1, 1, 0, 0)).Days);
-            var daysFromCycle = (((daysFromStart + (int)startPosition) - 1) % 8);
+            var daysFromCycle = (((daysFromStart + (int) startPosition) - 1) % 8);
 
             if (daysFromCycle > 8)
                 daysFromCycle -= 8;
 
-            var cyclePosition = (NundinalLetters)daysFromCycle;
+            var cyclePosition = (NundinalLetters) daysFromCycle;
 
             return cyclePosition;
         }
@@ -353,6 +377,11 @@ namespace RomanDate
             var auc = 753;
             var year = (auc += DateTimeData.Year);
             return year <= 0 ? "" : year.ToRomanNumerals();
+        }
+
+        private string GetConsularYear()
+        {
+            return ConsularData.ParseConsularYear();
         }
 
         private string GetTime(bool hour = false)
@@ -467,7 +496,7 @@ namespace RomanDate
         {
             if (DateTimeData.Month != 0 && DateTimeData.Month <= 12)
             {
-                return (RomanMonths.GetRomanMonth((Months)DateTimeData.Month));
+                return (RomanMonths.GetRomanMonth((Months) DateTimeData.Month));
             }
 
             return default(RomanMonths);

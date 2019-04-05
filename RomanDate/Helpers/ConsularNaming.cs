@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Newtonsoft.Json;
 using RomanDate.Definitions;
 using RomanDate.Enums;
 
 namespace RomanDate.Helpers
 {
-    public static class ConsularNaming
+    internal static class ConsularNaming
     {
-        public static ConsularDate ReturnConsularYearData(int aucYear)
+        internal static ConsularDate ReturnConsularYearData(int aucYear)
         {
             var data = LoadData();
 
@@ -18,12 +19,29 @@ namespace RomanDate.Helpers
             return item;
         }
 
-        public static string ParseConsularYear(ConsularDate data)
+        internal static string ParseConsularYear(this ConsularDate data)
         {
-            var cPrior = data.Magistrates.FirstOrDefault(f => f.Type == Magistrates.ConsulPrior);
-            var cPosterior = data.Magistrates.FirstOrDefault(f => f.Type == Magistrates.ConsulPosterior);
+            if (data != null)
+            {
+                if (!string.IsNullOrEmpty(data.Override))
+                    return data.Override;
 
-            var s = $"The {data.Type} of {cPrior.ShortName} and {cPosterior.ShortName}";
+                var sb = new StringBuilder();
+                sb.Append($"Year of the {data.Type.GetDescription()} of ");
+
+                if (data.Type == YearType.Dictatorship)
+                    sb.Append(data.Dictator.ShortName);
+                else if (data.Type == YearType.Tribunship)
+                    sb.Append($"{string.Join(", ", data.Tribuni.Take(data.Tribuni.Count() - 1).Select(s => s.ShortName))}, and {data.Tribuni.Last().ShortName}");
+                else if (data.Type == YearType.Consulship)
+                    sb.Append(data.ConsulPrior.ShortName);
+                if (data.ConsulPosterior != null)
+                    sb.Append($" and {data.ConsulPosterior.ShortName}");
+                else
+                    sb.Append(" without colleague");
+
+                return sb.ToString();
+            }
 
             return "";
         }

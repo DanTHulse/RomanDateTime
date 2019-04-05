@@ -587,6 +587,46 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
+        public void ReturnConsularYear_Consulship_ReturnsCorrectYearString()
+        {
+            var item = new RomanDateTime(509, Eras.BC);
+
+            Assert.AreEqual("Year of the Consulship of Brutus and Collatinus", item.ConsularYear);
+        }
+
+        [TestMethod]
+        public void ReturnConsularYear_Dictatorship_ReturnsCorrectYearString()
+        {
+            var item = new RomanDateTime(509, Eras.BC);
+
+            Assert.AreEqual("", item.ConsularYear);
+        }
+
+        [TestMethod]
+        public void ReturnConsularYear_Tribunate_ReturnsCorrectYearString()
+        {
+           var item = new RomanDateTime(509, Eras.BC);
+
+            Assert.AreEqual("", item.ConsularYear);
+        }
+
+        [TestMethod]
+        public void ReturnConsularYear_Decemviri_ReturnsCorrectYearString()
+        {
+            var item = new RomanDateTime(509, Eras.BC);
+
+            Assert.AreEqual("", item.ConsularYear);
+        }
+
+        [TestMethod]
+        public void ReturnConsularYear_ReturnsEmptyStringIfNoDataFound()
+        {
+            var item = new RomanDateTime(508, Eras.BC);
+
+            Assert.AreEqual("", item.ConsularYear);
+        }
+
+        [TestMethod]
         public void Test()
         {
             var date = RomanDayPrefixes.AnteDiem;
