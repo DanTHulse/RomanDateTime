@@ -23,6 +23,8 @@ namespace RomanDate.Helpers
         {
             if (data != null)
             {
+                var magistrates = new Magistrates(data);
+
                 if (!string.IsNullOrEmpty(data.Override))
                     return data.Override;
 
@@ -30,13 +32,13 @@ namespace RomanDate.Helpers
                 sb.Append($"Year of the {data.Type.GetDescription()} of ");
 
                 if (data.Type == YearType.Dictatorship)
-                    sb.Append(data.Dictator.ShortName);
+                    sb.Append(magistrates.Dictator.ShortName);
                 else if (data.Type == YearType.Tribunship)
-                    sb.Append($"{string.Join(", ", data.Tribuni.Take(data.Tribuni.Count() - 1).Select(s => s.ShortName))}, and {data.Tribuni.Last().ShortName}");
+                    sb.Append($"{string.Join(", ", magistrates.Tribuni.Take(magistrates.Tribuni.Count() - 1).Select(s => s.ShortName))}, and {magistrates.Tribuni.Last().ShortName}");
                 else if (data.Type == YearType.Consulship)
-                    sb.Append(data.ConsulPrior.ShortName);
-                if (data.ConsulPosterior != null)
-                    sb.Append($" and {data.ConsulPosterior.ShortName}");
+                    sb.Append(magistrates.ConsulPrior.ShortName);
+                if (magistrates.ConsulPosterior != null)
+                    sb.Append($" and {magistrates.ConsulPosterior.ShortName}");
                 else
                     sb.Append(" without colleague");
 
