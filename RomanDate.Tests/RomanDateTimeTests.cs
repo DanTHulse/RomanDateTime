@@ -5,6 +5,7 @@ using RomanDate.Enums;
 using RomanDate.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RomanDate.Tests
 {
@@ -592,10 +593,12 @@ namespace RomanDate.Tests
         [TestMethod]
         public void Test()
         {
-            var year = 2018;
-            var month = 12;
-
-            var coll = RomanCalendar.GetMonthOfDates(year, month);
+            var miColl = RomanCalendar.GetMillenia();
+            var ceColl = RomanCalendar.GetCenturies(1000);
+            var deColl = RomanCalendar.GetDecades(1900);
+            var yColl = RomanCalendar.GetYears(1980);
+            var mColl = RomanCalendar.GetMonths();
+            var coll = RomanCalendar.GetMonthOfDates(yColl.First().Number, mColl.First().Number);
         }
     }
 }
