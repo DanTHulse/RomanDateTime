@@ -299,6 +299,17 @@ namespace RomanDate
             return (dateTime, date.Year <= 0 ? Eras.BC : Eras.AD);
         }
 
+        /// <summary>
+        /// Tries to parse the provided string into a valid <see cref="RomanDateTime"/>
+        /// </summary>
+        /// <param name="value">The string value of the Roman date you wish to try to parse</param>
+        /// <param name="dateTime">The parsed Roman date if successful</param>
+        /// <returns>True if parse successful</returns>
+        public bool TryParse(string value, out RomanDateTime dateTime)
+        {
+            return RomanDateParser.TryParse(value, out dateTime);
+        }
+
         #region Private Methods
 
         private NundinalLetters GetNundinalLetter()

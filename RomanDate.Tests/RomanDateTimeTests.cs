@@ -589,7 +589,7 @@ namespace RomanDate.Tests
         [TestMethod]
         public void Test()
         {
-            var date = RomanDayPrefixes.AnteDiem;
+            var date = DateTime.TryParse("", out var result);
         }
     }
 }
