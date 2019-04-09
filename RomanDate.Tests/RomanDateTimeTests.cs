@@ -1,7 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NodaTime;
 using RomanDate.Definitions;
 using RomanDate.Enums;
+using RomanDate.Helpers;
 using System;
+using System.Collections.Generic;
 
 namespace RomanDate.Tests
 {
@@ -589,7 +592,10 @@ namespace RomanDate.Tests
         [TestMethod]
         public void Test()
         {
-            var date = RomanDayPrefixes.AnteDiem;
+            var year = 2018;
+            var month = 12;
+
+            var coll = RomanCalendar.GetMonthOfDates(year, month);
         }
     }
 }
