@@ -593,12 +593,7 @@ namespace RomanDate.Tests
         [TestMethod]
         public void Test()
         {
-            var miColl = RomanCalendar.GetMillenia();
-            var ceColl = RomanCalendar.GetCenturies(1000);
-            var deColl = RomanCalendar.GetDecades(1900);
-            var yColl = RomanCalendar.GetYears(1980);
-            var mColl = RomanCalendar.GetMonths();
-            var coll = RomanCalendar.GetMonthOfDates(yColl.First().Number, mColl.First().Number);
+            
         }
     }
 }
