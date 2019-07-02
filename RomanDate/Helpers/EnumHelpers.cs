@@ -1,10 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace RomanDate.Helpers
 {
     internal static class EnumHelpers
     {
+        internal static string GetDescription<T>(this T source)
+        {
+            var fi = source.GetType().GetField(source.ToString());
+
+            var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(
+                typeof(DescriptionAttribute), false);
+
+            if (attributes != null && attributes.Length > 0)
+            {
+                return attributes[0].Description;
+            }
+            else
+            {
+                return source.ToString();
+            }
+        }
+
         internal static List<T> EnumToList<T>() where T : struct
         {
             var enumType = typeof(T);
