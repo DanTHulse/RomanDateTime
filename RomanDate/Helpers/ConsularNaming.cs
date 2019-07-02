@@ -50,7 +50,7 @@ namespace RomanDate.Helpers
 
         private static IEnumerable<ConsularDate> LoadData()
         {
-            using(StreamReader r = new StreamReader("./ConsularData/ConsularDates.json"))
+            using (StreamReader r = new StreamReader("./ConsularData/ConsularDates.json"))
             {
                 string json = r.ReadToEnd();
                 var items = JsonConvert.DeserializeObject<List<ConsularDate>>(json);

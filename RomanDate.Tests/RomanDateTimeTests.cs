@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RomanDate.Definitions;
 using RomanDate.Enums;
 
 namespace RomanDate.Tests
@@ -342,7 +343,7 @@ namespace RomanDate.Tests
         [TestMethod]
         public void ReturnConsularYear_Tribunate_ReturnsCorrectYearString()
         {
-           var item = new RomanDateTime(509, Eras.BC);
+            var item = new RomanDateTime(509, Eras.BC);
 
             Assert.AreEqual("", item.ConsularYear);
         }
