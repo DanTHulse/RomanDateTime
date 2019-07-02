@@ -1,12 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RomanDate.Definitions;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RomanDate.Enums;
-using System;
 
 namespace RomanDate.Tests
 {
     [TestClass]
-    public class RomanDateTimeTests
+    public partial class RomanDateTimeTests
     {
         [TestMethod]
         public void RomanDateTime_ReturnsDayInRomanCalendar()
@@ -309,268 +308,6 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
-        public void ToFormattedString_ReturnsCorrectElements()
-        {
-            var romanDate = new RomanDateTime(2018, 1, 17);
-
-            var time = romanDate.ToString("t");
-            var hour = romanDate.ToString("h");
-            var vigila = romanDate.ToString("v");
-            var shortPrefix = romanDate.ToString("p");
-            var fullPrefix = romanDate.ToString("P");
-            var daysUntil = romanDate.ToString("d");
-            var shortSetDay = romanDate.ToString("sx");
-            var fullSetDay = romanDate.ToString("Sx");
-            var shortMonth = romanDate.ToString("m");
-            var fullMonth = romanDate.ToString("M");
-            var year = romanDate.ToString("y");
-            var aucYear = romanDate.ToString("Yx");
-            var era = romanDate.ToString("e");
-            var calDay = romanDate.ToString("Dx");
-            var nundinal = romanDate.ToString("Dn");
-            var shortCalMonth = romanDate.ToString("cx");
-            var fullCalMonth = romanDate.ToString("Cx");
-
-            Assert.AreEqual("Vigila Tertia", time);
-            Assert.AreEqual("hora noctis VII", hour);
-            Assert.AreEqual("Vigila Tertia", vigila);
-            Assert.AreEqual("a.d.", shortPrefix);
-            Assert.AreEqual("ante diem", fullPrefix);
-            Assert.AreEqual("XVI", daysUntil);
-            Assert.AreEqual("Kal.", shortSetDay);
-            Assert.AreEqual("Kalendas", fullSetDay);
-            Assert.AreEqual("Feb.", shortMonth);
-            Assert.AreEqual("Februarias", fullMonth);
-            Assert.AreEqual("MMXVIII", year);
-            Assert.AreEqual("MMDCCLXXI", aucYear);
-            Assert.AreEqual("AD", era);
-            Assert.AreEqual("XVII", calDay);
-            Assert.AreEqual("B", nundinal);
-            Assert.AreEqual("Ian.", shortCalMonth);
-            Assert.AreEqual("Ianuarius", fullCalMonth);
-        }
-
-        [TestMethod]
-        public void AddHours_AddsToRomanDate()
-        {
-            var romanDate = new RomanDateTime(2019, 1, 1, 12);
-            var newDate = romanDate.AddHours(1);
-
-            var expected = new RomanDateTime(2019, 1, 1, 13);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddHours_CorrectlyCrossesToADEra()
-        {
-            var romanDate = new RomanDateTime(1, 12, 31, 23, Eras.BC);
-            var newDate = romanDate.AddHours(1);
-
-            var expected = new RomanDateTime(1, 1, 1, 0);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddHours_CorrectlyCrossesToBCEra()
-        {
-            var romanDate = new RomanDateTime(1, 1, 1, 0);
-            var newDate = romanDate.AddHours(-1);
-
-            var expected = new RomanDateTime(1, 12, 31, 23, Eras.BC);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddDays_AddsToRomanDate()
-        {
-            var romanDate = new RomanDateTime(2019, 1, 1, 12);
-            var newDate = romanDate.AddDays(1);
-
-            var expected = new RomanDateTime(2019, 1, 2, 12);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddDays_CorrectlyCrossesToADEra()
-        {
-            var romanDate = new RomanDateTime(1, 12, 31, Eras.BC);
-            var newDate = romanDate.AddDays(1);
-
-            var expected = new RomanDateTime(1, 1, 1);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddDays_CorrectlyCrossesToBCEra()
-        {
-            var romanDate = new RomanDateTime(1, 1, 1);
-            var newDate = romanDate.AddDays(-1);
-
-            var expected = new RomanDateTime(1, 12, 31, Eras.BC);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddMonths_AddsToRomanDate()
-        {
-            var romanDate = new RomanDateTime(2019, 1, 1, 12);
-            var newDate = romanDate.AddMonths(1);
-
-            var expected = new RomanDateTime(2019, 2, 1, 12);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddMonths_CorrectlyCrossesToADEra()
-        {
-            var romanDate = new RomanDateTime(1, 12, 1, Eras.BC);
-            var newDate = romanDate.AddMonths(1);
-
-            var expected = new RomanDateTime(1, 1, 1);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddMonths_CorrectlyCrossesToBCEra()
-        {
-            var romanDate = new RomanDateTime(1, 1, 1);
-            var newDate = romanDate.AddMonths(-1);
-
-            var expected = new RomanDateTime(1, 12, 1, Eras.BC);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddWeeks_AddsToRomanDate()
-        {
-            var romanDate = new RomanDateTime(2019, 1, 1, 12);
-            var newDate = romanDate.AddWeeks(1);
-
-            var expected = new RomanDateTime(2019, 1, 9, 12);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddWeeks_CorrectlyCrossesToADEra()
-        {
-            var romanDate = new RomanDateTime(1, 12, 24, Eras.BC);
-            var newDate = romanDate.AddWeeks(1);
-
-            var expected = new RomanDateTime(1, 1, 1);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddWeeks_CorrectlyCrossesToBCEra()
-        {
-            var romanDate = new RomanDateTime(1, 1, 1);
-            var newDate = romanDate.AddWeeks(-1);
-
-            var expected = new RomanDateTime(1, 12, 24, Eras.BC);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddYears_AddsToRomanDate()
-        {
-            var romanDate = new RomanDateTime(2019, 1, 1, 12);
-            var newDate = romanDate.AddYears(1);
-
-            var expected = new RomanDateTime(2020, 1, 1, 12);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddYears_CorrectlyCrossesToADEra()
-        {
-            var romanDate = new RomanDateTime(1, 1, 1, Eras.BC);
-            var newDate = romanDate.AddYears(1);
-
-            var expected = new RomanDateTime(1, 1, 1);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddYears_CorrectlyCrossesToBCEra()
-        {
-            var romanDate = new RomanDateTime(1, 1, 1);
-            var newDate = romanDate.AddYears(-1);
-
-            var expected = new RomanDateTime(1, 1, 1, Eras.BC);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddYears_CorrectlyCrossesToADEraMultipleYears()
-        {
-            var romanDate = new RomanDateTime(1, 1, 1, Eras.BC);
-            var newDate = romanDate.AddYears(10);
-
-            var expected = new RomanDateTime(10, 1, 1);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void AddYears_CorrectlyCrossesToBCEraMultipleYears()
-        {
-            var romanDate = new RomanDateTime(1, 1, 1);
-            var newDate = romanDate.AddYears(-10);
-
-            var expected = new RomanDateTime(10, 1, 1, Eras.BC);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void Add_AddsAllToRomanDate()
-        {
-            var romanDate = new RomanDateTime(2019, 1, 1, 12);
-            var newDate = romanDate.AddYears(1).AddMonths(3).AddDays(14).AddHours(-3);
-
-            var expected = new RomanDateTime(2020, 4, 15, 9);
-
-            Assert.AreEqual(expected, newDate);
-        }
-
-        [TestMethod]
-        public void ToDateTime_ReturnsOriginalDateTimeAD()
-        {
-            var romanDate = new RomanDateTime(2019, 1, 1, 12);
-
-            var expected = new DateTime(2019, 1, 1, 12, 0, 0);
-
-            Assert.AreEqual(expected, romanDate.ToDateTime().DateTime);
-            Assert.AreEqual(Eras.AD, romanDate.ToDateTime().Era);
-        }
-
-        [TestMethod]
-        public void ToDateTime_ReturnsOriginalDateTimeBC()
-        {
-            var romanDate = new RomanDateTime(2019, 1, 1, 12, Eras.BC);
-
-            var expected = new DateTime(2019, 1, 1, 12, 0, 0);
-
-            Assert.AreEqual(expected, romanDate.ToDateTime().DateTime);
-            Assert.AreEqual(Eras.BC, romanDate.ToDateTime().Era);
-        }
-
-        [TestMethod]
         public void RomanDateTime_ReturnsCorrectAUCYear()
         {
             var i1AD = new RomanDateTime(1);
@@ -587,9 +324,47 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
-        public void Test()
+        public void ReturnConsularYear_Consulship_ReturnsCorrectYearString()
         {
-            var date = RomanDayPrefixes.AnteDiem;
+            var item = new RomanDateTime(509, Eras.BC);
+
+            Assert.AreEqual("Year of the Consulship of Brutus and Collatinus", item.ConsularYear);
+        }
+
+        [Ignore]
+        [TestMethod]
+        public void ReturnConsularYear_Dictatorship_ReturnsCorrectYearString()
+        {
+            var item = new RomanDateTime(509, Eras.BC);
+
+            Assert.AreEqual("", item.ConsularYear);
+        }
+
+        [Ignore]
+        [TestMethod]
+        public void ReturnConsularYear_Tribunate_ReturnsCorrectYearString()
+        {
+            var item = new RomanDateTime(509, Eras.BC);
+
+            Assert.AreEqual("", item.ConsularYear);
+        }
+
+        [Ignore]
+        [TestMethod]
+        public void ReturnConsularYear_Decemviri_ReturnsCorrectYearString()
+        {
+            var item = new RomanDateTime(509, Eras.BC);
+
+            Assert.AreEqual("", item.ConsularYear);
+        }
+
+        [Ignore]
+        [TestMethod]
+        public void ReturnConsularYear_ReturnsEmptyStringIfNoDataFound()
+        {
+            var item = new RomanDateTime(508, Eras.BC);
+
+            Assert.AreEqual("", item.ConsularYear);
         }
     }
 }

@@ -5,7 +5,14 @@ namespace RomanDate.Enums
     /// </summary>
     public enum Eras
     {
+        /// <summary>
+        /// Anno Domini
+        /// </summary>
         AD = 0,
+
+        /// <summary>
+        /// Before Christ
+        /// </summary>
         BC = 1
     }
 }

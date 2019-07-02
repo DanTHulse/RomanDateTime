@@ -1,0 +1,161 @@
+[
+    {
+        "id": "245",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Lucius Junius Brutus",
+                "shortName": "Brutus",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Lucius Tarquinius Collatinus",
+                "shortName": "Collatinus",
+                "type": "Consul posterior"
+            },
+            {
+                "fullName": "Spurius Lucretius Tricipitinus",
+                "shortName": "Tricipitinus",
+                "type": "Consul suffectus"
+            },
+            {
+                "fullName": "Marcus Horatius Pulvillus",
+                "shortName": "Horatius",
+                "type": "Consul suffectus"
+            },
+            {
+                "fullName": "Publius Valerius Poplicola",
+                "shortName": "Poplicola",
+                "type": "Consul suffectus"
+            }
+        ]
+    },
+    {
+        "id": "246",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Publius Valerius Poplicola",
+                "shortName": "Poplicola",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Titus Lucretius Tricipitinus",
+                "shortName": "Tricipitinus",
+                "type": "Consul posterior"
+            }
+        ]
+    },
+    {
+        "id": "247",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Publius Valerius Poplicola",
+                "shortName": "Poplicola",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Marcus Horatius Pulvillus",
+                "shortName": "Pulvillus",
+                "type": "Consul posterior"
+            }
+        ]
+    },
+    {
+        "id": "248",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Spurius Lartius Rufus",
+                "shortName": "Rufus",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Titus Herminius Aquilinus",
+                "shortName": "Aquilinus",
+                "type": "Consul posterior"
+            }
+        ]
+    },
+    {
+        "id": "249",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Marcus Valerius Volusus",
+                "shortName": "Volusus",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Publius Postumius Tubertus",
+                "shortName": "Tubertus",
+                "type": "Consul posterior"
+            }
+        ]
+    },
+    {
+        "id": "250",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Publius Valerius Poplicola",
+                "shortName": "Poplicola",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Titus Lucretius Tricipitinus",
+                "shortName": "Tricipitinus",
+                "type": "Consul posterior"
+            }
+        ]
+    },
+    {
+        "id": "251",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Agrippa Menenius Lanatus",
+                "shortName": "Lanatus",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Publius Postumius Tubertus",
+                "shortName": "Tubertus",
+                "type": "Consul posterior"
+            }
+        ]
+    },
+    {
+        "id": "252",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Opiter Verginius Tricostus",
+                "shortName": "Tricostus",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Spurius Cassius Viscellinus",
+                "shortName": "Viscellinus",
+                "type": "Consul posterior"
+            }
+        ]
+    },
+    {
+        "id": "253",
+        "type": "Consulship",
+        "magistrates": [
+            {
+                "fullName": "Postumus Cominius Auruncus",
+                "shortName": "Auruncus",
+                "type": "Consul prior"
+            },
+            {
+                "fullName": "Titus Lartius Rufus",
+                "shortName": "Lartius",
+                "type": "Consul posterior"
+            }
+        ]
+    }
+]

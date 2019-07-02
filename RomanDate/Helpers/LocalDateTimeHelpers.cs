@@ -33,7 +33,7 @@ namespace RomanDate.Helpers
 
         internal static double TimeAsFraction(this LocalDateTime date)
         {
-            double minFraction = date.Minute != 0 ? ((date.Minute / 100.0) / 60.0) * 100.0 : 0.0;
+            var minFraction = date.Minute != 0 ? ((date.Minute / 100.0) / 60.0) * 100.0 : 0.0;
 
             return Math.Round((date.Hour + minFraction), 2);
         }

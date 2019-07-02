@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RomanDate.Enums;
 
-namespace RomanDate.Tests
+namespace RomanDate.Helpers.Tests
 {
     [TestClass]
     public class RomanNumeralsTests
