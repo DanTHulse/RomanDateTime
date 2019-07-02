@@ -2,9 +2,8 @@
 using System.Linq;
 using System.Text;
 using RomanDate.Enums;
-using RomanDate.Helpers;
 
-namespace RomanDate
+namespace RomanDate.Helpers
 {
     /// <summary>
     /// Class used to handle and convert Roman numerals

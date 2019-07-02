@@ -15,17 +15,20 @@ namespace RomanDate
         /// Gets the year component of the Roman date represented by this instance in Roman Numerals.
         /// </summary>
         public string Year => this.GetRomanYear();
+
         /// <summary>
         /// Gets the AUC year component of the Roman date represented by this instance in Roman Numerals.
         /// </summary>
         /// <remarks>AUC refers to from the founding of the City of Rome (753 BC)</remarks>
         public string AucYear => this.GetAucYear();
+
         /// <summary>
         /// Gets the day component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>A day in the Roman calendar takes the form of counting towards the next "set" day 
         /// using inclusing counting, so </remarks>
         public string Day => this.GetRomanDayString();
+
         /// <summary>
         /// Gets the Nundinal letter component of the Roman date represented by this instance.
         /// </summary>
@@ -33,21 +36,25 @@ namespace RomanDate
         /// The Romans had an 8-day week (A-H) though every 2 years the days would shift to keep the calendar aligned 
         /// so 28th Feb might be an (A) but 1st Mar could be (D)</remarks>
         public NundinalLetters NundinalLetter => this.GetNundinalLetter();
+
         /// <summary>
         /// Gets the set day component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>Set days are the three sacred days of the month in the Roman calendar:
         /// Kalendae, Nonae, Idus</remarks>
         public SetDays SetDay => this.RomanSetDay.SetDay;
+
         /// <summary>
         /// Gets the day prefix component of the Roman date represented by this instance.
         /// </summary>
         public DayPrefixes DayPrefix => this.RomanDayPrefix.Prefix;
+
         /// <summary>
         /// Gets the reference month component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>In the latter half of the month the Romans would start counting down to the Kalends of next month</remarks>
         public Months Month => this.ReferenceMonth.Month;
+
         /// <summary>
         /// Gets the time component of the Roman date represented by this instance.
         /// </summary>
@@ -55,46 +62,70 @@ namespace RomanDate
         /// This means the length of the hour varies throughout the year, also night time was tracked by the passage of 
         /// the watches, or Vigia, which each for a quarter of the length of night time</remarks>
         public string Time => this.GetTime();
+
         /// <summary>
         /// Gets the hour component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>This is just another way to represent the time, with hours replacing the Vigila at night</remarks>
         public string Hour => this.GetTime(true);
+
         /// <summary>
         /// Gets the days until the next set day component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>This is an integer representation of the number of days until the next sacred day of the month 
         /// that makes up the representation of the day</remarks>
         public int? DaysUntilSetDay => this._daysUntil == null ? this.GetDaysUntil() : this._daysUntil;
+
         /// <summary>
         /// Gets the era component of the Roman date represented by this instance.
         /// </summary>
         public Eras Era { get; set; }
 
+        #region Private Fields
+
         private readonly int? _daysUntil;
+
+        #endregion
+
+        #region Static Properties
 
         /// <summary>
         /// Gets a new instance of <see cref="RomanDateTime" /> that represents the current date and time.
         /// </summary>
         public static RomanDateTime Now => new RomanDateTime(DateTime.Now);
+
         /// <summary>
         /// Gets a new instance of <see cref="RomanDateTime" /> that represents the maximun value of <seealso cref="DateTime"/>.
         /// </summary>
         public static RomanDateTime MaxValue => new RomanDateTime(DateTime.MaxValue);
+
         /// <summary>
         /// Gets a new instance of <see cref="RomanDateTime" /> that represents the minimum value of <seealso cref="DateTime"/>.
         /// </summary>
         public static RomanDateTime MinValue => new RomanDateTime(DateTime.MinValue);
+
         /// <summary>
         /// Gets a new instance of <see cref="RomanDateTime" /> that represents the maximun value of <seealso cref="DateTime"/> in the BC era.
         /// </summary>
         public static RomanDateTime AbsoluteMinValue => new RomanDateTime(DateTime.MaxValue, Eras.BC);
 
+        #endregion
+
+        #region Internal Properties
+
         internal LocalDateTime DateTimeData { get; }
+
         internal RomanMonths CalendarMonth => this.GetCalendarMonth();
+
         internal RomanMonths ReferenceMonth => this.GetReferenceMonth();
+
         internal RomanSetDays RomanSetDay => this.GetSetDay();
+
         internal RomanDayPrefixes RomanDayPrefix => this.GetDayPrefix();
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RomanDateTime"/> structure to the specified year.
@@ -170,5 +201,7 @@ namespace RomanDate
             this.DateTimeData = date;
             this.Era = date.Year > 0 ? Eras.AD : Eras.BC;
         }
+
+        #endregion
     }
 }
