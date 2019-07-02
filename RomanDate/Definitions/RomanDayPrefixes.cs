@@ -16,6 +16,7 @@ namespace RomanDate.Definitions
         /// Gets the long form name of the prefix.
         /// </summary>
         internal string Long { get; }
+
         /// <summary>
         /// Gets the short form name of the prefix.
         /// </summary>
@@ -26,6 +27,7 @@ namespace RomanDate.Definitions
         /// </summary>
         /// <remarks>Ante Diem roughly means, "# of days before" so "ante diem IV" = "4 days before"</remarks>
         public static RomanDayPrefixes AnteDiem => new RomanDayPrefixes(DayPrefixes.AnteDiem, "ante diem", "a.d.");
+
         /// <summary>
         /// Gets am instance of <see cref="RomanDayPrefixes"/> that represents Ante Diem Bis
         /// </summary>
@@ -33,6 +35,7 @@ namespace RomanDate.Definitions
         /// so the only time it's used is "ante diem bis VI Mar" = "6 days before Mar twice" followed by 
         /// "ante diem VI Mar" = "6 days before Mar", this was to prevent issues with the numbering of other days in the month</remarks>
         public static RomanDayPrefixes AnteDiemBis => new RomanDayPrefixes(DayPrefixes.AnteDiemBis, "ante diem bis", "a.d. b.");
+
         /// <summary>
         /// Gets am instance of <see cref="RomanDayPrefixes"/> that represents Pridie
         /// </summary>
@@ -41,9 +44,9 @@ namespace RomanDate.Definitions
 
         private RomanDayPrefixes(DayPrefixes prefix = DayPrefixes.None, string longV = "", string shortV = "")
         {
-            Prefix = prefix;
-            Long = longV;
-            Short = shortV;
+            this.Prefix = prefix;
+            this.Long = longV;
+            this.Short = shortV;
         }
     }
 }

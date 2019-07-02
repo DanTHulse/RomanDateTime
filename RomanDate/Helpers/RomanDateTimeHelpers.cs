@@ -1,9 +1,9 @@
-using NodaTime;
-using RomanDate.Definitions;
-using RomanDate.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NodaTime;
+using RomanDate.Definitions;
+using RomanDate.Enums;
 
 namespace RomanDate.Helpers
 {
@@ -198,21 +198,22 @@ namespace RomanDate.Helpers
 
         private static IEnumerable<NundinalLetters> CheckNundialLetters(LocalDateTime from, NundinalLetters startPosition)
         {
-            var letters = new List<NundinalLetters>();
-
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 1, 1, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 1, 5, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 2, 5, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 3, 7, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 4, 5, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 5, 7, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 6, 5, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 7, 7, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 8, 5, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 9, 5, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 10, 7, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 11, 5, 0, 0), startPosition));
-            letters.Add(CheckNundialLetter(from, new LocalDateTime(from.Year, 12, 5, 0, 0), startPosition));
+            var letters = new List<NundinalLetters>
+            {
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 1, 1, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 1, 5, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 2, 5, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 3, 7, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 4, 5, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 5, 7, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 6, 5, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 7, 7, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 8, 5, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 9, 5, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 10, 7, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 11, 5, 0, 0), startPosition),
+                CheckNundialLetter(from, new LocalDateTime(from.Year, 12, 5, 0, 0), startPosition)
+            };
 
             return letters;
         }

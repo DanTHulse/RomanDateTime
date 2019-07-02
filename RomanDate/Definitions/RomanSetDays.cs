@@ -16,10 +16,12 @@ namespace RomanDate.Definitions
         /// Gets the short form name of the set day.
         /// </summary>
         internal string Short { get; }
+
         /// <summary>
         /// Gets the accusative form name of the set day.
         /// </summary>
         internal string Accusative { get; }
+
         /// <summary>
         /// Gets the ablative form name of the set day.
         /// </summary>
@@ -30,12 +32,14 @@ namespace RomanDate.Definitions
         /// </summary>
         /// <remarks>The Kalendae is the first sacred day of the month and always falls on the first</remarks>
         public static RomanSetDays Kalendae => new RomanSetDays(SetDays.Kalendae, "Kalendas", "Kalendis", "Kal.");
+
         /// <summary>
         /// Gets am instance of <see cref="RomanSetDays"/> that represents the Nonae
         /// </summary>
         /// <remarks>The Nonae is the second sacred day of the month and always falls 9 days (as a Roman would count so 8) 
         /// before that months Idus (usually on the 5th but sometimes the 7th)</remarks>
         public static RomanSetDays Nonae => new RomanSetDays(SetDays.Nonae, "Nonas", "Nonis", "Non.");
+
         /// <summary>
         /// Gets am instance of <see cref="RomanSetDays"/> that represents the Idus
         /// </summary>
@@ -45,10 +49,10 @@ namespace RomanDate.Definitions
 
         private RomanSetDays(SetDays setDay, string accV, string ablV, string shortV)
         {
-            SetDay = setDay;
-            Accusative = accV;
-            Ablative = ablV;
-            Short = shortV;
+            this.SetDay = setDay;
+            this.Accusative = accV;
+            this.Ablative = ablV;
+            this.Short = shortV;
         }
     }
 }
