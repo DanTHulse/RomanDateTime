@@ -14,7 +14,7 @@ namespace RomanDate.Helpers
 
         internal static void AppendRepeat(this StringBuilder sb, object s, int repeat)
         {
-            for (int x = 0; x < repeat; x++)
+            for (var x = 0; x < repeat; x++)
             {
                 sb.Append(s.ToString());
             }
@@ -24,7 +24,7 @@ namespace RomanDate.Helpers
         {
             if (condition)
             {
-                for (int x = 0; x < repeat; x++)
+                for (var x = 0; x < repeat; x++)
                 {
                     sb.Append(s.ToString());
                 }
