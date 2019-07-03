@@ -188,11 +188,11 @@ namespace RomanDate
             return ConsularNaming.ReturnConsularYearData(year);
         }
 
-        private Magistrates GetMagistrates()
+        private ElectedMagistrates GetMagistrates()
         {
             if (this.ConsularData != null)
             {
-                return new Magistrates(this.ConsularData);
+                return new ElectedMagistrates(this.ConsularData);
             }
 
             return null;

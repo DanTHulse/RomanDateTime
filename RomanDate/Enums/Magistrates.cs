@@ -1,6 +1,6 @@
 namespace RomanDate.Enums
 {
-    public enum MagistrateType
+    public enum Magistrates
     {
         ConsulPrior = 1,
         ConsulPosterior = 2,

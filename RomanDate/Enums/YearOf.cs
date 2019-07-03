@@ -2,7 +2,7 @@
 
 namespace RomanDate.Enums
 {
-    public enum YearType
+    public enum YearOf
     {
         [Description("Consulship")]
         Consulship = 1,
