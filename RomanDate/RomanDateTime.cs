@@ -87,7 +87,10 @@ namespace RomanDate
         /// </summary>
         public Eras Era { get; set; }
 
-        public object Magistrates => this.GetMagistrates();
+        /// <summary>
+        /// Gets the magistrates that should have been in office at this date (accurate to the year, not month)
+        /// </summary>
+        public Magistrates Magistrates => this.GetMagistrates();
 
         #region Private Fields
 
@@ -213,27 +216,5 @@ namespace RomanDate
         }
 
         #endregion
-
-        private ConsularDate GetConsularDate()
-        {
-            var auc = 753;
-            var year = (auc += this.DateTimeData.Year);
-            return ConsularNaming.ReturnConsularYearData(year);
-        }
-
-        private object GetMagistrates()
-        {
-            if (this.ConsularData != null)
-            {
-                return new Magistrates(this.ConsularData);
-            }
-
-            return null;
-        }
-
-        private string GetConsularYear()
-        {
-            return this.ConsularData.ParseConsularYear();
-        }
     }
 }

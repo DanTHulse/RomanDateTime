@@ -180,5 +180,27 @@ namespace RomanDate
 
             return default(RomanMonths);
         }
+
+        private ConsularDate GetConsularDate()
+        {
+            var auc = 753;
+            var year = (auc += this.DateTimeData.Year);
+            return ConsularNaming.ReturnConsularYearData(year);
+        }
+
+        private Magistrates GetMagistrates()
+        {
+            if (this.ConsularData != null)
+            {
+                return new Magistrates(this.ConsularData);
+            }
+
+            return null;
+        }
+
+        private string GetConsularYear()
+        {
+            return this.ConsularData.ParseConsularYear();
+        }
     }
 }
