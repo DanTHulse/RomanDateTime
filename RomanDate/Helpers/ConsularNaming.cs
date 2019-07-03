@@ -29,13 +29,13 @@ namespace RomanDate.Helpers
                     return data.Override;
 
                 var sb = new StringBuilder();
-                sb.Append($"Year of the {data.Type.GetDescription()} of ");
+                sb.Append($"Year of the {data.YearOf.GetDescription()} of ");
 
-                if (data.Type == YearOf.Dictatorship)
+                if (data.YearOf == YearOf.Dictatorship)
                     sb.Append(magistrates.Dictator.ShortName);
-                else if (data.Type == YearOf.Tribunship)
+                else if (data.YearOf == YearOf.Tribunship)
                     sb.Append($"{string.Join(", ", magistrates.Tribuni.Take(magistrates.Tribuni.Count() - 1).Select(s => s.ShortName))}, and {magistrates.Tribuni.Last().ShortName}");
-                else if (data.Type == YearOf.Consulship)
+                else if (data.YearOf == YearOf.Consulship)
                 {
                     sb.Append(magistrates.ConsulPrior.ShortName);
 
