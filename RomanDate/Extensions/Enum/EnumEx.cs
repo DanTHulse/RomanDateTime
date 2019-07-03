@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace RomanDate.Helpers
+namespace RomanDate.Extensions
 {
-    internal static class EnumHelpers
+    internal static class EnumEx
     {
         internal static string GetDescription<T>(this T source)
         {

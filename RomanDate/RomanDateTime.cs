@@ -2,6 +2,7 @@
 using NodaTime;
 using RomanDate.Definitions;
 using RomanDate.Enums;
+using RomanDate.Extensions;
 using RomanDate.Helpers;
 
 namespace RomanDate
@@ -148,7 +149,7 @@ namespace RomanDate
         public RomanDateTime(int year, Eras era = Eras.AD)
         {
             this._daysUntil = null;
-            this.DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, 1, 1, 0, era);
+            this.DateTimeData = LocalDateTimeEx.ToLocalDateTime(year, 1, 1, 0, era);
             this.Era = era;
         }
 
@@ -161,7 +162,7 @@ namespace RomanDate
         public RomanDateTime(int year, int month, Eras era = Eras.AD)
         {
             this._daysUntil = null;
-            this.DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, 1, 0, era);
+            this.DateTimeData = LocalDateTimeEx.ToLocalDateTime(year, month, 1, 0, era);
             this.Era = era;
         }
 
@@ -175,7 +176,7 @@ namespace RomanDate
         public RomanDateTime(int year, int month, int day, Eras era = Eras.AD)
         {
             this._daysUntil = null;
-            this.DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, day, 0, era);
+            this.DateTimeData = LocalDateTimeEx.ToLocalDateTime(year, month, day, 0, era);
             this.Era = era;
         }
 
@@ -190,7 +191,7 @@ namespace RomanDate
         public RomanDateTime(int year, int month, int day, int hour, Eras era = Eras.AD)
         {
             this._daysUntil = null;
-            this.DateTimeData = LocalDateTimeHelpers.ToLocalDateTime(year, month, day, hour, era);
+            this.DateTimeData = LocalDateTimeEx.ToLocalDateTime(year, month, day, hour, era);
             this.Era = era;
         }
 

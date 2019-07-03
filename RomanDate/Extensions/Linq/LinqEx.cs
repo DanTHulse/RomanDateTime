@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RomanDate.Helpers
+namespace RomanDate.Extensions
 {
-    internal static class LinqHelpers
+    internal static class LinqEx
     {
         internal static bool Between<T>(this T value, T from, T to, bool inclusive = true) where T : IComparable<T>
         {

@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-namespace RomanDate.Helpers
+namespace RomanDate.Extensions
 {
-    internal static class StringBuilderHelpers
+    internal static class StringBuilderEx
     {
         internal static void AppendIf(this StringBuilder sb, object s, bool condition)
         {

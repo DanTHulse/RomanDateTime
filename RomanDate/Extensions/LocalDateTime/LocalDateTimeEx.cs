@@ -2,9 +2,9 @@ using System;
 using NodaTime;
 using RomanDate.Enums;
 
-namespace RomanDate.Helpers
+namespace RomanDate.Extensions
 {
-    internal static class LocalDateTimeHelpers
+    internal static class LocalDateTimeEx
     {
         internal static LocalDateTime ToLocalDateTime(this DateTime date, Eras era = Eras.AD)
         {

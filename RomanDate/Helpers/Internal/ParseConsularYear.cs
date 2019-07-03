@@ -1,24 +1,13 @@
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
 using RomanDate.Definitions;
 using RomanDate.Enums;
+using RomanDate.Extensions;
 
 namespace RomanDate.Helpers
 {
-    internal static class ConsularNaming
+    public static partial class RomanDateHelpers
     {
-        internal static ConsularDate ReturnConsularYearData(int aucYear)
-        {
-            var data = LoadData();
-
-            var item = data.FirstOrDefault(f => f.Id == aucYear);
-
-            return item;
-        }
-
         internal static string ParseConsularYear(this ConsularDate data)
         {
             if (data != null)
@@ -49,17 +38,6 @@ namespace RomanDate.Helpers
             }
 
             return "";
-        }
-
-        private static IEnumerable<ConsularDate> LoadData()
-        {
-            using(var r = new StreamReader("./ConsularData/ConsularDates.json"))
-            {
-                var json = r.ReadToEnd();
-                var items = JsonConvert.DeserializeObject<List<ConsularDate>>(json);
-
-                return items;
-            }
         }
     }
 }
