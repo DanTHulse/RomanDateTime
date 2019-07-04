@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Text;
 using RomanDate.Enums;
 using RomanDate.Extensions;
@@ -55,7 +54,7 @@ namespace RomanDate
             return sb.ToString();
         }
 
-        private static void SubtractiveNumerals(StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens)numerals)
+        private static void SubtractiveNumerals(StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens) numerals)
         {
             sb.AppendIf(numerals.fives, val.Between(5, 8));
             sb.AppendIf($"{numerals.units}{numerals.tens}", val == 9);
@@ -64,7 +63,7 @@ namespace RomanDate
             sb.AppendIfRepeat(numerals.units, val.Between(1, 3), val);
         }
 
-        private static void AdditiveNumerals(StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens)numerals)
+        private static void AdditiveNumerals(StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens) numerals)
         {
             sb.AppendIf(numerals.fives, val.Between(5, 9));
             sb.AppendIfRepeat(numerals.units, val.Between(5, 9), (val - 5));

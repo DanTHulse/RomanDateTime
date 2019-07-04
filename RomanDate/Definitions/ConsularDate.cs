@@ -8,7 +8,7 @@ namespace RomanDate.Definitions
     {
         public int Id { get; set; }
         [JsonProperty("type")]
-        public YearOf YearOf { get; set; } 
+        public YearOf YearOf { get; set; }
         public IEnumerable<Magistrate> Magistrates { get; set; }
         public string Override { get; set; }
     }

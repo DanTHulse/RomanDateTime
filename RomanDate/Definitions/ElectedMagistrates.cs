@@ -56,7 +56,7 @@ namespace RomanDate.Definitions
         /// The full Latin styled name of the Magistrate
         /// </summary>
         public string FullName { get; set; }
-        
+
         /// <summary>
         /// A shortened name for the Magistrate
         /// </summary>
