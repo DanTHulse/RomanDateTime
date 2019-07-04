@@ -216,5 +216,25 @@ namespace RomanDate
         }
 
         #endregion
+
+        #region Deconstructors
+
+        public void Deconstruct(out int year, out int month, out int day)
+        {
+            year = this.DateTimeData.Year;
+            month = this.DateTimeData.Month;
+            day = this.DateTimeData.Day;
+        }
+
+        public void Deconstruct(out int year, out int month, out int day, out int hour)
+        {
+            year = this.DateTimeData.Year;
+            month = this.DateTimeData.Month;
+            day = this.DateTimeData.Day;
+            hour = this.DateTimeData.Hour;
+        }
+
+        #endregion
+
     }
 }

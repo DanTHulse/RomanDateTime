@@ -366,5 +366,15 @@ namespace RomanDate.Tests
 
             Assert.AreEqual("", item.ConsularYear);
         }
+
+        [TestMethod]
+        public void Test()
+        {
+            var test = new RomanDateTime(2019, 1, 12);
+
+            (_, _, var day) = test;
+
+            Assert.AreEqual(day, 12);
+        }
     }
 }
