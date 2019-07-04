@@ -9,9 +9,6 @@ namespace RomanDate
         /// </summary>
         /// <param name="hours">A whole number of hours, can be positive or negative.</param>
         /// <returns>new <see cref="RomanDateTime"/></returns>
-        public RomanDateTime AddHours(int hours)
-        {
-            return new RomanDateTime(this.DateTimeData.PlusHours(hours));
-        }
+        public RomanDateTime AddHours(int hours) => new RomanDateTime(this.DateTimeData.PlusHours(hours));
     }
 }

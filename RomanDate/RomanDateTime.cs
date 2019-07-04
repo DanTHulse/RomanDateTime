@@ -90,7 +90,7 @@ namespace RomanDate
         /// <summary>
         /// Gets the magistrates that should have been in office at this date (accurate to the year, not month)
         /// </summary>
-        public ElectedMagistrates ElectedMagistrates => this.GetMagistrates();
+        public ElectedMagistrates? ElectedMagistrates => this.GetMagistrates();
 
         #region Private Fields
 

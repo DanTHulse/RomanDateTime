@@ -9,9 +9,6 @@ namespace RomanDate
         /// </summary>
         /// <param name="days">A whole number of days, can be positive or negative.</param>
         /// <returns>new <see cref="RomanDateTime"/></returns>
-        public RomanDateTime AddDays(int days)
-        {
-            return new RomanDateTime(this.DateTimeData.PlusDays(days));
-        }
+        public RomanDateTime AddDays(int days) => new RomanDateTime(this.DateTimeData.PlusDays(days));
     }
 }

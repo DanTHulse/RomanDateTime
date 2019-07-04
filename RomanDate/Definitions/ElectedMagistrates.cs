@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using RomanDate.Enums;
 
 namespace RomanDate.Definitions
@@ -11,6 +10,7 @@ namespace RomanDate.Definitions
     public class ElectedMagistrates
     {
         internal ConsularDate Data { get; set; }
+
         internal ElectedMagistrates(ConsularDate data)
         {
             this.Data = data;
@@ -45,27 +45,5 @@ namespace RomanDate.Definitions
         /// Any Decemvir (member of a 10 man commision) that assumed office this year
         /// </summary>
         public IEnumerable<Magistrate> Decemviri => this.Data.Magistrates.Where(w => w.Office == Office.Decemvir);
-    }
-
-    /// <summary>
-    /// Details on the Magistrate
-    /// </summary>
-    public class Magistrate
-    {
-        /// <summary>
-        /// The full Latin styled name of the Magistrate
-        /// </summary>
-        public string FullName { get; set; }
-
-        /// <summary>
-        /// A shortened name for the Magistrate
-        /// </summary>
-        public string ShortName { get; set; }
-
-        /// <summary>
-        /// The office that the Magistrate was elected to / assumed 
-        /// </summary>
-        [JsonProperty("type")]
-        public Office Office { get; set; }
     }
 }

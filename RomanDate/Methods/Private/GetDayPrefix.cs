@@ -19,7 +19,9 @@ namespace RomanDate
                     cMonth.Nonae - 1, cMonth.Idus - 1, cMonth.End + (leapYear &&
                         cMonth.Month == Months.Februarius ? 1 : 0)
                 }))
+            {
                 return RomanDayPrefixes.Pridie;
+            }
             else if (day == 24 && cMonth.Month == Months.Februarius && leapYear)
                 return RomanDayPrefixes.AnteDiemBis;
 

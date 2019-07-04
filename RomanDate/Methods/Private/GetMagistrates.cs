@@ -4,7 +4,7 @@ namespace RomanDate
 {
     public partial struct RomanDateTime
     {
-        private ElectedMagistrates GetMagistrates()
+        private ElectedMagistrates? GetMagistrates()
         {
             if (this.ConsularData != null)
             {

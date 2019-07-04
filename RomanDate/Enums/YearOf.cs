@@ -7,6 +7,8 @@ namespace RomanDate.Enums
     /// </summary>
     public enum YearOf
     {
+        NotSet = 0,
+
         /// <summary>
         /// A year in which the primary Magistrates where a pair (or occasinally single) Consul
         /// </summary>

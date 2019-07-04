@@ -12,9 +12,13 @@ namespace RomanDate
             var cMonth = this.CalendarMonth;
 
             if (day.Between(cMonth.Kalendae, cMonth.Nonae, false))
+            {
                 return (cMonth.InterKalendae + 1) - ((day - cMonth.Kalendae) - 1);
+            }
             else if (day.Between(cMonth.Nonae, cMonth.Idus, false))
+            {
                 return (cMonth.InterNonae + 1) - ((day - cMonth.Nonae) - 1);
+            }
             else if (day.Between(cMonth.Idus, cMonth.End + (leapYear &&
                     cMonth.Month == Months.Februarius ? 1 : 0), false))
             {

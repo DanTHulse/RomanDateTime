@@ -13,10 +13,7 @@ namespace RomanDate
         /// <param name="num">The integer to convert to numerals.</param>
         /// <param name="style">The style to use, if left defaults to subtractive.</param>
         /// <returns>A string of Roman numerals representing the integer</returns>
-        public static string ToRomanNumerals(this int num, NumeralStyles style = NumeralStyles.Subtractive)
-        {
-            return ToRomanNumerals((int?)num, style);
-        }
+        public static string ToRomanNumerals(this int num, NumeralStyles style = NumeralStyles.Subtractive) => ToRomanNumerals((int?)num, style);
 
         /// <summary>
         /// Converts an integer to Roman numerals, in the specified style.

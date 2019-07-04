@@ -76,7 +76,7 @@ namespace RomanDate.Definitions
         /// <summary>
         /// Gets am instance of <see cref="RomanMonths"/> that represents Ianuarias (January)
         /// </summary>
-        public static RomanMonths Ianuarias => new RomanMonths(Months.Ianuarius, "Ianuarias", "Ianuariis", 0.82);
+        public static RomanMonths Ianuarius => new RomanMonths(Months.Ianuarius, "Ianuarias", "Ianuariis", 0.82);
 
         /// <summary>
         /// Gets am instance of <see cref="RomanMonths"/> that represents Februarius (February)
@@ -174,10 +174,7 @@ namespace RomanDate.Definitions
         /// </summary>
         /// <param name="month">The integer representation of the Roman month.</param>
         /// <returns>An instance of <see cref="RomanMonths"/> representing the integer value</returns>
-        public static RomanMonths GetRomanMonth(int month)
-        {
-            return GetRomanMonth((Months)month);
-        }
+        public static RomanMonths GetRomanMonth(int month) => GetRomanMonth((Months)month);
 
         /// <summary>
         /// Gets the full instance of the Roman month by it's enum value.
@@ -186,35 +183,22 @@ namespace RomanDate.Definitions
         /// <returns>An instance of <see cref="RomanMonths"/> representing the enum value</returns>
         public static RomanMonths GetRomanMonth(Months month)
         {
-            switch (month)
+            return month switch
             {
-                case Months.Ianuarius:
-                    return Ianuarias;
-                case Months.Februarius:
-                    return Februarius;
-                case Months.Martius:
-                    return Martius;
-                case Months.Aprilis:
-                    return Aprilis;
-                case Months.Maius:
-                    return Maius;
-                case Months.Iunius:
-                    return Iunius;
-                case Months.Iulius:
-                    return Iulius;
-                case Months.Augustus:
-                    return Augustus;
-                case Months.September:
-                    return September;
-                case Months.October:
-                    return October;
-                case Months.November:
-                    return November;
-                case Months.December:
-                    return December;
-                default:
-                    return new RomanMonths();
-            }
+                Months.Ianuarius => Ianuarius,
+                Months.Februarius => Februarius,
+                Months.Martius => Februarius,
+                Months.Aprilis => Ianuarius,
+                Months.Maius => Maius,
+                Months.Iunius => Iunius,
+                Months.Iulius => Iulius,
+                Months.Augustus => Augustus,
+                Months.September => September,
+                Months.October => October,
+                Months.November => November,
+                Months.December => December,
+                _ => new RomanMonths()
+            };
         }
 
         /// <summary>
@@ -224,17 +208,13 @@ namespace RomanDate.Definitions
         /// <returns>The day of the month the specified set day falls on for this instance</returns>
         public int GetSetDay(SetDays setDay)
         {
-            switch (setDay)
+            return setDay switch
             {
-                case SetDays.Kalendae:
-                    return this.Kalendae;
-                case SetDays.Nonae:
-                    return this.Nonae;
-                case SetDays.Idus:
-                    return this.Idus;
-                default:
-                    return 1;
-            }
+                SetDays.Kalendae => this.Kalendae,
+                SetDays.Nonae => this.Nonae,
+                SetDays.Idus => this.Idus,
+                _ => 1
+            };
         }
     }
 }

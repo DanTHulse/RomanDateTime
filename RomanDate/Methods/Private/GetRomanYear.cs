@@ -2,9 +2,6 @@ namespace RomanDate
 {
     public partial struct RomanDateTime
     {
-        private string GetRomanYear()
-        {
-            return this.DateTimeData.YearOfEra.ToRomanNumerals();
-        }
+        private string GetRomanYear() => this.DateTimeData.YearOfEra.ToRomanNumerals();
     }
 }

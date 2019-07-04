@@ -15,7 +15,7 @@ namespace RomanDate.Helpers
         public static RomanDateTime NextSetDay(this RomanDateTime date, SetDays? setDay = null)
         {
             var dateTime = date.DateTimeData;
-            var daysToAdd = date.DaysUntilSetDay.Value != 0 ? date.DaysUntilSetDay.Value - 1 : 0;
+            var daysToAdd = date.DaysUntilSetDay.GetValueOrDefault() != 0 ? date.DaysUntilSetDay.GetValueOrDefault() - 1 : 0;
             var currSetDay = date.RomanSetDay.SetDay;
             var nextMonth = RomanMonths.GetRomanMonth(((Months)dateTime.Month).Next());
             var currMonth = RomanMonths.GetRomanMonth((Months)dateTime.Month);

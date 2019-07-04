@@ -5,6 +5,8 @@
     /// </summary>
     public enum Numerals
     {
+        Zero = 0,
+
         /// <summary>
         /// One
         /// </summary>

@@ -9,9 +9,6 @@ namespace RomanDate
         /// </summary>
         /// <param name="months">A whole number of months, can be positive or negative.</param>
         /// <returns>new <see cref="RomanDateTime"/></returns>
-        public RomanDateTime AddMonths(int months)
-        {
-            return new RomanDateTime(this.DateTimeData.PlusMonths(months));
-        }
+        public RomanDateTime AddMonths(int months) => new RomanDateTime(this.DateTimeData.PlusMonths(months));
     }
 }

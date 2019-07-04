@@ -4,7 +4,7 @@ using RomanDate.Enums;
 
 namespace RomanDate.Extensions
 {
-    internal static class LocalDateTimeEx
+    internal static partial class LocalDateTimeEx
     {
         internal static LocalDateTime ToLocalDateTime(this DateTime date, Eras era = Eras.AD)
         {
@@ -29,24 +29,6 @@ namespace RomanDate.Extensions
             }
 
             return new LocalDateTime(year, month, day, hour, 0, 0, 0);
-        }
-
-        internal static double TimeAsFraction(this LocalDateTime date)
-        {
-            var minFraction = date.Minute != 0 ? ((date.Minute / 100.0) / 60.0) * 100.0 : 0.0;
-
-            return Math.Round((date.Hour + minFraction), 2);
-        }
-
-        internal static bool IsLeapYear(this LocalDateTime value)
-        {
-            if ((value.Year % 400) == 0)
-                return true;
-            else if ((value.Year % 100) == 0)
-                return false;
-            else if ((value.Year % 4) == 0)
-                return true;
-            return false;
         }
     }
 }

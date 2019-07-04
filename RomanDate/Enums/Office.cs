@@ -5,6 +5,8 @@ namespace RomanDate.Enums
     /// </summary>
     public enum Office
     {
+        NotSet = 0,
+
         /// <summary>
         /// The First Consul, usually the man who won the most votes in the election, or the Emperor during the Roman Empire
         /// </summary>

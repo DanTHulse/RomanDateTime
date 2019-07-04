@@ -10,9 +10,6 @@ namespace RomanDate
         /// <remarks>A Roman week is 8 days long so +1 weeks is the same as +8 days</remarks>
         /// <param name="weeks">A whole number of Roman weeks, can be positive or negative.</param>
         /// <returns>new <see cref="RomanDateTime"/></returns>
-        public RomanDateTime AddWeeks(int weeks)
-        {
-            return new RomanDateTime(this.DateTimeData.PlusDays((weeks * 8)));
-        }
+        public RomanDateTime AddWeeks(int weeks) => new RomanDateTime(this.DateTimeData.PlusDays((weeks * 8)));
     }
 }

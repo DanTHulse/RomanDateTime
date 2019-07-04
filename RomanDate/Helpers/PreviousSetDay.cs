@@ -16,7 +16,7 @@ namespace RomanDate.Helpers
         {
             var dateTime = date.DateTimeData;
             var currSetDay = date.RomanSetDay.SetDay;
-            var daysUntil = date.DaysUntilSetDay.Value;
+            var daysUntil = date.DaysUntilSetDay.GetValueOrDefault();
             var prevMonth = RomanMonths.GetRomanMonth(((Months)dateTime.Month).Previous());
             var currMonth = RomanMonths.GetRomanMonth((Months)dateTime.Month);
 

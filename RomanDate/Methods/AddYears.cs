@@ -9,9 +9,6 @@ namespace RomanDate
         /// </summary>
         /// <param name="years">A whole number of years, can be positive or negative.</param>
         /// <returns>new <see cref="RomanDateTime"/></returns>
-        public RomanDateTime AddYears(int years)
-        {
-            return new RomanDateTime(this.DateTimeData.PlusYears(years));
-        }
+        public RomanDateTime AddYears(int years) => new RomanDateTime(this.DateTimeData.PlusYears(years));
     }
 }

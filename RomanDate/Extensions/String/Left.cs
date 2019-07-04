@@ -2,7 +2,7 @@
 
 namespace RomanDate.Extensions
 {
-    internal static class StringEx
+    internal static partial class StringEx
     {
         internal static string Left(this string value, int maxLength)
         {
