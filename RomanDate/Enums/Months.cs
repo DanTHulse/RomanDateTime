@@ -5,8 +5,6 @@
     /// </summary>
     public enum Months
     {
-        NotSet = 0,
-
         /// <summary>
         /// 1st month, January
         /// </summary>

@@ -187,8 +187,8 @@ namespace RomanDate.Definitions
             {
                 Months.Ianuarius => Ianuarius,
                 Months.Februarius => Februarius,
-                Months.Martius => Februarius,
-                Months.Aprilis => Ianuarius,
+                Months.Martius => Martius,
+                Months.Aprilis => Aprilis,
                 Months.Maius => Maius,
                 Months.Iunius => Iunius,
                 Months.Iulius => Iulius,

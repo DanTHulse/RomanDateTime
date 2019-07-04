@@ -5,8 +5,6 @@
     /// </summary>
     public enum SetDays
     {
-        NotSet = 0,
-
         /// <summary>
         /// First Day of the Month (falls on the 1st of the Month)
         /// </summary>
