@@ -16,7 +16,7 @@ namespace RomanDate.Definitions
         /// <summary>
         /// Gets the day of the month the Kalendae falls on.
         /// </summary>
-        public int Kalendae { get; }
+        public int Kalendae => 1;
 
         /// <summary>
         /// Gets the day of the month the Nonae falls on.
@@ -26,7 +26,7 @@ namespace RomanDate.Definitions
         /// <summary>
         /// Gets the day of the month the Idus falls on.
         /// </summary>
-        public int Idus { get; }
+        public int Idus => this.Nonae + 8;
 
         /// <summary>
         /// Gets the last day of the month.
@@ -36,7 +36,7 @@ namespace RomanDate.Definitions
         /// <summary>
         /// Gets the hour length during the day for the month.
         /// </summary>
-        internal double HourLengthDay { get; }
+        internal double HourLengthDay => 0.73 + (((int)this.Month > 6 ? 12 - (int)this.Month : (int)this.Month) * 0.09);
 
         /// <summary>
         /// Gets the hour length during the night for the month.
@@ -73,28 +73,13 @@ namespace RomanDate.Definitions
         /// </summary>
         internal int InterIdus => this.End - this.Idus;
 
-        // private RomanMonths(Months month, string accV, string ablV, int end, double hourLength)
-        // {
-        //     this.Month = month;
-        //     this.Accusative = accV;
-        //     this.Ablative = ablV;
-        //     this.Kalendae = 1;
-        //     this.Nonae = 5;
-        //     this.Idus = 13;
-        //     this.End = end;
-        //     this.HourLengthDay = hourLength;
-        // }
-
-        private RomanMonths(Months month, string accV, string ablV, int end, int non, int id, double hourLength)
+        private RomanMonths(Months month, string accV, string ablV, int non, int end = 31)
         {
             this.Month = month;
             this.Accusative = accV;
             this.Ablative = ablV;
-            this.Kalendae = 1;
             this.Nonae = non;
-            this.Idus = id;
             this.End = end;
-            this.HourLengthDay = hourLength;
         }
 
         /// <summary>
@@ -113,18 +98,18 @@ namespace RomanDate.Definitions
         {
             return month switch
             {
-                Months.Ianuarius  => new RomanMonths(month, "Ianuarias", "Ianuariis", 31, 5, 13, 0.82),
-                Months.Februarius => new RomanMonths(month, "Februarias", "Februariis", 28, 5, 13, 0.91),
-                Months.Martius    => new RomanMonths(month, "Martias", "Martiis", 31, 7, 15, 1.0),
-                Months.Aprilis    => new RomanMonths(month, "Apriles", "Aprilibus", 30, 5, 13, 1.09),
-                Months.Maius      => new RomanMonths(month, "Maias", "Maiis", 31, 7, 15, 1.18),
-                Months.Iunius     => new RomanMonths(month, "Iunias", "Iuniis", 30, 5, 13, 1.27),
-                Months.Iulius     => new RomanMonths(month, "Iulias", "Iuliis", 31, 7, 15, 1.18),
-                Months.Augustus   => new RomanMonths(month, "Augustas", "Augustis", 31, 5, 13, 1.09),
-                Months.September  => new RomanMonths(month, "Septembres", "Septembribus", 30, 5, 13, 1.0),
-                Months.October    => new RomanMonths(month, "Octobres", "Octobrius", 31, 7, 15, 0.91),
-                Months.November   => new RomanMonths(month, "Novembres", "Novembribus", 30, 5, 13,  0.82),
-                Months.December   => new RomanMonths(month, "Decembres", "Decembribus", 31, 5, 13, 0.73),
+                Months.Ianuarius  => new RomanMonths(month, "Ianuarias", "Ianuariis", 5),
+                Months.Februarius => new RomanMonths(month, "Februarias", "Februariis", 5, 28),
+                Months.Martius    => new RomanMonths(month, "Martias", "Martiis", 7),
+                Months.Aprilis    => new RomanMonths(month, "Apriles", "Aprilibus", 5, 30),
+                Months.Maius      => new RomanMonths(month, "Maias", "Maiis", 7),
+                Months.Iunius     => new RomanMonths(month, "Iunias", "Iuniis", 5, 30),
+                Months.Iulius     => new RomanMonths(month, "Iulias", "Iuliis", 7),
+                Months.Augustus   => new RomanMonths(month, "Augustas", "Augustis", 5),
+                Months.September  => new RomanMonths(month, "Septembres", "Septembribus", 5, 30),
+                Months.October    => new RomanMonths(month, "Octobres", "Octobrius", 7),
+                Months.November   => new RomanMonths(month, "Novembres", "Novembribus", 5, 30),
+                Months.December   => new RomanMonths(month, "Decembres", "Decembribus", 5),
                 _                 => new RomanMonths()
             };
         }
