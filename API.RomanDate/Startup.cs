@@ -20,7 +20,10 @@ namespace API.RomanDate
         {
             services.AddControllers();
 
-            services.Scan(s => s.FromAssemblyOf<IService>().AddClasses(c => c.AssignableTo<IService>()).AsImplementedInterfaces().WithTransientLifetime());
+            services.Scan(s => s.FromAssemblyOf<IService>()
+                    .AddClasses(c => c.AssignableTo<IService>())
+                    .AsImplementedInterfaces()
+                    .WithTransientLifetime());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

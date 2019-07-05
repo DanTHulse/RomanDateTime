@@ -73,91 +73,19 @@ namespace RomanDate.Definitions
         /// </summary>
         internal int InterIdus => this.End - this.Idus;
 
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents Ianuarias (January)
-        /// </summary>
-        public static RomanMonths Ianuarius => new RomanMonths(Months.Ianuarius, "Ianuarias", "Ianuariis", 0.82);
+        // private RomanMonths(Months month, string accV, string ablV, int end, double hourLength)
+        // {
+        //     this.Month = month;
+        //     this.Accusative = accV;
+        //     this.Ablative = ablV;
+        //     this.Kalendae = 1;
+        //     this.Nonae = 5;
+        //     this.Idus = 13;
+        //     this.End = end;
+        //     this.HourLengthDay = hourLength;
+        // }
 
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents Februarius (February)
-        /// </summary>
-        public static RomanMonths Februarius => new RomanMonths(Months.Februarius, "Februarias", "Februariis", 28, 0.91);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents Martius (March)
-        /// </summary>
-        public static RomanMonths Martius => new RomanMonths(Months.Martius, "Martias", "Martiis", 7, 15, 1.0);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents Aprilis (April)
-        /// </summary>
-        public static RomanMonths Aprilis => new RomanMonths(Months.Aprilis, "Apriles", "Aprilibus", 30, 1.09);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents Maius (May)
-        /// </summary>
-        public static RomanMonths Maius => new RomanMonths(Months.Maius, "Maias", "Maiis", 7, 15, 1.18);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents Iunius (June)
-        /// </summary>
-        public static RomanMonths Iunius => new RomanMonths(Months.Iunius, "Iunias", "Iuniis", 30, 1.27);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents Iulius (July)
-        /// </summary>
-        public static RomanMonths Iulius => new RomanMonths(Months.Iulius, "Iulias", "Iuliis", 7, 15, 1.18);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents Augustus (August)
-        /// </summary>
-        public static RomanMonths Augustus => new RomanMonths(Months.Augustus, "Augustas", "Augustis", 1.09);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents September
-        /// </summary>
-        public static RomanMonths September => new RomanMonths(Months.September, "Septembres", "Septembribus", 30, 1.0);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents October
-        /// </summary>
-        public static RomanMonths October => new RomanMonths(Months.October, "Octobres", "Octobrius", 7, 15, 0.91);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents November
-        /// </summary>
-        public static RomanMonths November => new RomanMonths(Months.November, "Novembres", "Novembribus", 30, 0.82);
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanMonths"/> that represents December
-        /// </summary>
-        public static RomanMonths December => new RomanMonths(Months.December, "Decembres", "Decembribus", 0.73);
-
-        private RomanMonths(Months month, string accV, string ablV, double hourLength)
-        {
-            this.Month = month;
-            this.Accusative = accV;
-            this.Ablative = ablV;
-            this.Kalendae = 1;
-            this.Nonae = 5;
-            this.Idus = 13;
-            this.End = 31;
-            this.HourLengthDay = hourLength;
-        }
-
-        private RomanMonths(Months month, string accV, string ablV, int end, double hourLength)
-        {
-            this.Month = month;
-            this.Accusative = accV;
-            this.Ablative = ablV;
-            this.Kalendae = 1;
-            this.Nonae = 5;
-            this.Idus = 13;
-            this.End = end;
-            this.HourLengthDay = hourLength;
-        }
-
-        private RomanMonths(Months month, string accV, string ablV, int non, int id, double hourLength)
+        private RomanMonths(Months month, string accV, string ablV, int end, int non, int id, double hourLength)
         {
             this.Month = month;
             this.Accusative = accV;
@@ -165,7 +93,7 @@ namespace RomanDate.Definitions
             this.Kalendae = 1;
             this.Nonae = non;
             this.Idus = id;
-            this.End = 31;
+            this.End = end;
             this.HourLengthDay = hourLength;
         }
 
@@ -177,7 +105,7 @@ namespace RomanDate.Definitions
         public static RomanMonths GetRomanMonth(int month) => GetRomanMonth((Months)month);
 
         /// <summary>
-        /// Gets the full instance of the Roman month by it's enum value.
+        /// Gets the full instance of the Roman month by its enum value.
         /// </summary>
         /// <param name="month">The enum representation of the Roman month.</param>
         /// <returns>An instance of <see cref="RomanMonths"/> representing the enum value</returns>
@@ -185,35 +113,19 @@ namespace RomanDate.Definitions
         {
             return month switch
             {
-                Months.Ianuarius => Ianuarius,
-                Months.Februarius => Februarius,
-                Months.Martius => Martius,
-                Months.Aprilis => Aprilis,
-                Months.Maius => Maius,
-                Months.Iunius => Iunius,
-                Months.Iulius => Iulius,
-                Months.Augustus => Augustus,
-                Months.September => September,
-                Months.October => October,
-                Months.November => November,
-                Months.December => December,
-                _ => new RomanMonths()
-            };
-        }
-
-        /// <summary>
-        /// Gets the day of the month the provided Set Day falls on for this instance.
-        /// </summary>
-        /// <param name="setDay">The set day enum value for the day required.</param>
-        /// <returns>The day of the month the specified set day falls on for this instance</returns>
-        public int GetSetDay(SetDays setDay)
-        {
-            return setDay switch
-            {
-                SetDays.Kalendae => this.Kalendae,
-                SetDays.Nonae => this.Nonae,
-                SetDays.Idus => this.Idus,
-                _ => 1
+                Months.Ianuarius  => new RomanMonths(month, "Ianuarias", "Ianuariis", 31, 5, 13, 0.82),
+                Months.Februarius => new RomanMonths(month, "Februarias", "Februariis", 28, 5, 13, 0.91),
+                Months.Martius    => new RomanMonths(month, "Martias", "Martiis", 31, 7, 15, 1.0),
+                Months.Aprilis    => new RomanMonths(month, "Apriles", "Aprilibus", 30, 5, 13, 1.09),
+                Months.Maius      => new RomanMonths(month, "Maias", "Maiis", 31, 7, 15, 1.18),
+                Months.Iunius     => new RomanMonths(month, "Iunias", "Iuniis", 30, 5, 13, 1.27),
+                Months.Iulius     => new RomanMonths(month, "Iulias", "Iuliis", 31, 7, 15, 1.18),
+                Months.Augustus   => new RomanMonths(month, "Augustas", "Augustis", 31, 5, 13, 1.09),
+                Months.September  => new RomanMonths(month, "Septembres", "Septembribus", 30, 5, 13, 1.0),
+                Months.October    => new RomanMonths(month, "Octobres", "Octobrius", 31, 7, 15, 0.91),
+                Months.November   => new RomanMonths(month, "Novembres", "Novembribus", 30, 5, 13,  0.82),
+                Months.December   => new RomanMonths(month, "Decembres", "Decembribus", 31, 5, 13, 0.73),
+                _                 => new RomanMonths()
             };
         }
     }

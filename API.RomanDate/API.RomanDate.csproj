@@ -36,4 +36,8 @@
     <PackageReference Include="Scrutor" Version="3.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RomanDate\RomanDate.csproj" />
+  </ItemGroup>
+
 </Project>
