@@ -4,12 +4,14 @@ namespace RomanDate.Extensions
 {
     internal static partial class StringBuilderEx
     {
-        internal static void AppendRepeat(this StringBuilder sb, object s, int repeat)
+        internal static StringBuilder AppendRepeat(this StringBuilder sb, object s, int repeat)
         {
             for (var x = 0; x < repeat; x++)
             {
-                sb.Append(s.ToString());
+                _ = sb.Append(s.ToString());
             }
+
+            return sb;
         }
     }
 }

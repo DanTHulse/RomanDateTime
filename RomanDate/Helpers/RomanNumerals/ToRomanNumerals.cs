@@ -31,40 +31,39 @@ namespace RomanDate
                 var hundreds = Math.DivRem(tRem, 100, out var hRem);
                 var tens = Math.DivRem(hRem, 10, out var tenRem);
 
-                switch (style)
+                return style switch
                 {
-                    case NumeralStyles.Subtractive:
-                        sb.AppendRepeat(Numerals.M, thousands);
-                        SubtractiveNumerals(sb, hundreds, (Numerals.C, Numerals.D, Numerals.M));
-                        SubtractiveNumerals(sb, tens, (Numerals.X, Numerals.L, Numerals.C));
-                        SubtractiveNumerals(sb, tenRem, (Numerals.I, Numerals.V, Numerals.X));
-                        break;
-                    case NumeralStyles.Additive:
-                        sb.AppendRepeat(Numerals.M, thousands);
-                        AdditiveNumerals(sb, hundreds, (Numerals.C, Numerals.D, Numerals.M));
-                        AdditiveNumerals(sb, tens, (Numerals.X, Numerals.L, Numerals.C));
-                        AdditiveNumerals(sb, tenRem, (Numerals.I, Numerals.V, Numerals.X));
-                        break;
-                }
+                    NumeralStyles.Subtractive => sb.AppendRepeat(Numerals.M, thousands)
+                                                   .AdditiveNumerals(hundreds, (Numerals.C, Numerals.D, Numerals.M))
+                                                   .AdditiveNumerals(tens, (Numerals.X, Numerals.L, Numerals.C))
+                                                   .AdditiveNumerals(tenRem, (Numerals.I, Numerals.V, Numerals.X))
+                                                   .ToString(),
+                    NumeralStyles.Additive    => sb.AppendRepeat(Numerals.M, thousands)
+                                                   .AdditiveNumerals(hundreds, (Numerals.C, Numerals.D, Numerals.M))
+                                                   .AdditiveNumerals(tens, (Numerals.X, Numerals.L, Numerals.C))
+                                                   .AdditiveNumerals(tenRem, (Numerals.I, Numerals.V, Numerals.X))
+                                                   .ToString(),
+                    _                         => sb.ToString()
+                };
             }
 
             return sb.ToString();
         }
 
-        private static void SubtractiveNumerals(StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens) numerals)
+        private static StringBuilder SubtractiveNumerals(this StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens) numerals)
         {
-            sb.AppendIf(numerals.fives, val.Between(5, 8));
-            sb.AppendIf($"{numerals.units}{numerals.tens}", val == 9);
-            sb.AppendIfRepeat(numerals.units, val.Between(5, 8), (val - 5));
-            sb.AppendIf($"{numerals.units}{numerals.fives}", val == 4);
-            sb.AppendIfRepeat(numerals.units, val.Between(1, 3), val);
+            return sb.AppendIf(numerals.fives, val.Between(5, 8))
+                      .AppendIf($"{numerals.units}{numerals.tens}", val == 9)
+                      .AppendIfRepeat(numerals.units, val.Between(5, 8), (val - 5))
+                      .AppendIf($"{numerals.units}{numerals.fives}", val == 4)
+                      .AppendIfRepeat(numerals.units, val.Between(1, 3), val);
         }
 
-        private static void AdditiveNumerals(StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens) numerals)
+        private static StringBuilder AdditiveNumerals(this StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens) numerals)
         {
-            sb.AppendIf(numerals.fives, val.Between(5, 9));
-            sb.AppendIfRepeat(numerals.units, val.Between(5, 9), (val - 5));
-            sb.AppendIfRepeat(numerals.units, val.Between(1, 4), val);
+            return sb.AppendIf(numerals.fives, val.Between(5, 9))
+                     .AppendIfRepeat(numerals.units, val.Between(5, 9), (val - 5))
+                     .AppendIfRepeat(numerals.units, val.Between(1, 4), val);
         }
     }
 }

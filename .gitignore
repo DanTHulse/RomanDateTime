@@ -65,3 +65,7 @@ dkms.conf
 /RomanDate/bin
 /RomanDate/RomanDateTime.1.0.0.nupkg
 /RomanDate.Tests/bin/Release/netcoreapp2.2
+/API.RomanDate/obj
+/API.RomanDate/bin/Debug/netcoreapp3.0
+/API.RomanDate.Tests/bin/Debug/netcoreapp3.0
+/API.RomanDate.Tests/obj
