@@ -10,10 +10,9 @@ namespace RomanDate.Extensions
             var enumType = typeof(T);
 
             if (enumType.BaseType != typeof(Enum))
-                throw new ArgumentException("T must be of type System.Enum");
+                throw new ArgumentException("Type must be of type System.Enum");
 
             var enumValArray = Enum.GetValues(enumType);
-
             var enumValList = new List<T>(enumValArray.Length);
 
             foreach (int val in enumValArray)

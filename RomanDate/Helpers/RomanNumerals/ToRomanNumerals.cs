@@ -53,10 +53,10 @@ namespace RomanDate
         private static StringBuilder SubtractiveNumerals(this StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens) numerals)
         {
             return sb.AppendIf(numerals.fives, val.Between(5, 8))
-                      .AppendIf($"{numerals.units}{numerals.tens}", val == 9)
-                      .AppendIfRepeat(numerals.units, val.Between(5, 8), (val - 5))
-                      .AppendIf($"{numerals.units}{numerals.fives}", val == 4)
-                      .AppendIfRepeat(numerals.units, val.Between(1, 3), val);
+                     .AppendIf($"{numerals.units}{numerals.tens}", val == 9)
+                     .AppendIfRepeat(numerals.units, val.Between(5, 8), (val - 5))
+                     .AppendIf($"{numerals.units}{numerals.fives}", val == 4)
+                     .AppendIfRepeat(numerals.units, val.Between(1, 3), val);
         }
 
         private static StringBuilder AdditiveNumerals(this StringBuilder sb, int val, (Numerals units, Numerals fives, Numerals tens) numerals)

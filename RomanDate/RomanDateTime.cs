@@ -14,19 +14,19 @@ namespace RomanDate
         /// <summary>
         /// Gets the year component of the Roman date represented by this instance in Roman Numerals.
         /// </summary>
-        public string Year => this.GetRomanYear();
+        public string Year => this.DateTimeData.YearOfEra.ToRomanNumerals();
 
         /// <summary>
         /// Gets the AUC year component of the Roman date represented by this instance in Roman Numerals.
         /// </summary>
         /// <remarks>AUC refers to from the founding of the City of Rome (753 BC)</remarks>
-        public string AucYear => this.GetAucYear();
+        public string AucYear => (this.DateTimeData.Year + 753).ToRomanNumerals();
 
         /// <summary>
         /// Gets the Consular year component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>The Romans named their years by who was in office as Consul (or other high ranking office)</remarks>
-        public string ConsularYear => this.GetConsularYear();
+        public string ConsularYear => this.ParseConsularYear(this.ConsularData);
 
         /// <summary>
         /// Gets the day component of the Roman date represented by this instance.
@@ -90,7 +90,7 @@ namespace RomanDate
         /// <summary>
         /// Gets the magistrates that should have been in office at this date (accurate to the year, not month)
         /// </summary>
-        public ElectedMagistrates? ElectedMagistrates => this.GetMagistrates();
+        public ElectedMagistrates? ElectedMagistrates => new ElectedMagistrates(this.ConsularData);
 
         #region Private Fields
 
@@ -126,7 +126,7 @@ namespace RomanDate
 
         internal LocalDateTime DateTimeData { get; }
 
-        internal RomanMonths CalendarMonth => this.GetCalendarMonth();
+        internal RomanMonths CalendarMonth => (RomanMonths.GetRomanMonth((Months)this.DateTimeData.Month));
 
         internal RomanMonths ReferenceMonth => this.GetReferenceMonth();
 
@@ -134,7 +134,7 @@ namespace RomanDate
 
         internal RomanDayPrefixes RomanDayPrefix => this.GetDayPrefix();
 
-        internal ConsularDate ConsularData => this.GetConsularDate();
+        internal ConsularDate ConsularData => this.ReturnConsularYearData((this.DateTimeData.Year + 753));
 
         #endregion
 
