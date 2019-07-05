@@ -20,14 +20,14 @@ namespace RomanDate
                                        cMonth.Idus - 1,
                                        cMonth.End + (leapYear && cMonth.Month == Months.Februarius ? 1 : 0)}))
             {
-                return RomanDayPrefixes.Pridie;
+                return RomanDayPrefixes.GetRomanDayPrefix(DayPrefixes.Pridie);
             }
             else if (day == 24 && cMonth.Month == Months.Februarius && leapYear)
             {
-                return RomanDayPrefixes.AnteDiemBis;
+                return RomanDayPrefixes.GetRomanDayPrefix(DayPrefixes.AnteDiemBis);
             }
 
-            return RomanDayPrefixes.AnteDiem;
+            return RomanDayPrefixes.GetRomanDayPrefix(DayPrefixes.AnteDiem);
         }
     }
 }

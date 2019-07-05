@@ -1,4 +1,5 @@
-﻿using RomanDate.Enums;
+﻿using System;
+using RomanDate.Enums;
 
 namespace RomanDate.Definitions
 {
@@ -27,32 +28,28 @@ namespace RomanDate.Definitions
         /// </summary>
         internal string Ablative { get; }
 
-        /// <summary>
-        /// Gets am instance of <see cref="RomanSetDays"/> that represents the Kalendae
-        /// </summary>
-        /// <remarks>The Kalendae is the first sacred day of the month and always falls on the first</remarks>
-        public static RomanSetDays Kalendae => new RomanSetDays(SetDays.Kalendae, "Kalendas", "Kalendis", "Kal.");
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanSetDays"/> that represents the Nonae
-        /// </summary>
-        /// <remarks>The Nonae is the second sacred day of the month and always falls 9 days (as a Roman would count so 8) 
-        /// before that months Idus (usually on the 5th but sometimes the 7th)</remarks>
-        public static RomanSetDays Nonae => new RomanSetDays(SetDays.Nonae, "Nonas", "Nonis", "Non.");
-
-        /// <summary>
-        /// Gets am instance of <see cref="RomanSetDays"/> that represents the Idus
-        /// </summary>
-        /// <remarks>The Idus is the final sacred day of the month and traditianlly would fall on the full moon, but later 
-        /// mostly on the 13th but sometimes the 15th</remarks>
-        public static RomanSetDays Idus => new RomanSetDays(SetDays.Idus, "Idus", "Idibus", "Id.");
-
         private RomanSetDays(SetDays setDay, string accV, string ablV, string shortV)
         {
             this.SetDay = setDay;
             this.Accusative = accV;
             this.Ablative = ablV;
             this.Short = shortV;
+        }
+
+        /// <summary>
+        /// Gets the full instance of the Roman set day by its enum value.
+        /// </summary>
+        /// <param name="month">The enum representation of the Roman set day.</param>
+        /// <returns>An instance of <see cref="RomanSetDays"/> representing the enum value</returns>
+        public static RomanSetDays GetRomanSetDay(SetDays setDay)
+        {
+            return setDay switch
+            {
+                SetDays.Kalendae => new RomanSetDays(SetDays.Kalendae, "Kalendas", "Kalendis", "Kal."),
+                SetDays.Nonae => new RomanSetDays(SetDays.Nonae, "Nonas", "Nonis", "Non."),
+                SetDays.Idus => new RomanSetDays(SetDays.Idus, "Idus", "Idibus", "Id."),
+                _ => throw new InvalidOperationException("Not a valid value for RomanSetDays")
+            };
         }
     }
 }

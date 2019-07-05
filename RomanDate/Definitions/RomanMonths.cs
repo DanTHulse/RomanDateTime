@@ -1,4 +1,5 @@
-﻿using RomanDate.Enums;
+﻿using System;
+using RomanDate.Enums;
 using RomanDate.Extensions;
 
 namespace RomanDate.Definitions
@@ -110,7 +111,7 @@ namespace RomanDate.Definitions
                 Months.October    => new RomanMonths(month, "Octobres", "Octobrius", 7),
                 Months.November   => new RomanMonths(month, "Novembres", "Novembribus", 5, 30),
                 Months.December   => new RomanMonths(month, "Decembres", "Decembribus", 5),
-                _                 => new RomanMonths()
+                _                 => throw new InvalidOperationException("Not a valid value for RomanMonths [must be 1-12]")
             };
         }
     }
