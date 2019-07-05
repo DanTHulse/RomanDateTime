@@ -38,12 +38,12 @@ namespace RomanDate
                                                    .SubtractiveNumerals(tens, (Numerals.X, Numerals.L, Numerals.C))
                                                    .SubtractiveNumerals(tenRem, (Numerals.I, Numerals.V, Numerals.X))
                                                    .ToString(),
-                    NumeralStyles.Additive    => sb.AppendRepeat(Numerals.M, thousands)
+                    NumeralStyles.Additive => sb.AppendRepeat(Numerals.M, thousands)
                                                    .AdditiveNumerals(hundreds, (Numerals.C, Numerals.D, Numerals.M))
                                                    .AdditiveNumerals(tens, (Numerals.X, Numerals.L, Numerals.C))
                                                    .AdditiveNumerals(tenRem, (Numerals.I, Numerals.V, Numerals.X))
                                                    .ToString(),
-                    _                         => sb.ToString()
+                    _ => sb.ToString()
                 };
             }
 

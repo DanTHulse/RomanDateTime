@@ -11,20 +11,20 @@ namespace RomanDate
             var sDay = this.RomanSetDay;
             var dPrefix = this.RomanDayPrefix;
 
-            sb.Append($"{(shorten ? dPrefix.Short : dPrefix.Long)} ");
+            _ = sb.Append($"{(shorten ? dPrefix.Short : dPrefix.Long)} ");
 
             if (this.DaysUntilSetDay > 2)
-                sb.Append($"{this.DaysUntilSetDay.ToRomanNumerals()} ");
+                _ = sb.Append($"{this.DaysUntilSetDay.ToRomanNumerals()} ");
 
             if (this.DaysUntilSetDay == 0)
-                sb.Append($"{(shorten ? sDay.Short : sDay.Ablative)} ");
+                _ = sb.Append($"{(shorten ? sDay.Short : sDay.Ablative)} ");
             else
-                sb.Append($"{(shorten ? sDay.Short : sDay.Accusative)} ");
+                _ = sb.Append($"{(shorten ? sDay.Short : sDay.Accusative)} ");
 
             if (this.DaysUntilSetDay > 2)
-                sb.Append($"{(shorten ? rMonth.Short : rMonth.Accusative)}");
+                _ = sb.Append($"{(shorten ? rMonth.Short : rMonth.Accusative)}");
             else
-                sb.Append($"{(shorten ? rMonth.Short : rMonth.Ablative)}");
+                _ = sb.Append($"{(shorten ? rMonth.Short : rMonth.Ablative)}");
 
             return sb.ToString().TrimStart();
         }

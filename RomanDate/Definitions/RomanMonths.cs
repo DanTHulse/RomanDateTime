@@ -99,19 +99,19 @@ namespace RomanDate.Definitions
         {
             return month switch
             {
-                Months.Ianuarius  => new RomanMonths(month, "Ianuarias", "Ianuariis", 5),
+                Months.Ianuarius => new RomanMonths(month, "Ianuarias", "Ianuariis", 5),
                 Months.Februarius => new RomanMonths(month, "Februarias", "Februariis", 5, 28),
-                Months.Martius    => new RomanMonths(month, "Martias", "Martiis", 7),
-                Months.Aprilis    => new RomanMonths(month, "Apriles", "Aprilibus", 5, 30),
-                Months.Maius      => new RomanMonths(month, "Maias", "Maiis", 7),
-                Months.Iunius     => new RomanMonths(month, "Iunias", "Iuniis", 5, 30),
-                Months.Iulius     => new RomanMonths(month, "Iulias", "Iuliis", 7),
-                Months.Augustus   => new RomanMonths(month, "Augustas", "Augustis", 5),
-                Months.September  => new RomanMonths(month, "Septembres", "Septembribus", 5, 30),
-                Months.October    => new RomanMonths(month, "Octobres", "Octobrius", 7),
-                Months.November   => new RomanMonths(month, "Novembres", "Novembribus", 5, 30),
-                Months.December   => new RomanMonths(month, "Decembres", "Decembribus", 5),
-                _                 => throw new InvalidOperationException("Not a valid value for RomanMonths [must be 1-12]")
+                Months.Martius => new RomanMonths(month, "Martias", "Martiis", 7),
+                Months.Aprilis => new RomanMonths(month, "Apriles", "Aprilibus", 5, 30),
+                Months.Maius => new RomanMonths(month, "Maias", "Maiis", 7),
+                Months.Iunius => new RomanMonths(month, "Iunias", "Iuniis", 5, 30),
+                Months.Iulius => new RomanMonths(month, "Iulias", "Iuliis", 7),
+                Months.Augustus => new RomanMonths(month, "Augustas", "Augustis", 5),
+                Months.September => new RomanMonths(month, "Septembres", "Septembribus", 5, 30),
+                Months.October => new RomanMonths(month, "Octobres", "Octobrius", 7),
+                Months.November => new RomanMonths(month, "Novembres", "Novembribus", 5, 30),
+                Months.December => new RomanMonths(month, "Decembres", "Decembribus", 5),
+                _ => throw new InvalidOperationException("Not a valid value for RomanMonths [must be 1-12]")
             };
         }
     }
