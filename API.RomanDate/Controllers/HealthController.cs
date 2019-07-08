@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.RomanDate.Controllers.ApiResponses;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.RomanDate.Controllers
 {
@@ -11,6 +12,6 @@ namespace API.RomanDate.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult<object> Ping() => this.Ok();
+        public ActionResult<object> Ping() => this.Ok(new OkResponse("All is okay!"));
     }
 }

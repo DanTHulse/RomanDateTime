@@ -17,15 +17,14 @@ namespace API.RomanDate.Controllers.ApiResponses
 
         private static string GetDefaultMessageForStatusCode(int statusCode)
         {
-            switch (statusCode)
+            return statusCode switch
             {
-                case 404:
-                    return "Resource not found";
-                case 500:
-                    return "An unhandled error occurred";
-                default:
-                    return "";
-            }
+                200 => "Success",
+                204 => "Success, but no content",
+                404 => "Resource not found",
+                500 => "An unhandled error occurred",
+                _ => ""
+            };
         }
     }
 }

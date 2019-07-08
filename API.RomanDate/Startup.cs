@@ -1,3 +1,4 @@
+using API.RomanDate.Middleware;
 using API.RomanDate.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,9 +19,9 @@ namespace API.RomanDate
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            _ = services.AddControllers();
 
-            services.Scan(s => s.FromAssemblyOf<IService>()
+            _ = services.Scan(s => s.FromAssemblyOf<IService>()
                     .AddClasses(c => c.AssignableTo<IService>())
                     .AsImplementedInterfaces()
                     .WithTransientLifetime());
@@ -30,18 +31,20 @@ namespace API.RomanDate
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                _ = app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            _ = app.UseMiddleware(typeof(ErrorHandlerMiddleware));
 
-            app.UseRouting();
+            _ = app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            _ = app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            _ = app.UseAuthorization();
+
+            _ = app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                _ = endpoints.MapControllers();
             });
         }
     }
