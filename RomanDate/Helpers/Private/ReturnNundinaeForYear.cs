@@ -1,13 +1,31 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NodaTime;
 using RomanDate.Enums;
+using RomanDate.Extensions;
 
 namespace RomanDate.Helpers
 {
     public static partial class RomanDateHelpers
     {
-        internal static IEnumerable<NundinalLetters> CheckNundialLetters(LocalDateTime from, NundinalLetters startPosition)
+        private static NundinalLetters ReturnNundinaeForYear(LocalDateTime dateTime)
+        {
+            var startPosition = (NundinalLetters)(dateTime.YearOfEra % 8);
+            var enumList = EnumEx.EnumToList<NundinalLetters>();
+            var checkDates = CheckNundialLetters(dateTime, startPosition);
+
+            var result = enumList.Where(p => !checkDates.Any(p2 => p2 == p)).ToList();
+
+            if (result.Any())
+                return result.First();
+
+            var countResult = checkDates.GroupBy(i => i).OrderBy(g => g.Count()).Select(g => g.Key).ToList();
+
+            return countResult.First();
+        }
+
+        private static IEnumerable<NundinalLetters> CheckNundialLetters(LocalDateTime from, NundinalLetters startPosition)
         {
             var letters = new List<NundinalLetters>
             {
@@ -29,7 +47,7 @@ namespace RomanDate.Helpers
             return letters;
         }
 
-        internal static NundinalLetters CheckNundialLetter(LocalDateTime from, LocalDateTime to, NundinalLetters startPosition)
+        private static NundinalLetters CheckNundialLetter(LocalDateTime from, LocalDateTime to, NundinalLetters startPosition)
         {
             var daysFromStart = Math.Abs(to.Minus(new LocalDateTime(from.Year, 1, 1, 0, 0)).Days);
             var daysFromCycle = (((daysFromStart + (int)startPosition)) % 8);

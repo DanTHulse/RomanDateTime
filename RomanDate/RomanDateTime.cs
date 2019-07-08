@@ -26,7 +26,7 @@ namespace RomanDate
         /// Gets the Consular year component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>The Romans named their years by who was in office as Consul (or other high ranking office)</remarks>
-        public string ConsularYear => this.ParseConsularYear(this.ConsularData);
+        public string ConsularYear => this.ConsularData.ParseConsularYear();
 
         /// <summary>
         /// Gets the day component of the Roman date represented by this instance.
@@ -87,11 +87,6 @@ namespace RomanDate
         /// </summary>
         public Eras Era { get; set; }
 
-        /// <summary>
-        /// Gets the magistrates that should have been in office at this date (accurate to the year, not month)
-        /// </summary>
-        public ElectedMagistrates? ElectedMagistrates => new ElectedMagistrates(this.ConsularData);
-
         #region Private Fields
 
         private readonly int? _daysUntil;
@@ -128,13 +123,15 @@ namespace RomanDate
 
         internal RomanMonths CalendarMonth => (RomanMonths.GetRomanMonth((Months)this.DateTimeData.Month));
 
-        internal RomanMonths ReferenceMonth => this.GetReferenceMonth();
+        internal RomanMonths ReferenceMonth => (this.DateTimeData.Day != 1 && this.RomanSetDay.SetDay == SetDays.Kalendae)
+                                            ? RomanMonths.GetRomanMonth(this.CalendarMonth.Month.Next())
+                                            : this.CalendarMonth;
 
         internal RomanSetDays RomanSetDay => this.GetSetDay();
 
         internal RomanDayPrefixes RomanDayPrefix => this.GetDayPrefix();
 
-        internal ConsularDate ConsularData => this.ReturnConsularYearData((this.DateTimeData.Year + 753));
+        internal ConsularDate ConsularData => ConsularDate.Get((this.DateTimeData.Year + 753));
 
         #endregion
 

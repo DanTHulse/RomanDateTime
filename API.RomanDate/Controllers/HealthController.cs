@@ -6,10 +6,11 @@ namespace API.RomanDate.Controllers
     [Route("api/health")]
     public class HealthController : ControllerBase
     {
-        [HttpGet("")]
-        public ActionResult<object> Get()
+        public HealthController()
         {
-            return this.Ok();
         }
+
+        [HttpGet("")]
+        public ActionResult<object> Ping() => this.Ok();
     }
 }
