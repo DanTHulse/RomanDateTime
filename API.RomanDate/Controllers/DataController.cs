@@ -11,8 +11,5 @@ namespace API.RomanDate.Controllers
         {
 
         }
-
-        [HttpPost("consular/{year}")]
-        public async Task<ActionResult> PostConsularData([FromRoute]int year, [FromBody]object data) => this.Ok();
     }
 }
