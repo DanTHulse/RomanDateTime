@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace API.RomanDate.Controllers.ApiResponses
+namespace API.RomanDate.Controllers.Base.ApiResponses
 {
     public class ApiResponse
     {

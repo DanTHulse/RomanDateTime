@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace API.RomanDate.Controllers.ApiResponses
+namespace API.RomanDate.Controllers.Base.ApiResponses
 {
     public class BadRequestResponse : ApiResponse
     {

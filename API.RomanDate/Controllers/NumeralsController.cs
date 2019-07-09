@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using API.RomanDate.Controllers.ApiResponses;
+using API.RomanDate.Controllers.Base;
+using API.RomanDate.Controllers.Base.ApiResponses;
 using Microsoft.AspNetCore.Mvc;
 using RomanDate;
 using RomanDate.Enums;
@@ -7,8 +8,8 @@ using RomanDate.Enums;
 namespace API.RomanDate.Controllers
 {
     [ApiController]
-    [Route("api/numerals")]
-    public class NumeralsController : ControllerBase
+    [Route("api/[controller]")]
+    public class NumeralsController : BaseController
     {
         public NumeralsController()
         {
@@ -25,9 +26,9 @@ namespace API.RomanDate.Controllers
         public ActionResult<ApiResponse> ConvertToNumerals([FromRoute]int number, [FromQuery]NumeralStyles numeralStyle = NumeralStyles.Subtractive)
         {
             if (number < 1 || number > 9999)
-                return this.BadRequest(new BadRequestResponse("Number provided must be between 1-9999"));
+                return this.BadRequest("Number provided must be between 1-9999");
 
-            return this.Ok(new OkResponse(RomanNumerals.ToRomanNumerals(number, numeralStyle)));
+            return this.Ok(RomanNumerals.ToRomanNumerals(number, numeralStyle));
         }
 
         /// <summary>
@@ -39,12 +40,12 @@ namespace API.RomanDate.Controllers
         public ActionResult<ApiResponse> ConvertFromNumerals([FromRoute]string numerals)
         {
             if (string.IsNullOrEmpty(numerals))
-                return this.BadRequest(new BadRequestResponse("Must not be an empty string"));
+                return this.BadRequest("Must not be an empty string");
 
             if (!numerals.All(a => "IVXCDLM".Contains(a)))
-                return this.BadRequest(new BadRequestResponse("Value contains non-Numeral characters, only I,V,X,L,C,D, and M"));
+                return this.BadRequest("Value contains non-Numeral characters, only I,V,X,L,C,D, and M");
 
-            return this.Ok(new OkResponse(RomanNumerals.ToInt(numerals)));
+            return this.Ok(RomanNumerals.ToInt(numerals));
         }
     }
 }

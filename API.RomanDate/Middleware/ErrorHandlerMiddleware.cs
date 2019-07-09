@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using API.RomanDate.Controllers.ApiResponses;
+using API.RomanDate.Controllers.Base.ApiResponses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;

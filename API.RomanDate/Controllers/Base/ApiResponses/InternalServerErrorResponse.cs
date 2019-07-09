@@ -1,7 +1,7 @@
 ﻿using System;
 using API.RomanDate.Helpers;
 
-namespace API.RomanDate.Controllers.ApiResponses
+namespace API.RomanDate.Controllers.Base.ApiResponses
 {
     public class InternalServerErrorResponse : ApiResponse
     {

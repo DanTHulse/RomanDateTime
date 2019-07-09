@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using API.RomanDate.Controllers.Base;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.RomanDate.Controllers
 {
     [ApiController]
-    [Route("api/data")]
-    public class DataController : ControllerBase
+    [Route("api/[controller]")]
+    public class DataController : BaseController
     {
         public DataController()
         {

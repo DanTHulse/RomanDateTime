@@ -1,17 +1,18 @@
-﻿using API.RomanDate.Controllers.ApiResponses;
+﻿using API.RomanDate.Controllers.Base;
+using API.RomanDate.Controllers.Base.ApiResponses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.RomanDate.Controllers
 {
     [ApiController]
-    [Route("api/health")]
-    public class HealthController : ControllerBase
+    [Route("api/[controller]")]
+    public class HealthController : BaseController
     {
         public HealthController()
         {
         }
 
         [HttpGet("")]
-        public ActionResult<object> Ping() => this.Ok(new OkResponse("All is okay!"));
+        public ActionResult<object> Ping() => this.Ok("All is okay!");
     }
 }
