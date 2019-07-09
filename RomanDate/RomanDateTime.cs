@@ -62,6 +62,14 @@ namespace RomanDate
         public Months Month => this.ReferenceMonth.Month;
 
         /// <summary>
+        /// Gets the "actual" month of the Roman date represented by this insteance
+        /// </summary>
+        /// <remarks>The Romans spoke about dates differently to us and used a reference month to describe what day it is,
+        /// see the "Month" property for more info. This property exists to make it easier to tell where a certain date falls in
+        /// our calender system</remarks>
+        public Months ActualMonth => this.CalendarMonth.Month;
+
+        /// <summary>
         /// Gets the time component of the Roman date represented by this instance.
         /// </summary>
         /// <remarks>The Romans would start counting from Hour 1 always from sunrise and have 12 hours until sunset 
@@ -86,6 +94,16 @@ namespace RomanDate
         /// Gets the era component of the Roman date represented by this instance.
         /// </summary>
         public Eras Era { get; set; }
+
+        /// <summary>
+        /// Gets only the Date part of the Roman date represented by this instance.
+        /// </summary>
+        public string Date => $"{this.Day} {this.Year}";
+
+        /// <summary>
+        /// Gets only the Date (with AUC year) part of the Roman date represented by this instance.
+        /// </summary>
+        public string AucDate => $"{this.Day} {this.AucYear}";
 
         #region Private Fields
 

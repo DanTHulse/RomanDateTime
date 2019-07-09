@@ -10,7 +10,7 @@ namespace RomanDate.Definitions
 {
     public struct ConsularDate
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("type")]
         public YearOf YearOf { get; set; }
@@ -56,6 +56,8 @@ namespace RomanDate.Definitions
 
         internal string ParseConsularYear()
         {
+            if (this.Id == null)
+                return "";
             if (!string.IsNullOrEmpty(this.Override))
                 return this.Override;
 

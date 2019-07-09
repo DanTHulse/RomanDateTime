@@ -19,9 +19,19 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netcoreapp3.0\API.RomanDate.xml</DocumentationFile>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Content Remove="ConsularData\ConsularDates.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ConsularData\ConsularDates.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
