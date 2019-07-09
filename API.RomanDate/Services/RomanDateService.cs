@@ -12,7 +12,7 @@ namespace API.RomanDate.Services
 
         }
 
-        public RomanDateTime GetCurrentDate(bool aucEra = false) => RomanDateTime.Now;
+        public RomanDateTime GetCurrentDate() => RomanDateTime.Now;
 
         public RomanDateTime GetRomanDate(DateTime date, Eras era) => new RomanDateTime(date, era);
     }

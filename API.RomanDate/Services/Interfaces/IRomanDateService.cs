@@ -6,7 +6,7 @@ namespace API.RomanDate.Services.Interfaces
 {
     public interface IRomanDateService : IService
     {
-        RomanDateTime GetCurrentDate(bool aucEra = false);
+        RomanDateTime GetCurrentDate();
         RomanDateTime GetRomanDate(DateTime date, Eras era);
     }
 }
