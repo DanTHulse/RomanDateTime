@@ -1,18 +1,21 @@
 ﻿using API.RomanDate.Controllers;
+using API.RomanDate.Mappings.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace API.RomanDate.Tests.Controllers
 {
     [TestClass]
     public class NumeralsControllerTests
     {
+        private Mock<IMapper> _mockMapper = new Mock<IMapper>();
         private NumeralsController _sut;
 
         [TestInitialize]
         public void Init()
         {
-            _sut = new NumeralsController();
+            _sut = new NumeralsController(_mockMapper.Object);
         }
 
         [TestMethod]

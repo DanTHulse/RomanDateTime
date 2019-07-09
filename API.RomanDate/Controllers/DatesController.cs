@@ -4,6 +4,7 @@ using API.RomanDate.Mappings.Interfaces;
 using API.RomanDate.Services.Interfaces;
 using API.RomanDate.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using RomanDate.Enums;
 
 namespace API.RomanDate.Controllers
 {
@@ -11,29 +12,29 @@ namespace API.RomanDate.Controllers
     [Route("api/[controller]")]
     public class DatesController : BaseController
     {
-        private readonly IMapper _mapper;
         private readonly IRomanDateService _romanDateService;
 
         public DatesController(IMapper mapper,
             IRomanDateService romanDateService)
+            : base(mapper)
         {
-            this._mapper = mapper;
             this._romanDateService = romanDateService;
         }
 
         [HttpGet("current")]
         public ActionResult<RomanDateViewModel> Current()
         {
-            var date = this._romanDateService.GetCurrentDate();
-            var mapped = this._mapper.Map<RomanDateViewModel>(date);
+            var romanDate = this._romanDateService.GetCurrentDate();
 
-            return this.Ok(mapped);
+            return this.Ok<RomanDateViewModel>(romanDate);
         }
 
-        [HttpGet()]
-        public ActionResult<object> GetRomanDateTime([FromQuery]DateTime? date = null)
+        [HttpGet("{date}")]
+        public ActionResult<RomanDateViewModel> GetRomanDateTime([FromRoute]DateTime date, [FromQuery]Eras era = Eras.AD)
         {
-            return this.Ok();
+            var romanDate = this._romanDateService.GetRomanDate(date, era);
+
+            return this.Ok<RomanDateViewModel>(romanDate);
         }
     }
 }

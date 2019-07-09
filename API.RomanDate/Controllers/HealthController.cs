@@ -1,4 +1,5 @@
 ﻿using API.RomanDate.Controllers.Base;
+using API.RomanDate.Mappings.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.RomanDate.Controllers
@@ -7,7 +8,8 @@ namespace API.RomanDate.Controllers
     [Route("api/[controller]")]
     public class HealthController : BaseController
     {
-        public HealthController()
+        public HealthController(IMapper mapper)
+            : base(mapper)
         {
         }
 

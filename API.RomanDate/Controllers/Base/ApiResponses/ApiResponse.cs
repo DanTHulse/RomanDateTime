@@ -21,8 +21,9 @@ namespace API.RomanDate.Controllers.Base.ApiResponses
             {
                 200 => "Success",
                 204 => "Success, but no content",
+                400 => "An error occured, check your request and send again",
                 404 => "Resource not found",
-                500 => "An unhandled error occurred",
+                500 => "An unhandled error occurred, contact the developer",
                 _ => ""
             };
         }

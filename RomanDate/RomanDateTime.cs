@@ -105,6 +105,11 @@ namespace RomanDate
         /// </summary>
         public string AucDate => $"{this.Day} {this.AucYear}";
 
+        /// <summary>
+        /// Consular and Magistrate date of the Roman date represented by this instance.
+        /// </summary>
+        public ConsularDate ConsularData => ConsularDate.Get((this.DateTimeData.Year + 753));
+
         #region Private Fields
 
         private readonly int? _daysUntil;
@@ -148,8 +153,6 @@ namespace RomanDate
         internal RomanSetDays RomanSetDay => this.GetSetDay();
 
         internal RomanDayPrefixes RomanDayPrefix => this.GetDayPrefix();
-
-        internal ConsularDate ConsularData => ConsularDate.Get((this.DateTimeData.Year + 753));
 
         #endregion
 

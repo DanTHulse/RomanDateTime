@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace API.RomanDate.ViewModels
 {
     public class RomanDateViewModel
@@ -11,5 +13,6 @@ namespace API.RomanDate.ViewModels
         public string Time { get; set; } = "";
         public string Date { get; set; } = "";
         public string AucDate { get; set; } = "";
+        public IEnumerable<MagistrateViewModel> RulingMagistrates { get; set; } = new List<MagistrateViewModel>();
     }
 }

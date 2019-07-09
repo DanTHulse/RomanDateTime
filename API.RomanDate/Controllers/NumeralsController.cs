@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using API.RomanDate.Controllers.Base;
 using API.RomanDate.Controllers.Base.ApiResponses;
+using API.RomanDate.Mappings.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using RomanDate;
 using RomanDate.Enums;
@@ -11,7 +12,8 @@ namespace API.RomanDate.Controllers
     [Route("api/[controller]")]
     public class NumeralsController : BaseController
     {
-        public NumeralsController()
+        public NumeralsController(IMapper mapper)
+            : base(mapper)
         {
 
         }

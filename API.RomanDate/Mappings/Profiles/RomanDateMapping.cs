@@ -10,7 +10,8 @@ namespace API.RomanDate.Mappings.Profiles
         {
             _ = this.CreateMap<RomanDateTime, RomanDateViewModel>()
                 .ForMember(dest => dest.Month, o => o.MapFrom(src => src.Month.ToString()))
-                .ForMember(dest => dest.CalendarMonth, o => o.MapFrom(src => src.ActualMonth.ToString()));
+                .ForMember(dest => dest.CalendarMonth, o => o.MapFrom(src => src.ActualMonth.ToString()))
+                .ForMember(dest => dest.RulingMagistrates, o => o.MapFrom(src => src.ConsularData.RulingMagistrates));
         }
     }
 }

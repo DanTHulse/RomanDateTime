@@ -9,5 +9,11 @@
         {
             Result = result;
         }
+
+        public OkResponse()
+            : base(200)
+        {
+            Result = new { };
+        }
     }
 }

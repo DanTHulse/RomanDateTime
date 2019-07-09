@@ -10,14 +10,17 @@ namespace RomanDate.Definitions
 {
     public struct ConsularDate
     {
-        public int? Id { get; set; }
+        [JsonProperty]
+        internal int? Id { get; set; }
 
         [JsonProperty("type")]
-        public YearOf YearOf { get; set; }
+        internal YearOf YearOf { get; set; }
 
-        public IEnumerable<Magistrate> Magistrates { get; set; }
+        [JsonProperty]
+        internal IEnumerable<Magistrate> Magistrates { get; set; }
 
-        public string? Override { get; set; }
+        [JsonProperty]
+        internal string? Override { get; set; }
 
         internal static ConsularDate Get(int aucYear) => ReturnConsularYearData(aucYear);
 
@@ -46,9 +49,11 @@ namespace RomanDate.Definitions
 
             static IEnumerable<ConsularDate> _Load()
             {
+                var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
+
                 using var r = new StreamReader("./ConsularData/ConsularDates.json");
                 var json = r.ReadToEnd();
-                var items = JsonConvert.DeserializeObject<List<ConsularDate>>(json);
+                var items = JsonConvert.DeserializeObject<List<ConsularDate>>(json, settings);
 
                 return items;
             }

@@ -20,6 +20,7 @@ namespace API.RomanDate
             this.AutoMapperConfig = new MapperConfiguration(config =>
             {
                 config.AddProfile(new RomanDateMapping());
+                config.AddProfile(new MagistrateMapping());
             });
 
             this.Configuration = configuration;
@@ -28,7 +29,6 @@ namespace API.RomanDate
         public void ConfigureServices(IServiceCollection services)
         {
             _ = services.AddControllers();
-
             _ = services.Scan(s => s.FromAssemblyOf<IService>()
                     .AddClasses(c => c.AssignableTo<IService>())
                     .AsImplementedInterfaces()
@@ -45,13 +45,9 @@ namespace API.RomanDate
             }
 
             _ = app.UseMiddleware(typeof(ErrorHandlerMiddleware));
-
             _ = app.UseHttpsRedirection();
-
             _ = app.UseRouting();
-
             _ = app.UseAuthorization();
-
             _ = app.UseEndpoints(endpoints =>
             {
                 _ = endpoints.MapControllers();
