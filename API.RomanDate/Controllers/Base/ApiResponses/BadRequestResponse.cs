@@ -9,7 +9,7 @@ namespace API.RomanDate.Controllers.Base.ApiResponses
         public BadRequestResponse(string errorMessage)
             : base(400)
         {
-            Errors = new string[] { errorMessage };
+            this.Errors = new string[] { errorMessage };
         }
     }
 }

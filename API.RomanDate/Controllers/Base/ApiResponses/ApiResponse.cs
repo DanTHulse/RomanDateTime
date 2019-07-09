@@ -11,8 +11,8 @@ namespace API.RomanDate.Controllers.Base.ApiResponses
 
         public ApiResponse(int statusCode, string message = "")
         {
-            StatusCode = statusCode;
-            Message = message ?? GetDefaultMessageForStatusCode(statusCode);
+            this.StatusCode = statusCode;
+            this.Message = message ?? GetDefaultMessageForStatusCode(statusCode);
         }
 
         private static string GetDefaultMessageForStatusCode(int statusCode)

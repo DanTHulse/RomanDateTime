@@ -7,13 +7,13 @@
         public OkResponse(object result)
             : base(200)
         {
-            Result = result;
+            this.Result = result;
         }
 
         public OkResponse()
             : base(200)
         {
-            Result = new { };
+            this.Result = new { };
         }
     }
 }

@@ -9,19 +9,16 @@ namespace API.RomanDate.Tests.Controllers
     [TestClass]
     public class NumeralsControllerTests
     {
-        private Mock<IMapper> _mockMapper = new Mock<IMapper>();
+        private readonly Mock<IMapper> _mockMapper = new Mock<IMapper>();
         private NumeralsController _sut;
 
         [TestInitialize]
-        public void Init()
-        {
-            _sut = new NumeralsController(_mockMapper.Object);
-        }
+        public void Init() => this._sut = new NumeralsController(this._mockMapper.Object);
 
         [TestMethod]
         public void ConvertToNumerals_ValidNumber_ReturnsOk()
         {
-            var result = _sut.ConvertToNumerals(1991);
+            var result = this._sut.ConvertToNumerals(1991);
 
             Assert.IsInstanceOfType(result.Result, typeof(OkObjectResult));
         }
@@ -29,7 +26,7 @@ namespace API.RomanDate.Tests.Controllers
         [TestMethod]
         public void ConvertToNumerals_LessThan1_ReturnsBadRequest()
         {
-            var result = _sut.ConvertToNumerals(-190);
+            var result = this._sut.ConvertToNumerals(-190);
 
             Assert.IsInstanceOfType(result.Result, typeof(BadRequestObjectResult));
         }
@@ -37,7 +34,7 @@ namespace API.RomanDate.Tests.Controllers
         [TestMethod]
         public void ConvertToNumerals_GreaterThan9999_ReturnsBadRequest()
         {
-            var result = _sut.ConvertToNumerals(10000);
+            var result = this._sut.ConvertToNumerals(10000);
 
             Assert.IsInstanceOfType(result.Result, typeof(BadRequestObjectResult));
         }
@@ -45,7 +42,7 @@ namespace API.RomanDate.Tests.Controllers
         [TestMethod]
         public void ConvertFromNumerals_ValidNumerals_ReturnsOk()
         {
-            var result = _sut.ConvertFromNumerals("MCMXCI");
+            var result = this._sut.ConvertFromNumerals("MCMXCI");
 
             Assert.IsInstanceOfType(result.Result, typeof(OkObjectResult));
         }
@@ -53,7 +50,7 @@ namespace API.RomanDate.Tests.Controllers
         [TestMethod]
         public void ConvertFromNumerals_EmptyString_ReturnsBadRequest()
         {
-            var result = _sut.ConvertFromNumerals("");
+            var result = this._sut.ConvertFromNumerals("");
 
             Assert.IsInstanceOfType(result.Result, typeof(BadRequestObjectResult));
         }
@@ -61,7 +58,7 @@ namespace API.RomanDate.Tests.Controllers
         [TestMethod]
         public void ConvertFromNumerals_InvalidString_ReturnsBadRequest()
         {
-            var result = _sut.ConvertFromNumerals("MCTR");
+            var result = this._sut.ConvertFromNumerals("MCTR");
 
             Assert.IsInstanceOfType(result.Result, typeof(BadRequestObjectResult));
         }

@@ -9,19 +9,16 @@ namespace API.RomanDate.Tests.Controllers
     [TestClass]
     public class HealthControllerTests
     {
-        private Mock<IMapper> _mockMapper = new Mock<IMapper>();
+        private readonly Mock<IMapper> _mockMapper = new Mock<IMapper>();
         private HealthController _sut;
 
         [TestInitialize]
-        public void Init()
-        {
-            _sut = new HealthController(_mockMapper.Object);
-        }
+        public void Init() => this._sut = new HealthController(this._mockMapper.Object);
 
         [TestMethod]
         public void Ping_ReturnsOk()
         {
-            var result = _sut.Ping();
+            var result = this._sut.Ping();
 
             Assert.IsInstanceOfType(result.Result, typeof(OkObjectResult));
         }

@@ -12,9 +12,6 @@ namespace API.RomanDate.Helpers.Linq
         /// <param name="list">The list to check against</param>
         /// <typeparam name="TSource">The type of the list</typeparam>
         /// <returns>True if the element exists in the list</returns>
-        public static bool In<TSource>(this TSource source, params TSource[] list)
-        {
-            return list.Contains(source);
-        }
+        public static bool In<TSource>(this TSource source, params TSource[] list) => list.Contains(source);
     }
 }

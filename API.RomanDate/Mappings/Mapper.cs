@@ -11,9 +11,6 @@ namespace API.RomanDate.Mappings
             this._mapper = mapper;
         }
 
-        public T Map<T>(object source)
-        {
-            return this._mapper.Map<T>(source);
-        }
+        public T Map<T>(object source) => this._mapper.Map<T>(source);
     }
 }
