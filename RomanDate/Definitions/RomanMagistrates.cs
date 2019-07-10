@@ -8,10 +8,10 @@ using RomanDate.Extensions;
 
 namespace RomanDate.Definitions
 {
-    public struct ConsularDate
+    public struct RomanMagistrates
     {
-        [JsonProperty]
-        internal int? Id { get; set; }
+        [JsonProperty("id")]
+        internal int? AucYear { get; set; }
 
         [JsonProperty("type")]
         internal YearOf YearOf { get; set; }
@@ -22,7 +22,12 @@ namespace RomanDate.Definitions
         [JsonProperty]
         internal string? Override { get; set; }
 
-        internal static ConsularDate Get(int aucYear) => ReturnConsularYearData(aucYear);
+        /// <summary>
+        /// Gets the Consular date data for the given AUC year
+        /// </summary>
+        /// <param name="aucYear">The AUC year to return consular data for</param>
+        /// <returns>A new <see cref="RomanMagistrates"/> record for the AUC year</returns>
+        public static RomanMagistrates Get(int aucYear) => ReturnRomanMagistrateData(aucYear);
 
         /// <summary>
         /// Gets the ruling Magistrates (i.e. the highest ranked Magistrates) elected for this year
@@ -43,17 +48,17 @@ namespace RomanDate.Definitions
         /// <returns>A list of <see cref="Magistrate"/> for the specified office elected that year</returns>
         public IEnumerable<Magistrate> GetMagistrates(Office office) => this.Magistrates.Where(w => w.Office == office);
 
-        private static ConsularDate ReturnConsularYearData(int aucYear)
+        private static RomanMagistrates ReturnRomanMagistrateData(int aucYear)
         {
-            return _Load().FirstOrDefault(f => f.Id == aucYear);
+            return _Load().FirstOrDefault(f => f.AucYear == aucYear);
 
-            static IEnumerable<ConsularDate> _Load()
+            static IEnumerable<RomanMagistrates> _Load()
             {
                 var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
 
-                using var r = new StreamReader("./ConsularData/ConsularDates.json");
+                using var r = new StreamReader("./MagistrateData/RomanMagistrates.json");
                 var json = r.ReadToEnd();
-                var items = JsonConvert.DeserializeObject<List<ConsularDate>>(json, settings);
+                var items = JsonConvert.DeserializeObject<List<RomanMagistrates>>(json, settings);
 
                 return items;
             }
@@ -61,7 +66,7 @@ namespace RomanDate.Definitions
 
         internal string ParseConsularYear()
         {
-            if (this.Id == null)
+            if (this.AucYear == null)
                 return "";
             if (!string.IsNullOrEmpty(this.Override))
                 return this.Override;

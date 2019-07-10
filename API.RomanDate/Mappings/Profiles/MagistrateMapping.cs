@@ -1,6 +1,6 @@
 ﻿using API.RomanDate.ViewModels;
 using AutoMapper;
-using static RomanDate.Definitions.ConsularDate;
+using static RomanDate.Definitions.RomanMagistrates;
 
 namespace API.RomanDate.Mappings.Profiles
 {
