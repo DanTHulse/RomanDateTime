@@ -69,3 +69,4 @@ dkms.conf
 /API.RomanDate/bin/Debug/netcoreapp3.0
 /API.RomanDate.Tests/bin/Debug/netcoreapp3.0
 /API.RomanDate.Tests/obj
+/API.RomanDate/bin/Release/netcoreapp3.0

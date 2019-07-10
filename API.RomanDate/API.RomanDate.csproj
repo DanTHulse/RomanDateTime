@@ -21,17 +21,14 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Content Remove="MagistrateData\RomanMagistrates.json" />
+    <Compile Remove="MagistrateData\**" />
+    <Content Remove="MagistrateData\**" />
+    <EmbeddedResource Remove="MagistrateData\**" />
+    <None Remove="MagistrateData\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="MagistrateData\RomanMagistrates.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

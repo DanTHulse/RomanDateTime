@@ -38,8 +38,8 @@ namespace RomanDate.Definitions
         /// Gets the year that the current instance represents
         /// </summary>
         /// <returns>A tuple containing the Era and Year in the modern calendar, as well as the AUC year for reference</returns>
-        public (Eras era, int year, int aucYear) GetYear() => AucYear.HasValue ?
-            AucYear.Value > 753 ? (Eras.AD, AucYear.Value - 753, AucYear.Value) : (Eras.BC, AucYear.Value - 752, AucYear.Value)
+        public (Eras era, int year, int aucYear) GetYear() => this.AucYear.HasValue ?
+            this.AucYear.Value > 753 ? (Eras.AD, this.AucYear.Value - 753, this.AucYear.Value) : (Eras.BC, this.AucYear.Value - 752, this.AucYear.Value)
             : default;
 
         /// <summary>
