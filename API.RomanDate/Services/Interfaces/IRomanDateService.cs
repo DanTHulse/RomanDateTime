@@ -1,10 +1,11 @@
 using System;
+using API.RomanDate.Infrastructure.IoC;
 using RomanDate;
 using RomanDate.Enums;
 
 namespace API.RomanDate.Services.Interfaces
 {
-    public interface IRomanDateService : IService
+    public interface IRomanDateService : ITransient
     {
         RomanDateTime GetCurrentDate();
         RomanDateTime GetRomanDate(DateTime date, Eras era);

@@ -23,13 +23,6 @@ namespace RomanDate.Definitions
         internal string? Override { get; set; }
 
         /// <summary>
-        /// Gets the Consular date data for the given AUC year
-        /// </summary>
-        /// <param name="aucYear">The AUC year to return consular data for</param>
-        /// <returns>A new <see cref="RomanMagistrates"/> record for the AUC year</returns>
-        public static RomanMagistrates Get(int aucYear) => ReturnRomanMagistrateData(aucYear);
-
-        /// <summary>
         /// Gets the ruling Magistrates (i.e. the highest ranked Magistrates) elected for this year
         /// </summary>
         public IEnumerable<Magistrate> RulingMagistrates => this.YearOf switch
@@ -42,27 +35,24 @@ namespace RomanDate.Definitions
         };
 
         /// <summary>
+        /// Gets the Elected magistrates for the given AUC year
+        /// </summary>
+        /// <param name="aucYear">The AUC year to return consular data for</param>
+        /// <returns>A new <see cref="RomanMagistrates"/> record for the AUC year</returns>
+        public static RomanMagistrates Get(int aucYear) => ReturnRomanMagistrateDataForYear(aucYear);
+
+        /// <summary>
+        /// Gets all Magistrates
+        /// </summary>
+        /// <returns>A list of all <see cref="RomanMagistrates"/></returns>
+        public static IEnumerable<RomanMagistrates> GetAll() => LoadData();
+
+        /// <summary>
         /// Gets the Magistrates elected for the given year by the office they held
         /// </summary>
         /// <param name="office">The office the elected magistrate held</param>
         /// <returns>A list of <see cref="Magistrate"/> for the specified office elected that year</returns>
         public IEnumerable<Magistrate> GetMagistrates(Office office) => this.Magistrates.Where(w => w.Office == office);
-
-        private static RomanMagistrates ReturnRomanMagistrateData(int aucYear)
-        {
-            return _Load().FirstOrDefault(f => f.AucYear == aucYear);
-
-            static IEnumerable<RomanMagistrates> _Load()
-            {
-                var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
-
-                using var r = new StreamReader("./MagistrateData/RomanMagistrates.json");
-                var json = r.ReadToEnd();
-                var items = JsonConvert.DeserializeObject<List<RomanMagistrates>>(json, settings);
-
-                return items;
-            }
-        }
 
         internal string ParseConsularYear()
         {
@@ -95,6 +85,19 @@ namespace RomanDate.Definitions
             }
 
             return sb.ToString();
+        }
+
+        internal static RomanMagistrates ReturnRomanMagistrateDataForYear(int aucYear) => LoadData().FirstOrDefault(f => f.AucYear == aucYear);
+
+        internal static IEnumerable<RomanMagistrates> LoadData()
+        {
+            var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
+
+            using var r = new StreamReader("./MagistrateData/RomanMagistrates.json");
+            var json = r.ReadToEnd();
+            var items = JsonConvert.DeserializeObject<List<RomanMagistrates>>(json, settings);
+
+            return items;
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
+using API.RomanDate.Infrastructure.IoC;
+using API.RomanDate.Infrastructure.Middleware;
 using API.RomanDate.Mappings.Profiles;
-using API.RomanDate.Middleware;
-using API.RomanDate.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,10 +29,18 @@ namespace API.RomanDate
         public void ConfigureServices(IServiceCollection services)
         {
             _ = services.AddControllers();
-            _ = services.Scan(s => s.FromAssemblyOf<IService>()
-                    .AddClasses(c => c.AssignableTo<IService>())
+            _ = services.Scan(s => s.FromAssemblyOf<ITransient>()
+                    .AddClasses(c => c.AssignableTo<ITransient>())
                     .AsImplementedInterfaces()
                     .WithTransientLifetime());
+            _ = services.Scan(s => s.FromAssemblyOf<IScoped>()
+                    .AddClasses(c => c.AssignableTo<IScoped>())
+                    .AsImplementedInterfaces()
+                    .WithScopedLifetime());
+            _ = services.Scan(s => s.FromAssemblyOf<ISingleton>()
+                    .AddClasses(c => c.AssignableTo<ISingleton>())
+                    .AsImplementedInterfaces()
+                    .WithSingletonLifetime());
             _ = services.AddSingleton(x => this.AutoMapperConfig.CreateMapper());
             _ = services.AddScoped<Mappings.Interfaces.IMapper, Mappings.Mapper>();
         }

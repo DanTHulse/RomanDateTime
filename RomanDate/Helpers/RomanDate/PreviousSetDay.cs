@@ -2,7 +2,7 @@ using RomanDate.Definitions;
 using RomanDate.Enums;
 using RomanDate.Extensions;
 
-namespace RomanDate.Helpers
+namespace RomanDate.Helpers.RomanDate
 {
     public static partial class RomanDateHelpers
     {

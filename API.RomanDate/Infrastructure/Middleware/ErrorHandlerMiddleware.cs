@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace API.RomanDate.Middleware
+namespace API.RomanDate.Infrastructure.Middleware
 {
     /// <summary>
     /// Middleware for handling errors and exceptions in the API

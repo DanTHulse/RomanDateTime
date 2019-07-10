@@ -1,6 +1,9 @@
-﻿using API.RomanDate.Controllers.Base;
+﻿using System.Collections.Generic;
+using API.RomanDate.Controllers.Base;
 using API.RomanDate.Mappings.Interfaces;
+using API.RomanDate.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using RomanDate.Enums;
 
 namespace API.RomanDate.Controllers
 {
@@ -8,19 +11,61 @@ namespace API.RomanDate.Controllers
     [Route("api/[controller]")]
     public class MagistratesController : BaseController
     {
-        public MagistratesController(IMapper mapper)
+        private readonly IMagistratesService _magistratesService;
+
+        public MagistratesController(IMapper mapper,
+            IMagistratesService magistratesService)
             : base(mapper)
         {
-
+            this._magistratesService = magistratesService;
         }
 
-        // GET Magistrates for year (need to convert to AUC year)
-        // GET Ruling Magistrates for year (need to convert to AUC year)
-        // GET All Unique Magistrates [paged] (also return year in which they served in each office)
-        // GET All Magistrates by Office [paged]
+        [HttpGet("")]
+        public ActionResult<IEnumerable<object>> GetAllMagistrates()
+        {
+            var magistrates = this._magistratesService.GetAllMagistrates();
 
-        // POST Magistrate data for year (need to convert to AUC year)
+            return this.Ok(magistrates);
+        }
 
-        // PUT Magistrate data for year (need to convert to AUC year)
+        [HttpGet("{office}")]
+        public ActionResult<IEnumerable<object>> GetAllMagistratesForOffice([FromRoute]Office office)
+        {
+            var magistrates = this._magistratesService.GetAllMagistratesForOffice(office);
+
+            return this.Ok(magistrates);
+        }
+
+        [HttpGet("{era}/{year}")]
+        public ActionResult<IEnumerable<object>> GetMagistratesForYear([FromRoute]Eras era, [FromRoute]int year)
+        {
+            var magistrates = this._magistratesService.GetMagistratesForYear(era, year);
+
+            return this.Ok(magistrates);
+        }
+
+        [HttpGet("{era}/{year}/ruling")]
+        public ActionResult<IEnumerable<object>> GetRulingMagistratesForYear([FromRoute]Eras era, [FromRoute]int year)
+        {
+            var magistrates = this._magistratesService.GetRulingMagistratesForYear(era, year);
+
+            return this.Ok(magistrates);
+        }
+
+        [HttpPost("{era}/{year}")]
+        public ActionResult<IEnumerable<object>> PostMagistrateDataForYear([FromRoute]Eras era, [FromRoute]int year, [FromBody]object data)
+        {
+            var magistrates = this._magistratesService.InsertMagistrateDataForYear(era, year, data);
+
+            return this.Ok(magistrates);
+        }
+
+        [HttpPatch("{era}/{year}")]
+        public ActionResult<IEnumerable<object>> UpdateMagistrateDataForYear([FromRoute]Eras era, [FromRoute]int year, [FromBody]object data)
+        {
+            var magistrates = this._magistratesService.UpdateMagistrateDataForYear(era, year, data);
+
+            return this.Ok(magistrates);
+        }
     }
 }

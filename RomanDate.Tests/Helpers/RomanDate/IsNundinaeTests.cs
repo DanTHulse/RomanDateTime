@@ -1,8 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RomanDate.Enums;
-using RomanDate.Helpers;
+using RomanDate.Helpers.RomanDate;
 
-namespace RomanDate.Tests.Helpers
+namespace RomanDate.Tests.Helpers.RomanDate
 {
     public partial class RomanDateTimeHelperTests
     {

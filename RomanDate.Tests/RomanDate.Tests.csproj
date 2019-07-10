@@ -6,7 +6,7 @@
     <IsPackable>false</IsPackable>
     <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
     <LangVersion>8.0</LangVersion>
-    <NullableContextOptions>enable</NullableContextOptions >
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
 
   <ItemGroup>
