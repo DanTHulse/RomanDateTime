@@ -24,6 +24,7 @@ namespace API.RomanDate.Services
 
             return new List<MagistrateViewModel>();
         }
+
         public IEnumerable<MagistrateViewModel> GetAllMagistratesForOffice(Office office) => throw new NotImplementedException();
         public IEnumerable<MagistrateViewModel> GetMagistratesForYear(Eras era, int year) => throw new NotImplementedException();
         public IEnumerable<MagistrateViewModel> GetRulingMagistratesForYear(Eras era, int year) => throw new NotImplementedException();

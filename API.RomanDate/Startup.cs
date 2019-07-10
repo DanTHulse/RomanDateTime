@@ -19,8 +19,8 @@ namespace API.RomanDate
         {
             this.AutoMapperConfig = new MapperConfiguration(config =>
             {
-                config.AddProfile(new RomanDateMapping());
-                config.AddProfile(new MagistrateMapping());
+                config.AddProfile(new RomanDateMapping().Build());
+                config.AddProfile(new MagistrateMapping().Build());
             });
 
             this.Configuration = configuration;

@@ -1,17 +1,15 @@
 ﻿using API.RomanDate.ViewModels;
-using AutoMapper;
 using RomanDate;
 
 namespace API.RomanDate.Mappings.Profiles
 {
-    public class RomanDateMapping : Profile
+    public class RomanDateMapping : ModelMapper<RomanDateTime, RomanDateViewModel>
     {
         public RomanDateMapping()
         {
-            _ = this.CreateMap<RomanDateTime, RomanDateViewModel>()
-                .ForMember(dest => dest.Month, o => o.MapFrom(src => src.Month.ToString()))
-                .ForMember(dest => dest.CalendarMonth, o => o.MapFrom(src => src.ActualMonth.ToString()))
-                .ForMember(dest => dest.RulingMagistrates, o => o.MapFrom(src => src.Magistrates.RulingMagistrates));
+            RegisterMap(dest => dest.Month, src => src.Month.ToString());
+            RegisterMap(dest => dest.CalendarMonth, src => src.ActualMonth.ToString());
+            RegisterMap(dest => dest.RulingMagistrates, src => src.Magistrates.RulingMagistrates);
         }
     }
 }
