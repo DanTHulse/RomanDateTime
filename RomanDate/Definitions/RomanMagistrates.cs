@@ -35,6 +35,14 @@ namespace RomanDate.Definitions
         };
 
         /// <summary>
+        /// Gets the year that the current instance represents
+        /// </summary>
+        /// <returns>A tuple containing the Era and Year in the modern calendar, as well as the AUC year for reference</returns>
+        public (Eras era, int year, int aucYear) GetYear() => AucYear.HasValue ?
+            AucYear.Value > 753 ? (Eras.AD, AucYear.Value - 753, AucYear.Value) : (Eras.BC, AucYear.Value - 752, AucYear.Value)
+            : default;
+
+        /// <summary>
         /// Gets the Elected magistrates for the given AUC year
         /// </summary>
         /// <param name="aucYear">The AUC year to return consular data for</param>
@@ -52,7 +60,7 @@ namespace RomanDate.Definitions
         /// </summary>
         /// <param name="office">The office the elected magistrate held</param>
         /// <returns>A list of <see cref="Magistrate"/> for the specified office elected that year</returns>
-        public IEnumerable<Magistrate> GetMagistrates(Office office) => this.Magistrates.Where(w => w.Office == office);
+        public IEnumerable<Magistrate> GetMagistrates(Office office) => this.Magistrates.WhereIf(office != Office.NotSet, w => w.Office == office);
 
         internal string ParseConsularYear()
         {
