@@ -23,26 +23,6 @@ namespace RomanDate.Definitions
         internal string? Override { get; set; }
 
         /// <summary>
-        /// Gets the ruling Magistrates (i.e. the highest ranked Magistrates) elected for this year
-        /// </summary>
-        public IEnumerable<Magistrate> RulingMagistrates => this.YearOf switch
-        {
-            YearOf.Consulship => this.Magistrates.Where(w => w.Office.In(Office.ConsulPrior, Office.ConsulPosterior, Office.ConsulSuffectus)),
-            YearOf.Tribunship => this.Magistrates.Where(w => w.Office == Office.Tribune),
-            YearOf.Dictatorship => this.Magistrates.Where(w => w.Office == Office.Dictator),
-            YearOf.Decemvirate => this.Magistrates.Where(w => w.Office == Office.Decemvir),
-            _ => new List<Magistrate>()
-        };
-
-        /// <summary>
-        /// Gets the year that the current instance represents
-        /// </summary>
-        /// <returns>A tuple containing the Era and Year in the modern calendar, as well as the AUC year for reference</returns>
-        public (Eras era, int year, int aucYear) GetYear() => this.AucYear.HasValue ?
-            this.AucYear.Value > 753 ? (Eras.AD, this.AucYear.Value - 753, this.AucYear.Value) : (Eras.BC, this.AucYear.Value - 752, this.AucYear.Value)
-            : default;
-
-        /// <summary>
         /// Gets the Elected magistrates for the given AUC year
         /// </summary>
         /// <param name="aucYear">The AUC year to return consular data for</param>
@@ -60,7 +40,28 @@ namespace RomanDate.Definitions
         /// </summary>
         /// <param name="office">The office the elected magistrate held</param>
         /// <returns>A list of <see cref="Magistrate"/> for the specified office elected that year</returns>
-        public IEnumerable<Magistrate> GetMagistrates(Office office) => this.Magistrates.WhereIf(office != Office.NotSet, w => w.Office == office);
+        public IEnumerable<Magistrate> GetMagistrates(Office office)
+        {
+            if (AucYear == null)
+                return new List<Magistrate>();
+
+            var year = AucYear;
+            return this.Magistrates
+                .WhereIf(office != Office.NotSet, w => w.Office == office)
+                .Select(s => { s.AucYear = year; return s; });
+        }
+
+        /// <summary>
+        /// Gets the ruling Magistrates (i.e. the highest ranked Magistrates) elected for this year
+        /// </summary>
+        public IEnumerable<Magistrate> GetRulingMagistrates() => this.YearOf switch
+        {
+            YearOf.Consulship => this.Magistrates.Where(w => w.Office.In(Office.ConsulPrior, Office.ConsulPosterior, Office.ConsulSuffectus)),
+            YearOf.Tribunship => this.Magistrates.Where(w => w.Office == Office.Tribune),
+            YearOf.Dictatorship => this.Magistrates.Where(w => w.Office == Office.Dictator),
+            YearOf.Decemvirate => this.Magistrates.Where(w => w.Office == Office.Decemvir),
+            _ => new List<Magistrate>()
+        };
 
         internal string ParseConsularYear()
         {
@@ -95,7 +96,10 @@ namespace RomanDate.Definitions
             return sb.ToString();
         }
 
-        internal static RomanMagistrates ReturnRomanMagistrateDataForYear(int aucYear) => LoadData().FirstOrDefault(f => f.AucYear == aucYear);
+        internal static RomanMagistrates ReturnRomanMagistrateDataForYear(int aucYear)
+        {
+            return LoadData().FirstOrDefault(f => f.AucYear == aucYear);
+        }
 
         internal static IEnumerable<RomanMagistrates> LoadData()
         {
@@ -128,6 +132,12 @@ namespace RomanDate.Definitions
             /// </summary>
             [JsonProperty("type")]
             public Office Office { get; set; }
+
+            /// <summary>
+            /// The year (AUC era) the Magistrate was in office
+            /// </summary>
+            [JsonIgnore]
+            public int? AucYear { get; set; }
         }
     }
 }

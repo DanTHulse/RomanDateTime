@@ -9,7 +9,7 @@ namespace API.RomanDate.Mappings.Profiles
         {
             RegisterMap(dest => dest.Month, src => src.Month.ToString());
             RegisterMap(dest => dest.CalendarMonth, src => src.ActualMonth.ToString());
-            RegisterMap(dest => dest.RulingMagistrates, src => src.Magistrates.RulingMagistrates);
+            RegisterMap(dest => dest.RulingMagistrates, src => src.Magistrates.GetRulingMagistrates());
         }
     }
 }

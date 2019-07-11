@@ -157,5 +157,10 @@
         "type": "ConsulPosterior"
       }
     ]
+  },
+  {
+    "id": "254",
+    "type": "NotSet",
+    "magistrates": []
   }
 ]

@@ -12,7 +12,7 @@
           "MSTest.TestFramework": "1.4.0",
           "Microsoft.NET.Test.Sdk": "16.2.0",
           "Microsoft.NETCore.App": "3.0.0-preview6-27804-01",
-          "RomanDateTime": "0.0.1-local"
+          "RomanDateTime": "1.1.0"
         },
         "runtime": {
           "RomanDate.Tests.dll": {}
@@ -1274,7 +1274,7 @@
           }
         }
       },
-      "RomanDateTime/0.0.1-local": {
+      "RomanDateTime/1.1.0": {
         "dependencies": {
           "Newtonsoft.Json": "12.0.2",
           "NodaTime": "2.4.4"
@@ -2019,7 +2019,7 @@
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
-    "RomanDateTime/0.0.1-local": {
+    "RomanDateTime/1.1.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

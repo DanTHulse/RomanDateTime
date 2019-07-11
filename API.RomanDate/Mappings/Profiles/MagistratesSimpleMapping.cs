@@ -4,9 +4,9 @@ using static RomanDate.Definitions.RomanMagistrates;
 
 namespace API.RomanDate.Mappings.Profiles
 {
-    public class MagistrateMapping : ModelMapper<Magistrate, MagistrateSimpleViewModel>
+    public class MagistratesSimpleMapping : ModelMapper<Magistrate, MagistrateSimpleViewModel>
     {
-        public MagistrateMapping()
+        public MagistratesSimpleMapping()
         {
             RegisterMap(dest => dest.Name, src => src.FullName);
             RegisterMap(dest => dest.Office, src => src.Office.GetDescription());

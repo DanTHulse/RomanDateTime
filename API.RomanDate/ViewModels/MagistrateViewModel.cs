@@ -5,12 +5,12 @@ namespace API.RomanDate.ViewModels
     public class MagistrateViewModel
     {
         public string Name { get; set; } = "";
-        public IEnumerable<ElectedViewModel> ElectedOffices = new List<ElectedViewModel>();
+        public IEnumerable<ElectedViewModel> ElectedOffices { get; set; } = new List<ElectedViewModel>();
     }
 
     public class ElectedViewModel
     {
         public string Office { get; set; } = "";
-        public int YearElected { get; set; } = 0;
+        public string YearElected { get; set; } = "";
     }
 }

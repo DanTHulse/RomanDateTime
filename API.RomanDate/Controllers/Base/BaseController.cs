@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using API.RomanDate.Controllers.Base.ApiResponses;
 using API.RomanDate.Mappings.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,16 @@ namespace API.RomanDate.Controllers.Base
         public OkObjectResult Ok<T>(object result)
         {
             var mappedResult = this._mapper.Map<T>(result);
+
+            if (mappedResult == null)
+                throw new ArgumentNullException("Results were returned but an error occurred when mapping to view model");
+
+            return base.Ok(new OkResponse(mappedResult));
+        }
+
+        public OkObjectResult Ok<T>(IEnumerable<object> result)
+        {
+            var mappedResult = this._mapper.Map<IEnumerable<T>>(result);
 
             if (mappedResult == null)
                 throw new ArgumentNullException("Results were returned but an error occurred when mapping to view model");
