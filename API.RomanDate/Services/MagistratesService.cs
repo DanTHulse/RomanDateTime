@@ -37,14 +37,13 @@ namespace API.RomanDate.Services
                 }).ToList();
         }
 
-        public IEnumerable<Magistrate> GetMagistratesForYear(Eras era, int year)
+        public IEnumerable<Magistrate>? GetMagistratesForYear(Eras era, int year)
         {
             var aucYear = RomanDateHelpers.ConvertToAucEra(era, year);
-            var data = Get(aucYear);
-            return data.GetMagistrates(Office.NotSet);
+            return Get(aucYear).GetMagistrates(Office.NotSet);
         }
 
-        public IEnumerable<Magistrate> GetRulingMagistratesForYear(Eras era, int year)
+        public IEnumerable<Magistrate>? GetRulingMagistratesForYear(Eras era, int year)
         {
             var aucYear = RomanDateHelpers.ConvertToAucEra(era, year);
             return Get(aucYear).GetRulingMagistrates();

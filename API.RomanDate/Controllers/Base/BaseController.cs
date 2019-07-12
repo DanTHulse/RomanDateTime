@@ -40,5 +40,9 @@ namespace API.RomanDate.Controllers.Base
         }
 
         public BadRequestObjectResult BadRequest(string error) => base.BadRequest(new BadRequestResponse(error));
+
+        public override NoContentResult NoContent() => base.NoContent();
+
+        public NotFoundObjectResult NotFound(string error) => base.NotFound(new NotFoundResponse(error));
     }
 }

@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace API.RomanDate.Controllers.Base.ApiResponses
+﻿namespace API.RomanDate.Controllers.Base.ApiResponses
 {
     public class BadRequestResponse : ApiResponse
     {
-        public IEnumerable<string> Errors { get; }
+        public string ErrorMessage { get; }
 
-        public BadRequestResponse(string errorMessage)
+        public BadRequestResponse(string error)
             : base(400)
         {
-            this.Errors = new string[] { errorMessage };
+            this.ErrorMessage = error;
         }
     }
 }

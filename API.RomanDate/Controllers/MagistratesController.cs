@@ -43,8 +43,10 @@ namespace API.RomanDate.Controllers
         {
             var magistrates = this._magistratesService.GetMagistratesForYear(era, year);
 
-            if (magistrates.Any())
+            if (magistrates != null && magistrates.Any())
                 return this.Ok<MagistrateSimpleViewModel>(magistrates);
+            else if (magistrates == null)
+                return this.NotFound($"No Magistrate data found for the year: {year} {era}");
             else
                 return this.NoContent();
         }
@@ -54,8 +56,10 @@ namespace API.RomanDate.Controllers
         {
             var magistrates = this._magistratesService.GetRulingMagistratesForYear(era, year);
 
-            if (magistrates.Any())
+            if (magistrates != null && magistrates.Any())
                 return this.Ok<MagistrateSimpleViewModel>(magistrates);
+            else if (magistrates == null)
+                return this.NotFound($"No Magistrate data found for the year: {year} {era}");
             else
                 return this.NoContent();
         }

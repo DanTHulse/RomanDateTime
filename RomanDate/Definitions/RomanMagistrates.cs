@@ -40,10 +40,10 @@ namespace RomanDate.Definitions
         /// </summary>
         /// <param name="office">The office the elected magistrate held</param>
         /// <returns>A list of <see cref="Magistrate"/> for the specified office elected that year</returns>
-        public IEnumerable<Magistrate> GetMagistrates(Office office)
+        public IEnumerable<Magistrate>? GetMagistrates(Office office)
         {
             if (AucYear == null)
-                return new List<Magistrate>();
+                return null;
 
             var year = AucYear;
             return this.Magistrates
@@ -54,14 +54,20 @@ namespace RomanDate.Definitions
         /// <summary>
         /// Gets the ruling Magistrates (i.e. the highest ranked Magistrates) elected for this year
         /// </summary>
-        public IEnumerable<Magistrate> GetRulingMagistrates() => this.YearOf switch
+        public IEnumerable<Magistrate>? GetRulingMagistrates()
         {
-            YearOf.Consulship => this.Magistrates.Where(w => w.Office.In(Office.ConsulPrior, Office.ConsulPosterior, Office.ConsulSuffectus)),
-            YearOf.Tribunship => this.Magistrates.Where(w => w.Office == Office.Tribune),
-            YearOf.Dictatorship => this.Magistrates.Where(w => w.Office == Office.Dictator),
-            YearOf.Decemvirate => this.Magistrates.Where(w => w.Office == Office.Decemvir),
-            _ => new List<Magistrate>()
-        };
+            if (AucYear == null)
+                return null;
+
+            return this.YearOf switch
+            {
+                YearOf.Consulship => this.Magistrates.Where(w => w.Office.In(Office.ConsulPrior, Office.ConsulPosterior, Office.ConsulSuffectus)),
+                YearOf.Tribunship => this.Magistrates.Where(w => w.Office == Office.Tribune),
+                YearOf.Dictatorship => this.Magistrates.Where(w => w.Office == Office.Dictator),
+                YearOf.Decemvirate => this.Magistrates.Where(w => w.Office == Office.Decemvir),
+                _ => new List<Magistrate>()
+            };
+        }
 
         internal string ParseConsularYear()
         {
@@ -97,9 +103,7 @@ namespace RomanDate.Definitions
         }
 
         internal static RomanMagistrates ReturnRomanMagistrateDataForYear(int aucYear)
-        {
-            return LoadData().FirstOrDefault(f => f.AucYear == aucYear);
-        }
+            => LoadData().FirstOrDefault(f => f.AucYear == aucYear);
 
         internal static IEnumerable<RomanMagistrates> LoadData()
         {
