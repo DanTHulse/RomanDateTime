@@ -1,7 +1,7 @@
 ﻿using System;
 using RomanDate.Enums;
 
-namespace API.RomanDate.Helpers.RomanDate
+namespace API.RomanDate.Helpers
 {
     public static partial class RomanDateHelpers
     {

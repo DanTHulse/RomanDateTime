@@ -8,6 +8,6 @@ namespace API.RomanDate.Services.Interfaces
     public interface IRomanDateService : ITransient
     {
         RomanDateTime GetCurrentDate();
-        RomanDateTime GetRomanDate(DateTime date, Eras era);
+        RomanDateTime GetRomanDate(Eras era, DateTime date);
     }
 }

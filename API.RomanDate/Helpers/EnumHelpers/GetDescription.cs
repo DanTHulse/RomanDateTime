@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace API.RomanDate.Helpers.Enum
+namespace API.RomanDate.Helpers
 {
-    public static class EnumHelpers
+    public static partial class EnumHelpers
     {
         public static string GetDescription<T>(this T source)
         {

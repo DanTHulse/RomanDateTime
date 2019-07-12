@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using API.RomanDate.Helpers.Enum;
-using API.RomanDate.Helpers.RomanDate;
+using API.RomanDate.Helpers;
 using API.RomanDate.Models;
 using API.RomanDate.Services.Interfaces;
-using API.RomanDate.ViewModels;
 using RomanDate.Definitions;
 using RomanDate.Enums;
 using static RomanDate.Definitions.RomanMagistrates;
@@ -48,11 +45,5 @@ namespace API.RomanDate.Services
             var aucYear = RomanDateHelpers.ConvertToAucEra(era, year);
             return Get(aucYear).GetRulingMagistrates();
         }
-
-        public IEnumerable<MagistrateViewModel> InsertMagistrateDataForYear(Eras era, int year, object data)
-            => throw new NotImplementedException();
-
-        public IEnumerable<MagistrateViewModel> UpdateMagistrateDataForYear(Eras era, int year, object data)
-            => throw new NotImplementedException();
     }
 }

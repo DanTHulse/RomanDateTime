@@ -29,6 +29,7 @@ namespace RomanDate
         /// > {e} = Era
         /// > {Dx} = Calendar day / {Dn} = Nundinal Letter
         /// > {cx/Cx} = short/full Calendar month
+        /// > {z/Z} = short/full Complete Roman Day
         /// </summary>
         /// <param name="format">The format for the Roman date e.g. {hx, p dx SD, M y}</param>
         public string ToString(string format)
@@ -50,6 +51,8 @@ namespace RomanDate
             format = format.Replace("v", "{14}");
             format = format.Replace("Dn", "{15}");
             format = format.Replace("e", "{16}");
+            format = format.Replace("z", "{17}");
+            format = format.Replace("Z", "{18}");
 
             var sdAcc = this.DaysUntilSetDay != 0;
             var mAcc = this.DaysUntilSetDay > 1;
@@ -65,7 +68,7 @@ namespace RomanDate
                 sDay.Short, (sdAcc ? sDay.Accusative : sDay.Ablative),
                 rMonth.Short, (mAcc ? rMonth.Accusative : rMonth.Ablative),
                 cMonth.Short, cMonth.Month.ToString(), this.Year, this.AucYear, this.Time, this.Hour, vigila,
-                this.NundinalLetter.ToString(), this.Era.ToString());
+                this.NundinalLetter.ToString(), this.Era.ToString(), this.GetRomanDayString(true), this.GetRomanDayString());
         }
     }
 }

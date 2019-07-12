@@ -14,6 +14,6 @@ namespace API.RomanDate.Services
 
         public RomanDateTime GetCurrentDate() => RomanDateTime.Now;
 
-        public RomanDateTime GetRomanDate(DateTime date, Eras era) => new RomanDateTime(date, era);
+        public RomanDateTime GetRomanDate(Eras era, DateTime date) => new RomanDateTime(date, era);
     }
 }

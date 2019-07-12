@@ -63,21 +63,5 @@ namespace API.RomanDate.Controllers
             else
                 return this.NoContent();
         }
-
-        [HttpPost("{era}/{year}")]
-        public ActionResult<IEnumerable<MagistrateViewModel>> PostMagistrateDataForYear([FromRoute]Eras era, [FromRoute]int year, [FromBody]object data)
-        {
-            var magistrates = this._magistratesService.InsertMagistrateDataForYear(era, year, data);
-
-            return this.Ok<MagistrateViewModel>(magistrates);
-        }
-
-        [HttpPatch("{era}/{year}")]
-        public ActionResult<IEnumerable<MagistrateViewModel>> UpdateMagistrateDataForYear([FromRoute]Eras era, [FromRoute]int year, [FromBody]object data)
-        {
-            var magistrates = this._magistratesService.UpdateMagistrateDataForYear(era, year, data);
-
-            return this.Ok<MagistrateViewModel>(magistrates);
-        }
     }
 }

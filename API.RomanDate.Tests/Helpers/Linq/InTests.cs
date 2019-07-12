@@ -1,4 +1,4 @@
-﻿using API.RomanDate.Helpers.Linq;
+﻿using API.RomanDate.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace API.RomanDate.Tests.Helpers.Linq

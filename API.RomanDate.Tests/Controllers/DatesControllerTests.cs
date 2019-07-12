@@ -16,11 +16,12 @@ namespace API.RomanDate.Tests.Controllers
     {
         private readonly Mock<IMapper> _mockMapper = new Mock<IMapper>();
         private readonly Mock<IRomanDateService> _mockRomanDateService = new Mock<IRomanDateService>();
+        private readonly Mock<ICalendarService> _mockCalendarService = new Mock<ICalendarService>();
 
         private DatesController _sut;
 
         [TestInitialize]
-        public void Init() => this._sut = new DatesController(this._mockMapper.Object, this._mockRomanDateService.Object);
+        public void Init() => this._sut = new DatesController(this._mockMapper.Object, this._mockRomanDateService.Object, this._mockCalendarService.Object);
 
         [TestMethod]
         public void Current_ReturnsOk()
@@ -50,12 +51,12 @@ namespace API.RomanDate.Tests.Controllers
         [TestMethod]
         public void GetRomanDateTime_ReturnsOk()
         {
-            this._mockRomanDateService.Setup(s => s.GetRomanDate(It.IsAny<DateTime>(), It.IsAny<Eras>())).Returns(new RomanDateTime());
+            this._mockRomanDateService.Setup(s => s.GetRomanDate(It.IsAny<Eras>(), It.IsAny<DateTime>())).Returns(new RomanDateTime());
             this._mockMapper.Setup(s => s.Map<RomanDateViewModel>(It.IsAny<object>())).Returns(new RomanDateViewModel());
 
-            var result = this._sut.GetRomanDateTime(It.IsAny<DateTime>(), It.IsAny<Eras>());
+            var result = this._sut.GetRomanDateTime(It.IsAny<Eras>(), It.IsAny<DateTime>());
 
-            this._mockRomanDateService.Verify(v => v.GetRomanDate(It.IsAny<DateTime>(), It.IsAny<Eras>()), Times.Once);
+            this._mockRomanDateService.Verify(v => v.GetRomanDate(It.IsAny<Eras>(), It.IsAny<DateTime>()), Times.Once);
             this._mockMapper.Verify(v => v.Map<RomanDateViewModel>(It.IsAny<object>()), Times.Once);
             Assert.IsInstanceOfType(result.Result, typeof(OkObjectResult));
         }
@@ -63,12 +64,12 @@ namespace API.RomanDate.Tests.Controllers
         [TestMethod]
         public void GetRomanDateTime_MappingIssue_ThrowsException()
         {
-            this._mockRomanDateService.Setup(s => s.GetRomanDate(It.IsAny<DateTime>(), It.IsAny<Eras>())).Returns(new RomanDateTime());
+            this._mockRomanDateService.Setup(s => s.GetRomanDate(It.IsAny<Eras>(), It.IsAny<DateTime>())).Returns(new RomanDateTime());
             this._mockMapper.Setup(s => s.Map<RomanDateViewModel>(It.IsAny<object>())).Returns((RomanDateViewModel)null);
 
-            Assert.ThrowsException<ArgumentNullException>(() => this._sut.GetRomanDateTime(It.IsAny<DateTime>(), It.IsAny<Eras>()));
+            Assert.ThrowsException<ArgumentNullException>(() => this._sut.GetRomanDateTime(It.IsAny<Eras>(), It.IsAny<DateTime>()));
 
-            this._mockRomanDateService.Verify(v => v.GetRomanDate(It.IsAny<DateTime>(), It.IsAny<Eras>()), Times.Once);
+            this._mockRomanDateService.Verify(v => v.GetRomanDate(It.IsAny<Eras>(), It.IsAny<DateTime>()), Times.Once);
             this._mockMapper.Verify(v => v.Map<RomanDateViewModel>(It.IsAny<object>()), Times.Once);
         }
     }

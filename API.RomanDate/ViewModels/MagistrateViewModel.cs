@@ -7,10 +7,4 @@ namespace API.RomanDate.ViewModels
         public string Name { get; set; } = "";
         public IEnumerable<ElectedViewModel> ElectedOffices { get; set; } = new List<ElectedViewModel>();
     }
-
-    public class ElectedViewModel
-    {
-        public string Office { get; set; } = "";
-        public string YearElected { get; set; } = "";
-    }
 }

@@ -13,12 +13,15 @@ namespace API.RomanDate.Controllers
     public class DatesController : BaseController
     {
         private readonly IRomanDateService _romanDateService;
+        private readonly ICalendarService _calendarService;
 
         public DatesController(IMapper mapper,
-            IRomanDateService romanDateService)
+            IRomanDateService romanDateService,
+            ICalendarService calendarService)
             : base(mapper)
         {
             this._romanDateService = romanDateService;
+            this._calendarService = calendarService;
         }
 
         [HttpGet("current")]
@@ -29,12 +32,20 @@ namespace API.RomanDate.Controllers
             return this.Ok<RomanDateViewModel>(romanDate);
         }
 
-        [HttpGet("{date}")]
-        public ActionResult<RomanDateViewModel> GetRomanDateTime([FromRoute]DateTime date, [FromQuery]Eras era = Eras.AD)
+        [HttpGet("{era}/{date}")]
+        public ActionResult<RomanDateViewModel> GetRomanDateTime([FromRoute]Eras era, [FromRoute]DateTime date)
         {
-            var romanDate = this._romanDateService.GetRomanDate(date, era);
+            var romanDate = this._romanDateService.GetRomanDate(era, date);
 
             return this.Ok<RomanDateViewModel>(romanDate);
+        }
+
+        [HttpGet("calendar/{era}/{year}/{month}")]
+        public ActionResult<CalendarViewModel> GetCalendarMonth([FromRoute]Eras era, [FromRoute]int year, [FromRoute]Months month)
+        {
+            var calendarMonth = this._calendarService.ReturnCalendarMonth(era, year, month);
+
+            return this.Ok<CalendarViewModel>(calendarMonth);
         }
     }
 }

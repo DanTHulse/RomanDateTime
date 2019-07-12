@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace API.RomanDate.Helpers.Linq
+namespace API.RomanDate.Helpers
 {
     public static partial class LinqHelpers
     {
