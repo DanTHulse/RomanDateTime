@@ -9,6 +9,7 @@ namespace API.RomanDate.Controllers.Base
     public class BaseController : ControllerBase
     {
         private readonly IMapper _mapper;
+        protected string RequestUrl => $"{this.Request.Scheme }://{this.Request.Host}{this.Request.Path}";
 
         public BaseController(IMapper mapper)
         {

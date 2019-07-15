@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using API.RomanDate.Infrastructure.IoC;
 using RomanDate;
 using RomanDate.Enums;
@@ -9,5 +10,6 @@ namespace API.RomanDate.Services.Interfaces
     {
         RomanDateTime GetCurrentDate();
         RomanDateTime GetRomanDate(Eras era, DateTime date);
+        IEnumerable<Months> GetRomanMonths();
     }
 }

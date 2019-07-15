@@ -1,6 +1,6 @@
-﻿namespace API.RomanDate.ViewModels
+﻿namespace API.RomanDate.ViewModels.Calendar
 {
-    public class CalendarMonthViewModel
+    public class CalendarDayShortViewModel
     {
         public string CommonEraDate { get; set; } = "";
         public string NundinalLetter { get; set; } = "";

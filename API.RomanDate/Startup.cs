@@ -23,8 +23,9 @@ namespace API.RomanDate
                 config.AddProfile(new MagistratesSimpleMapping().Build());
                 config.AddProfile(new MagistratesFullMapping().Build());
                 config.AddProfile(new ElectedOfficeMapping().Build());
-                config.AddProfile(new CalendarMapping().Build());
+                config.AddProfile(new CalendarDayShortMapping().Build());
                 config.AddProfile(new CalendarMonthMapping().Build());
+                config.AddProfile(new RomanMonthsMapping().Build());
             });
 
             this.Configuration = configuration;

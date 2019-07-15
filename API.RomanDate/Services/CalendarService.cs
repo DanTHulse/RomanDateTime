@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using API.RomanDate.Helpers;
-using API.RomanDate.Models;
+using API.RomanDate.Models.Calendar;
 using API.RomanDate.Services.Interfaces;
 using RomanDate;
 using RomanDate.Enums;
@@ -16,7 +16,7 @@ namespace API.RomanDate.Services
 
         }
 
-        public Calendar ReturnCalendarMonth(Eras era, int year, Months month)
+        public CalendarMonth ReturnCalendarMonth(Eras era, int year, Months month)
         {
             var calendarMonthStart = new DateTime(year, (int)month, 1);
             var calendarMonthEnd = calendarMonthStart.EndOfMonth();
@@ -25,17 +25,17 @@ namespace API.RomanDate.Services
 
             var romanDates = dates.Select(s => (roman: new RomanDateTime(s, era), common: s));
 
-            return new Calendar
+            return new CalendarMonth
             {
-                CalendarMonth = month,
+                Month = month,
                 Year = year,
                 Era = era,
-                CalendarDays = romanDates.Select(s => new CalendarMonth
+                Days = romanDates.Select(s => new CalendarDayShort
                 {
                     CommonEraDate = s.common.Date,
                     NundinalLetter = s.roman.NundinalLetter,
                     IsNundinae = s.roman.IsNundinae(),
-                    RomanDay = s.roman.ToString("z").Trim()
+                    Day = s.roman.ToString("z").Trim()
                 })
             };
         }

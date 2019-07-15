@@ -4,6 +4,7 @@ using System.Linq;
 using NodaTime;
 using RomanDate.Enums;
 using RomanDate.Extensions;
+using RomanDate.Extensions.Maths;
 
 namespace RomanDate.Helpers.RomanDate
 {
@@ -11,7 +12,7 @@ namespace RomanDate.Helpers.RomanDate
     {
         private static NundinalLetters ReturnNundinaeForYear(LocalDateTime dateTime)
         {
-            var startPosition = (NundinalLetters)(dateTime.YearOfEra % 8);
+            var startPosition = (NundinalLetters)MathEx.Modulo(dateTime.YearOfEra, 8);
             var enumList = EnumEx.EnumToList<NundinalLetters>();
             var checkDates = CheckNundialLetters(dateTime, startPosition);
 
@@ -50,7 +51,7 @@ namespace RomanDate.Helpers.RomanDate
         private static NundinalLetters CheckNundialLetter(LocalDateTime from, LocalDateTime to, NundinalLetters startPosition)
         {
             var daysFromStart = Math.Abs(to.Minus(new LocalDateTime(from.Year, 1, 1, 0, 0)).Days);
-            var daysFromCycle = (((daysFromStart + (int)startPosition)) % 8);
+            var daysFromCycle = MathEx.Modulo(((daysFromStart + (int)startPosition)), 8);
 
             return (NundinalLetters)daysFromCycle;
         }
