@@ -10,7 +10,7 @@ namespace API.RomanDate.Mappings.Profiles
             RegisterMap(dest => dest.CommonEraDate, src => src.CommonEraDate.ToString("dd/MM"));
             RegisterMap(dest => dest.IsNundinae, src => src.IsNundinae);
             RegisterMap(dest => dest.NundinalLetter, src => src.NundinalLetter.ToString());
-            RegisterMap(dest => dest.RomanDay, src => src.Day);
+            RegisterMap(dest => dest.Day, src => src.Day);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using API.RomanDate.Mappings.Interfaces;
-using API.RomanDate.Mappings.Profiles;
+using API.RomanDate.Mappings.Profiles.Base;
 using AutoMapper;
 
 namespace API.RomanDate.Mappings

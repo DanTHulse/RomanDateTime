@@ -19,7 +19,7 @@ namespace API.RomanDate
         {
             this.AutoMapperConfig = new MapperConfiguration(config =>
             {
-                config.AddProfile(new RomanDateMapping().Build());
+                config.AddProfile(new CalendarDayMapping().Build());
                 config.AddProfile(new MagistratesSimpleMapping().Build());
                 config.AddProfile(new MagistratesFullMapping().Build());
                 config.AddProfile(new ElectedOfficeMapping().Build());

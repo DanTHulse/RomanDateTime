@@ -9,7 +9,7 @@ namespace API.RomanDate.Models.Calendar
         public DateTime CommonEraDate { get; set; }
         public NundinalLetters NundinalLetter { get; set; }
         public bool IsNundinae { get; set; }
-        public string Day { get; set; }
+        public string Day { get; set; } = "";
         public NavigationModel _Navigation { get; set; } = new NavigationModel();
     }
 }

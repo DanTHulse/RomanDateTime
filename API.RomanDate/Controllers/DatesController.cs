@@ -43,7 +43,7 @@ namespace API.RomanDate.Controllers
         }
 
         [HttpGet("{era}/{year}")]
-        public ActionResult<CalendarMonthViewModel> GetCalendarYear([FromRoute]Eras era, [FromRoute]int year)
+        public ActionResult<CalendarYearViewModel> GetCalendarYear([FromRoute]Eras era, [FromRoute]int year)
         {
             throw new NotImplementedException();
         }
@@ -58,11 +58,11 @@ namespace API.RomanDate.Controllers
         }
 
         [HttpGet("{era}/{year}/{month}/{day}")]
-        public ActionResult<RomanDateViewModel> GetCalendarDay([FromRoute]Eras era, [FromRoute]int year, [FromRoute]Months month, [FromRoute]int day)
+        public ActionResult<CalendarDayViewModel> GetCalendarDay([FromRoute]Eras era, [FromRoute]int year, [FromRoute]Months month, [FromRoute]int day)
         {
             var romanDate = this._romanDateService.GetRomanDate(era, new DateTime(year, (int)month, day));
 
-            return this.Ok<RomanDateViewModel>(romanDate);
+            return this.Ok<CalendarDayViewModel>(romanDate);
         }
     }
 }

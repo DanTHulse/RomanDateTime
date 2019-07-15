@@ -7,7 +7,7 @@ namespace API.RomanDate.Mappings.Profiles
     {
         public CalendarMonthMapping()
         {
-            RegisterMap(dest => dest.CalendarMonth, src => src.Month.ToString());
+            RegisterMap(dest => dest.Month, src => src.Month.ToString());
             RegisterMap(dest => dest.Year, src => $"{src.Year} {src.Era}");
         }
     }
