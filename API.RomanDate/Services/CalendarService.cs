@@ -28,7 +28,7 @@ namespace API.RomanDate.Services
             return new CalendarMonth
             {
                 Month = month,
-                Year = year,
+                Year = year.ToRomanNumerals(),
                 Era = era,
                 Days = romanDates.Select(s => new CalendarDayShort
                 {

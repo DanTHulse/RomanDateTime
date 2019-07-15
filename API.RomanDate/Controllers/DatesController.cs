@@ -3,7 +3,6 @@ using System.Linq;
 using API.RomanDate.Controllers.Base;
 using API.RomanDate.Mappings.Interfaces;
 using API.RomanDate.Services.Interfaces;
-using API.RomanDate.ViewModels;
 using API.RomanDate.ViewModels.Calendar;
 using Microsoft.AspNetCore.Mvc;
 using RomanDate.Enums;
@@ -27,19 +26,19 @@ namespace API.RomanDate.Controllers
         }
 
         [HttpGet("current")]
-        public ActionResult<RomanDateViewModel> Current()
+        public ActionResult<CalendarDayViewModel> Current()
         {
             var romanDate = this._romanDateService.GetCurrentDate();
 
-            return this.Ok<RomanDateViewModel>(romanDate);
+            return this.Ok<CalendarDayViewModel>(romanDate);
         }
 
-        [HttpGet("{era}/{date}")]
-        public ActionResult<RomanDateViewModel> GetRomanDateTime([FromRoute]Eras era, [FromRoute]DateTime date)
+        [HttpGet("full/{era}/{date}")]
+        public ActionResult<CalendarDayViewModel> GetRomanDateTime([FromRoute]Eras era, [FromRoute]DateTime date)
         {
             var romanDate = this._romanDateService.GetRomanDate(era, date);
 
-            return this.Ok<RomanDateViewModel>(romanDate);
+            return this.Ok<CalendarDayViewModel>(romanDate);
         }
 
         [HttpGet("{era}/{year}")]

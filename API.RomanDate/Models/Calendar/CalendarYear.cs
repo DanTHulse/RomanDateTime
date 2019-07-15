@@ -6,8 +6,8 @@ namespace API.RomanDate.Models.Calendar
 {
     public class CalendarYear
     {
-        public int Year { get; set; }
-        public int AucYear { get; set; }
+        public string Year { get; set; } = "";
+        public string AucYear { get; set; } = "";
         public Eras Era { get; set; }
         public string ConsularYear { get; set; } = "";
         public IEnumerable<CalendarMonthShort> Months { get; set; } = new List<CalendarMonthShort>();

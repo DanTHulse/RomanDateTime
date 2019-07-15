@@ -6,8 +6,8 @@ namespace API.RomanDate.Models.Calendar
 {
     public class CalendarDay
     {
-        public int Year { get; set; }
-        public int AucYear { get; set; }
+        public string Year { get; set; } = "";
+        public string AucYear { get; set; } = "";
         public string Day { get; set; } = "";
         public Months Month { get; set; }
         public NundinalLetters NundinalLetter { get; set; }
