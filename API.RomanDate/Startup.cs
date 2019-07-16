@@ -64,6 +64,11 @@ namespace API.RomanDate
             _ = services.AddSingleton(this.Configuration);
             _ = services.Configure<AppSettings>(this.Configuration.GetSection("AppSettings"));
             _ = services.AddScoped(x => x.GetService<IOptionsSnapshot<AppSettings>>().Value);
+
+            _ = services.AddMvc().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

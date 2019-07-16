@@ -1,4 +1,5 @@
-﻿using API.RomanDate.ViewModels.Base;
+﻿using System.Text.Json.Serialization;
+using API.RomanDate.ViewModels.Base;
 
 namespace API.RomanDate.ViewModels.Calendar
 {
@@ -6,6 +7,8 @@ namespace API.RomanDate.ViewModels.Calendar
     {
         public int Number { get; set; }
         public string Month { get; set; } = "";
-        public Navigation _Navigation { get; set; } = new Navigation();
+
+        [JsonPropertyName("_navigation")]
+        public Navigation Navigation { get; set; } = new Navigation();
     }
 }

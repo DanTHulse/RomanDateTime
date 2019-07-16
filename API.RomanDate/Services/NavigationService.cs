@@ -1,5 +1,4 @@
-﻿using System;
-using API.RomanDate.Infrastructure;
+﻿using API.RomanDate.Infrastructure;
 using API.RomanDate.Services.Interfaces;
 using RomanDate.Enums;
 
@@ -16,31 +15,31 @@ namespace API.RomanDate.Services
             this._baseUrl = this._config.ApiBaseUrl;
         }
 
-        public Uri NextYear(Eras era, int year)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}/");
+        public string NextYear(Eras era, int year)
+            => $"{this._baseUrl}/dates/{era}/{year}/";
 
-        public Uri PrevYear(Eras era, int year)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}/");
+        public string PrevYear(Eras era, int year)
+            => $"{this._baseUrl}/dates/{era}/{year}/";
 
-        public Uri NextMonth(Eras era, int year, Months month)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}/{month}/");
+        public string NextMonth(Eras era, int year, Months month)
+            => $"{this._baseUrl}/dates/{era}/{year}/{month}/";
 
-        public Uri PrevMonth(Eras era, int year, Months month)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}/{month}/");
+        public string PrevMonth(Eras era, int year, Months month)
+            => $"{this._baseUrl}/dates/{era}/{year}/{month}/";
 
-        public Uri NextDay(Eras era, int year, Months month, int day)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}/{month}/{day}/");
+        public string NextDay(Eras era, int year, Months month, int day)
+            => $"{this._baseUrl}/dates/{era}/{year}/{month}/{day}/";
 
-        public Uri PrevDay(Eras era, int year, Months month, int day)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}/{month}/{day}/");
+        public string PrevDay(Eras era, int year, Months month, int day)
+            => $"{this._baseUrl}/dates/{era}/{year}/{month}/{day}/";
 
-        public Uri YearRef(Eras era, int year)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}");
+        public string YearRef(Eras era, int year)
+            => $"{this._baseUrl}/dates/{era}/{year}";
 
-        public Uri MonthRef(Eras era, int year, Months month)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}/{month}/");
+        public string MonthRef(Eras era, int year, Months month)
+            => $"{this._baseUrl}/dates/{era}/{year}/{month}/";
 
-        public Uri DayRef(Eras era, int year, Months month, int day)
-            => new Uri($"{this._baseUrl}/dates/{era}/{year}/{month}/{day}/");
+        public string DayRef(Eras era, int year, Months month, int day)
+            => $"{this._baseUrl}/dates/{era}/{year}/{month}/{day}/";
     }
 }

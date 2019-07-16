@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using API.RomanDate.ViewModels.Base;
 
 namespace API.RomanDate.ViewModels.Calendar
@@ -12,6 +13,8 @@ namespace API.RomanDate.ViewModels.Calendar
         public IEnumerable<CalendarMonthShortViewModel> Months { get; set; } = new List<CalendarMonthShortViewModel>();
         public IEnumerable<MagistrateViewModel> RulingMagistrates { get; set; } = new List<MagistrateViewModel>();
         public IEnumerable<MagistrateViewModel> OtherMagistrates { get; set; } = new List<MagistrateViewModel>();
-        public Navigation _Navigation { get; set; } = new Navigation();
+
+        [JsonPropertyName("_navigation")]
+        public Navigation Navigation { get; set; } = new Navigation();
     }
 }

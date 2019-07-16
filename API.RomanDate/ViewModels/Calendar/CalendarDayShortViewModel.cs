@@ -1,4 +1,5 @@
-﻿using API.RomanDate.ViewModels.Base;
+﻿using System.Text.Json.Serialization;
+using API.RomanDate.ViewModels.Base;
 
 namespace API.RomanDate.ViewModels.Calendar
 {
@@ -8,6 +9,8 @@ namespace API.RomanDate.ViewModels.Calendar
         public string NundinalLetter { get; set; } = "";
         public bool IsNundinae { get; set; }
         public string Day { get; set; } = "";
-        public Navigation _Navigation { get; set; } = new Navigation();
+
+        [JsonPropertyName("_navigation")]
+        public Navigation Navigation { get; set; } = new Navigation();
     }
 }

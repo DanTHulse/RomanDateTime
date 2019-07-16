@@ -29,7 +29,8 @@ namespace API.RomanDate.Controllers
         {
             var romanDate = this._romanDateService.GetCurrentDate();
 
-            return this.Ok<CalendarDayViewModel>(romanDate);
+            //return this.Ok<CalendarDayViewModel>(romanDate);
+            return this.Ok(new CalendarDayViewModel());
         }
 
         [HttpGet("{era}/{year}")]
