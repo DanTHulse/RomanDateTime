@@ -19,7 +19,7 @@ namespace API.RomanDate.Controllers.Base
 
         public new OkObjectResult Ok() => base.Ok(new OkResponse());
 
-        //public override OkObjectResult Ok(object result) => base.Ok(new OkResponse(result));
+        public override OkObjectResult Ok(object result) => base.Ok(new OkResponse(result));
 
         public OkObjectResult Ok<T>(object result)
         {
