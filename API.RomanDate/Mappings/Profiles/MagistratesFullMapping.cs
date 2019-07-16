@@ -7,7 +7,7 @@ namespace API.RomanDate.Mappings.Profiles
     {
         public MagistratesFullMapping()
         {
-            RegisterMap(dest => dest.ElectedOffices, src => src.ElectedOffices);
+            this.RegisterMap(dest => dest.ElectedOffices, src => src.ElectedOffices);
         }
     }
 }

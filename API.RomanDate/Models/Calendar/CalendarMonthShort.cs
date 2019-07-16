@@ -1,5 +1,4 @@
-﻿using API.RomanDate.Models.Base;
-using RomanDate.Enums;
+﻿using RomanDate.Enums;
 
 namespace API.RomanDate.Models.Calendar
 {
@@ -7,6 +6,5 @@ namespace API.RomanDate.Models.Calendar
     {
         public int Number { get; set; }
         public Months Month { get; set; }
-        public NavigationModel _Navigation { get; set; } = new NavigationModel();
     }
 }

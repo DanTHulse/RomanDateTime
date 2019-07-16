@@ -13,25 +13,16 @@ namespace API.RomanDate.Mappings
 
         public ModelMapper()
         {
-            _profile = new DefaultProfile();
-            _map = _profile.CreateMap<TSourceModel, TDestModel>();
+            this._profile = new DefaultProfile();
+            this._map = this._profile.CreateMap<TSourceModel, TDestModel>();
         }
 
-        public void RegisterMap<TDest, TSource>(Expression<Func<TDestModel, TDest>> dest, Expression<Func<TSourceModel, TSource>> source)
-        {
-            _map.ForMember(dest, opt => opt.MapFrom(source));
-        }
+        public void RegisterMap<TDest, TSource>(Expression<Func<TDestModel, TDest>> dest, Expression<Func<TSourceModel, TSource>> source) => this._map.ForMember(dest, opt => opt.MapFrom(source));
 
-        public void Ignore<TDest>(Expression<Func<TDestModel, TDest>> dest)
-        {
-            _map.ForMember(dest, opt => opt.Ignore());
-        }
+        public void Ignore<TDest>(Expression<Func<TDestModel, TDest>> dest) => this._map.ForMember(dest, opt => opt.Ignore());
 
-        public void ReverseMap()
-        {
-            _map.ReverseMap();
-        }
+        public void ReverseMap() => this._map.ReverseMap();
 
-        public Profile Build() => _profile;
+        public Profile Build() => this._profile;
     }
 }

@@ -9,9 +9,6 @@ namespace API.RomanDate.Helpers
         /// </summary>
         /// <param name="dateTime">The DateTime to retrieve the start of the month from</param>
         /// <returns>A DateTime representing the start of the month for the provided Date</returns>
-        public static DateTime StartOfMonth(this DateTime date)
-        {
-            return new DateTime(date.Year, date.Month, 1);
-        }
+        public static DateTime StartOfMonth(this DateTime date) => new DateTime(date.Year, date.Month, 1);
     }
 }

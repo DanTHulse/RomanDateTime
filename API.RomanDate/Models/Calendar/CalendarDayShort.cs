@@ -1,5 +1,4 @@
 ﻿using System;
-using API.RomanDate.Models.Base;
 using RomanDate.Enums;
 
 namespace API.RomanDate.Models.Calendar
@@ -10,6 +9,5 @@ namespace API.RomanDate.Models.Calendar
         public NundinalLetters NundinalLetter { get; set; }
         public bool IsNundinae { get; set; }
         public string Day { get; set; } = "";
-        public NavigationModel _Navigation { get; set; } = new NavigationModel();
     }
 }

@@ -6,6 +6,7 @@ using API.RomanDate.Services.Interfaces;
 using RomanDate;
 using RomanDate.Enums;
 using RomanDate.Helpers.RomanDate;
+using RomanDate.Helpers.RomanNumerals;
 
 namespace API.RomanDate.Services
 {

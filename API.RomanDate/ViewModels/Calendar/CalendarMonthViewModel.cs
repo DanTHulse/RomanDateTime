@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using API.RomanDate.Models.Base;
+using API.RomanDate.ViewModels.Base;
 
 namespace API.RomanDate.ViewModels.Calendar
 {
@@ -10,6 +10,6 @@ namespace API.RomanDate.ViewModels.Calendar
         public string AucYear { get; set; } = "";
         public string Era { get; set; } = "";
         public IEnumerable<CalendarDayShortViewModel> Days { get; set; } = new List<CalendarDayShortViewModel>();
-        public NavigationModel _Navigation { get; set; } = new NavigationModel();
+        public Navigation _Navigation { get; set; } = new Navigation();
     }
 }

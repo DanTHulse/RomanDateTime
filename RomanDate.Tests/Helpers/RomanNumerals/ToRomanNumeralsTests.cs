@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RomanDate.Enums;
+using RomanDate.Helpers.RomanNumerals;
 
 namespace RomanDate.Tests
 {

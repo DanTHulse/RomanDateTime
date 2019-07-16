@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using API.RomanDate.Controllers.Base;
 using API.RomanDate.Mappings.Interfaces;
 using API.RomanDate.Services.Interfaces;
@@ -33,25 +32,13 @@ namespace API.RomanDate.Controllers
             return this.Ok<CalendarDayViewModel>(romanDate);
         }
 
-        [HttpGet("full/{era}/{date}")]
-        public ActionResult<CalendarDayViewModel> GetRomanDateTime([FromRoute]Eras era, [FromRoute]DateTime date)
-        {
-            var romanDate = this._romanDateService.GetRomanDate(era, date);
-
-            return this.Ok<CalendarDayViewModel>(romanDate);
-        }
-
         [HttpGet("{era}/{year}")]
-        public ActionResult<CalendarYearViewModel> GetCalendarYear([FromRoute]Eras era, [FromRoute]int year)
-        {
-            throw new NotImplementedException();
-        }
+        public ActionResult<CalendarYearViewModel> GetCalendarYear([FromRoute]Eras era, [FromRoute]int year) => throw new NotImplementedException();
 
         [HttpGet("{era}/{year}/{month}")]
         public ActionResult<CalendarMonthViewModel> GetCalendarMonth([FromRoute]Eras era, [FromRoute]int year, [FromRoute]Months month)
         {
             var calendarMonth = this._calendarService.ReturnCalendarMonth(era, year, month);
-            calendarMonth.Days = calendarMonth.Days.Select(s => { s._Navigation._Ref = $"{this.RequestUrl}{s.CommonEraDate.Day}"; return s; });
 
             return this.Ok<CalendarMonthViewModel>(calendarMonth);
         }
@@ -59,7 +46,7 @@ namespace API.RomanDate.Controllers
         [HttpGet("{era}/{year}/{month}/{day}")]
         public ActionResult<CalendarDayViewModel> GetCalendarDay([FromRoute]Eras era, [FromRoute]int year, [FromRoute]Months month, [FromRoute]int day)
         {
-            var romanDate = this._romanDateService.GetRomanDate(era, new DateTime(year, (int)month, day));
+            var romanDate = this._romanDateService.GetRomanDate(era, year, month, day);
 
             return this.Ok<CalendarDayViewModel>(romanDate);
         }

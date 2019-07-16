@@ -8,8 +8,8 @@ namespace API.RomanDate.Mappings.Profiles
     {
         public MagistratesSimpleMapping()
         {
-            RegisterMap(dest => dest.Name, src => src.FullName);
-            RegisterMap(dest => dest.Office, src => src.Office.GetDescription());
+            this.RegisterMap(dest => dest.Name, src => src.FullName);
+            this.RegisterMap(dest => dest.Office, src => src.Office.GetDescription());
         }
     }
 }

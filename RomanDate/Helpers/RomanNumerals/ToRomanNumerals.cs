@@ -3,7 +3,7 @@ using System.Text;
 using RomanDate.Enums;
 using RomanDate.Extensions;
 
-namespace RomanDate
+namespace RomanDate.Helpers.RomanNumerals
 {
     public static partial class RomanNumerals
     {

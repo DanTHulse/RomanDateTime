@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace RomanDate
+namespace RomanDate.Helpers.RomanNumerals
 {
     public static partial class RomanNumerals
     {

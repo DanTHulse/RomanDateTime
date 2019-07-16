@@ -42,10 +42,10 @@ namespace RomanDate.Definitions
         /// <returns>A list of <see cref="Magistrate"/> for the specified office elected that year</returns>
         public IEnumerable<Magistrate>? GetMagistrates(Office office)
         {
-            if (AucYear == null)
+            if (this.AucYear == null)
                 return null;
 
-            var year = AucYear;
+            var year = this.AucYear;
             return this.Magistrates
                 .WhereIf(office != Office.NotSet, w => w.Office == office)
                 .Select(s => { s.AucYear = year; return s; });
@@ -56,7 +56,7 @@ namespace RomanDate.Definitions
         /// </summary>
         public IEnumerable<Magistrate>? GetRulingMagistrates()
         {
-            if (AucYear == null)
+            if (this.AucYear == null)
                 return null;
 
             return this.YearOf switch

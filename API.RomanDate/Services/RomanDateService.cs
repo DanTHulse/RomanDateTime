@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using API.RomanDate.Helpers;
 using API.RomanDate.Models.Calendar;
@@ -6,6 +5,7 @@ using API.RomanDate.Services.Interfaces;
 using RomanDate;
 using RomanDate.Enums;
 using RomanDate.Helpers.RomanDate;
+using RomanDate.Helpers.RomanNumerals;
 
 namespace API.RomanDate.Services
 {
@@ -22,8 +22,8 @@ namespace API.RomanDate.Services
 
             return new CalendarDay
             {
-                AucYear = romanDate.AucYear,
-                Year = romanDate.Year,
+                AucYear = RomanNumerals.ToInt(romanDate.AucYear),
+                Year = RomanNumerals.ToInt(romanDate.Year),
                 Day = romanDate.Day,
                 Month = romanDate.ActualMonth,
                 IsNundinae = romanDate.IsNundinae(),
@@ -31,14 +31,14 @@ namespace API.RomanDate.Services
             };
         }
 
-        public CalendarDay GetRomanDate(Eras era, DateTime date)
+        public CalendarDay GetRomanDate(Eras era, int year, Months month, int day)
         {
-            var romanDate = new RomanDateTime(date, era);
+            var romanDate = new RomanDateTime(year, (int)month, day, era);
 
             return new CalendarDay
             {
-                AucYear = romanDate.AucYear,
-                Year = romanDate.Year,
+                AucYear = RomanNumerals.ToInt(romanDate.AucYear),
+                Year = RomanNumerals.ToInt(romanDate.Year),
                 Day = romanDate.Day,
                 Month = romanDate.ActualMonth,
                 IsNundinae = romanDate.IsNundinae(),
