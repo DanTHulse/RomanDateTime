@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using API.RomanDate.Controllers.Base.ApiResponses;
 using API.RomanDate.Mappings.Interfaces;
-using API.RomanDate.ViewModels.Calendar;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.RomanDate.Controllers.Base
@@ -23,7 +22,7 @@ namespace API.RomanDate.Controllers.Base
 
         public OkObjectResult Ok<T>(object result)
         {
-            var mappedResult = this._mapper.Map<CalendarDayViewModel>(result);
+            var mappedResult = this._mapper.Map<T>(result);
 
             if (mappedResult == null)
                 throw new ArgumentNullException("Results were returned but an error occurred when mapping to view model");

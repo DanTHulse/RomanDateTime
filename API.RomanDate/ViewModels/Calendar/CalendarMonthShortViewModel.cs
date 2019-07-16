@@ -9,6 +9,6 @@ namespace API.RomanDate.ViewModels.Calendar
         public string Month { get; set; } = "";
 
         [JsonPropertyName("_navigation")]
-        public Navigation Navigation { get; set; } = new Navigation();
+        public Navigation? Navigation { get; set; }
     }
 }

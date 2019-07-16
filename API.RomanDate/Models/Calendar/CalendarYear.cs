@@ -5,11 +5,13 @@ namespace API.RomanDate.Models.Calendar
 {
     public class CalendarYear
     {
-        public string Year { get; set; } = "";
-        public string AucYear { get; set; } = "";
+        public int Year { get; set; }
+        public string YearNumerals { get; set; } = "";
         public Eras Era { get; set; }
+        public int AucYear { get; set; }
+        public string AucYearNumerals { get; set; } = "";
         public string ConsularYear { get; set; } = "";
-        public IEnumerable<CalendarMonthShort> Months { get; set; } = new List<CalendarMonthShort>();
+        public IEnumerable<CalendarMonth> Months { get; set; } = new List<CalendarMonth>();
         public IEnumerable<MagistratesFull> RulingMagistrates { get; set; } = new List<MagistratesFull>();
         public IEnumerable<MagistratesFull> OtherMagistrates { get; set; } = new List<MagistratesFull>();
     }

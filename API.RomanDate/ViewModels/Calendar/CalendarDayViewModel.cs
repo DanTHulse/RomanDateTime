@@ -15,6 +15,6 @@ namespace API.RomanDate.ViewModels.Calendar
         public IEnumerable<CalendarEventViewModel> Events { get; set; } = new List<CalendarEventViewModel>();
 
         [JsonPropertyName("_navigation")]
-        public Navigation Navigation { get; set; } = new Navigation();
+        public Navigation? Navigation { get; set; }
     }
 }

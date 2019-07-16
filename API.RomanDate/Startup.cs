@@ -35,8 +35,6 @@ namespace API.RomanDate
                 config.AddProfile(new MagistratesSimpleMapping().Build());
                 config.AddProfile(new MagistratesFullMapping().Build());
                 config.AddProfile(new ElectedOfficeMapping().Build());
-
-                config.AddProfile(new RomanMonthsMapping().Build());
             });
 
             builder.AddEnvironmentVariables();

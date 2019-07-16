@@ -13,6 +13,6 @@ namespace API.RomanDate.ViewModels.Calendar
         public IEnumerable<CalendarDayShortViewModel> Days { get; set; } = new List<CalendarDayShortViewModel>();
 
         [JsonPropertyName("_navigation")]
-        public Navigation Navigation { get; set; } = new Navigation();
+        public Navigation? Navigation { get; set; }
     }
 }

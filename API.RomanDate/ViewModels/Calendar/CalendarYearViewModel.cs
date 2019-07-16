@@ -15,6 +15,6 @@ namespace API.RomanDate.ViewModels.Calendar
         public IEnumerable<MagistrateViewModel> OtherMagistrates { get; set; } = new List<MagistrateViewModel>();
 
         [JsonPropertyName("_navigation")]
-        public Navigation Navigation { get; set; } = new Navigation();
+        public Navigation? Navigation { get; set; }
     }
 }

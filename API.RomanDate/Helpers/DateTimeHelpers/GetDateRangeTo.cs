@@ -23,7 +23,7 @@ namespace API.RomanDate.Helpers
 
             if (inclusive)
             {
-                dateList.Add(date);
+                dateList.Add(toDate);
             }
 
             return dateList;
