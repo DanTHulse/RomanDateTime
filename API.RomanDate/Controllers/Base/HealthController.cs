@@ -1,8 +1,7 @@
-﻿using API.RomanDate.Controllers.Base;
-using API.RomanDate.Mappings.Interfaces;
+﻿using API.RomanDate.Mappings.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.RomanDate.Controllers
+namespace API.RomanDate.Controllers.Base
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -6,6 +6,7 @@ namespace API.RomanDate.Services.Interfaces
 {
     public interface ICalendarService : ITransient
     {
+        CalendarDay ReturnCurrentDate();
         CalendarYear ReturnCalendarYear(Eras era, int year);
         CalendarMonth ReturnCalendarMonth(Eras era, int year, Months month);
         CalendarDay ReturnCalendarDay(Eras era, int year, Months month, int day);

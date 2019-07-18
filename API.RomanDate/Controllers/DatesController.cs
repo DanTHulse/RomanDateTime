@@ -1,6 +1,5 @@
 ﻿using API.RomanDate.Controllers.Base;
 using API.RomanDate.Mappings.Interfaces;
-using API.RomanDate.Models.Calendar;
 using API.RomanDate.Services.Interfaces;
 using API.RomanDate.ViewModels.Calendar;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +23,9 @@ namespace API.RomanDate.Controllers
         [HttpGet("current")]
         public ActionResult<CalendarDayViewModel> Current()
         {
-            var obj = new CalendarDay();
-            return this.Ok<CalendarDayViewModel>(obj);
+            var current = this._calendarService.ReturnCurrentDate();
+
+            return this.Ok<CalendarDayViewModel>(current);
         }
 
         [HttpGet("{era}/{year}")]

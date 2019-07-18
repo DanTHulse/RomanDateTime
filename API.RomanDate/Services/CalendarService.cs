@@ -17,6 +17,13 @@ namespace API.RomanDate.Services
 
         }
 
+        public CalendarDay ReturnCurrentDate()
+        {
+            var romanDate = RomanDateTime.Now;
+
+            return ReturnDayData(romanDate);
+        }
+
         public CalendarYear ReturnCalendarYear(Eras era, int year)
         {
             var months = EnumHelpers.EnumToList<Months>();
@@ -71,6 +78,11 @@ namespace API.RomanDate.Services
         {
             var romanDate = new RomanDateTime(year, (int)month, day, era);
 
+            return ReturnDayData(romanDate);
+        }
+
+        private static CalendarDay ReturnDayData(RomanDateTime romanDate)
+        {
             return new CalendarDay
             {
                 AucYear = RomanNumerals.ToInt(romanDate.AucYear),
