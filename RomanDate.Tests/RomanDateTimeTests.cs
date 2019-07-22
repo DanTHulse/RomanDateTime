@@ -368,13 +368,45 @@ namespace RomanDate.Tests
         }
 
         [TestMethod]
-        public void Test()
+        public void RomanDateTime_AD_ComparesCorrectly()
         {
-            var test = new RomanDateTime(2019, 1, 12);
+            var pastDate = new RomanDateTime(2018, 1, 12);
+            var presentDate = new RomanDateTime(2019, 1, 12);
+            var futureDate = new RomanDateTime(2020, 1, 12);
 
-            (_, _, var day) = test;
+            var comparedDate = new RomanDateTime(2019, 1, 12);
 
-            Assert.AreEqual(day, 12);
+            Assert.AreEqual(0, comparedDate.CompareTo(presentDate));
+            Assert.AreEqual(-1, comparedDate.CompareTo(futureDate));
+            Assert.AreEqual(1, comparedDate.CompareTo(pastDate));
+        }
+
+        [TestMethod]
+        public void RomanDateTime_BC_ComparesCorrectly()
+        {
+            var pastDate = new RomanDateTime(202, 1, 12, Eras.BC);
+            var presentDate = new RomanDateTime(100, 1, 12, Eras.BC);
+            var futureDate = new RomanDateTime(50, 1, 12, Eras.BC);
+
+            var comparedDate = new RomanDateTime(100, 1, 12, Eras.BC);
+
+            Assert.AreEqual(0, comparedDate.CompareTo(presentDate));
+            Assert.AreEqual(-1, comparedDate.CompareTo(futureDate));
+            Assert.AreEqual(1, comparedDate.CompareTo(pastDate));
+        }
+
+        [TestMethod]
+        public void RomanDateTime_AD_BC_ComparesCorrectly()
+        {
+            var pastDate = new RomanDateTime(50, 1, 12, Eras.BC);
+            var presentDate = new RomanDateTime(2, 1, 12, Eras.BC);
+            var futureDate = new RomanDateTime(50, 1, 12, Eras.AD);
+
+            var comparedDate = new RomanDateTime(2, 1, 12, Eras.BC);
+
+            Assert.AreEqual(0, comparedDate.CompareTo(presentDate));
+            Assert.AreEqual(-1, comparedDate.CompareTo(futureDate));
+            Assert.AreEqual(1, comparedDate.CompareTo(pastDate));
         }
     }
 }

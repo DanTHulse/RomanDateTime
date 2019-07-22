@@ -10,7 +10,7 @@ namespace RomanDate
     /// <summary>
     /// Represents an instant in time, formatted with and using the rules of the Roman calendar post Julian reforms
     /// </summary>
-    public partial struct RomanDateTime
+    public partial struct RomanDateTime : IComparable<RomanDateTime>
     {
         /// <summary>
         /// Gets the year component of the Roman date represented by this instance in Roman Numerals.
@@ -255,5 +255,6 @@ namespace RomanDate
 
         #endregion
 
+        public int CompareTo(RomanDateTime obj) => ((IComparable)this.DateTimeData).CompareTo(obj.DateTimeData);
     }
 }
