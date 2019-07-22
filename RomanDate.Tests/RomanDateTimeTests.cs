@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NodaTime;
 using RomanDate.Enums;
 
 namespace RomanDate.Tests
@@ -407,6 +408,40 @@ namespace RomanDate.Tests
             Assert.AreEqual(0, comparedDate.CompareTo(presentDate));
             Assert.AreEqual(-1, comparedDate.CompareTo(futureDate));
             Assert.AreEqual(1, comparedDate.CompareTo(pastDate));
+        }
+
+        [TestMethod]
+        public void Conversion_To_DateTime()
+        {
+            var date = (DateTime)RomanDateTime.Now;
+
+            Assert.AreEqual(DateTime.Now.Date, date.Date);
+        }
+
+        [TestMethod]
+        public void Conversion_From_DateTime()
+        {
+            var date = (RomanDateTime)DateTime.Now;
+
+            Assert.AreEqual(RomanDateTime.Now.Date, date.Date);
+        }
+
+        [TestMethod]
+        public void Conversion_To_LocalDateTime()
+        {
+            var date = (LocalDateTime)new RomanDateTime(2019, 01, 01);
+            var compDate = new LocalDateTime(2019, 01, 01, 12, 12, 12);
+
+            Assert.AreEqual(compDate.Date, date.Date);
+        }
+
+        [TestMethod]
+        public void Conversion_From_LocalDateTime()
+        {
+            var date = (RomanDateTime)new LocalDateTime(2019, 01, 01, 12, 12, 12);
+            var compDate = new RomanDateTime(2019, 01, 01);
+
+            Assert.AreEqual(compDate.Date, date.Date);
         }
     }
 }

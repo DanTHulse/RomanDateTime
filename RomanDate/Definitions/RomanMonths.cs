@@ -116,5 +116,7 @@ namespace RomanDate.Definitions
         }
 
         public int CompareTo(RomanMonths other) => ((IComparable)(int)this.Month).CompareTo((int)other.Month);
+
+        public static explicit operator RomanMonths(int i) => GetRomanMonth(i);
     }
 }

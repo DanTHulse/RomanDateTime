@@ -256,5 +256,10 @@ namespace RomanDate
         #endregion
 
         public int CompareTo(RomanDateTime obj) => ((IComparable)this.DateTimeData).CompareTo(obj.DateTimeData);
+
+        public static explicit operator DateTime(RomanDateTime rdt) => rdt.ToDateTime().DateTime;
+        public static explicit operator LocalDateTime(RomanDateTime rdt) => rdt.DateTimeData;
+        public static explicit operator RomanDateTime(DateTime dt) => new RomanDateTime(dt);
+        public static explicit operator RomanDateTime(LocalDateTime ldt) => new RomanDateTime(ldt);
     }
 }
