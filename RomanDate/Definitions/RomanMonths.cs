@@ -7,7 +7,7 @@ namespace RomanDate.Definitions
     /// <summary>
     /// Represents a month used in the Roman calendar
     /// </summary>
-    public struct RomanMonths
+    public struct RomanMonths : IComparable<RomanMonths>
     {
         /// <summary>
         /// Gets an enum representation of the month.
@@ -114,5 +114,7 @@ namespace RomanDate.Definitions
                 _ => throw new InvalidOperationException("Not a valid value for RomanMonths [must be 1-12]")
             };
         }
+
+        public int CompareTo(RomanMonths other) => ((IComparable)(int)this.Month).CompareTo((int)other.Month);
     }
 }

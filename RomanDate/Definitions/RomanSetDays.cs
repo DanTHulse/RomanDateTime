@@ -6,7 +6,7 @@ namespace RomanDate.Definitions
     /// <summary>
     /// Represents a set day used to build the Roman representation of a day
     /// </summary>
-    public struct RomanSetDays
+    public struct RomanSetDays : IComparable<RomanSetDays>
     {
         /// <summary>
         /// Gets an enum representation of the set day.
@@ -51,5 +51,7 @@ namespace RomanDate.Definitions
                 _ => throw new InvalidOperationException("Not a valid value for RomanSetDays")
             };
         }
+
+        public int CompareTo(RomanSetDays other) => ((IComparable)(int)this.SetDay).CompareTo((int)other.SetDay);
     }
 }
