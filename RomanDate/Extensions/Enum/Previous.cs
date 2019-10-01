@@ -12,7 +12,7 @@ namespace RomanDate.Extensions
             var arr = (T[])Enum.GetValues(src.GetType());
             var j = Array.IndexOf<T>(arr, src) - 1;
 
-            return (j < 0) ? arr[arr.Length - 1] : arr[j];
+            return (j < 0) ? arr[^1] : arr[j];
         }
     }
 }

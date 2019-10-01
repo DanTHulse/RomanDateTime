@@ -258,9 +258,24 @@ namespace RomanDate
         public int CompareTo(RomanDateTime obj) => ((IComparable)this.DateTimeData).CompareTo(obj.DateTimeData);
         public bool Equals(RomanDateTime obj) => $"{this.Era} {this.Date} {this.Time}" == $"{obj.Era} {obj.Date} {obj.Time}";
 
-        public static explicit operator DateTime(RomanDateTime rdt) => rdt.ToDateTime().DateTime;
-        public static explicit operator LocalDateTime(RomanDateTime rdt) => rdt.DateTimeData;
-        public static explicit operator RomanDateTime(DateTime dt) => new RomanDateTime(dt);
-        public static explicit operator RomanDateTime(LocalDateTime ldt) => new RomanDateTime(ldt);
+        public static explicit operator DateTime(RomanDateTime rdt)
+        {
+            return rdt.ToDateTime().DateTime;
+        }
+
+        public static explicit operator LocalDateTime(RomanDateTime rdt)
+        {
+            return rdt.DateTimeData;
+        }
+
+        public static explicit operator RomanDateTime(DateTime dt)
+        {
+            return new RomanDateTime(dt);
+        }
+
+        public static explicit operator RomanDateTime(LocalDateTime ldt)
+        {
+            return new RomanDateTime(ldt);
+        }
     }
 }

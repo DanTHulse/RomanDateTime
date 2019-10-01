@@ -5,7 +5,7 @@ namespace API.RomanDate.Helpers.UrlHelpers
     public static class UrlNavigation
     {
 #if DEBUG
-        private readonly static string _baseUrl = "https://localhost:44368/api";
+        private static readonly string _baseUrl = "https://localhost:44368/api";
 #else
         private readonly static string _baseUrl = "https://localhost:44368/api";
 #endif

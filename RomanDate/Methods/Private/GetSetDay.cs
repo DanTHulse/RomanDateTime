@@ -9,7 +9,6 @@ namespace RomanDate
         private RomanSetDays GetSetDay()
         {
             var day = this.DateTimeData.Day;
-            var leapYear = this.DateTimeData.IsLeapYear();
             var cMonth = this.CalendarMonth;
 
             if (day.Between(cMonth.Kalendae, cMonth.Nonae, false) || day == cMonth.Nonae)
