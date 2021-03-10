@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "rxcuzpy1IxcJJWaZJAp2iyFRENbUxH8uhsb1BtCL/A6+YQS6bAbx7MCP0RoM3asHM+24PO1vUtgkPfqGaUOCAQ==",
+  "success": true,
+  "projectFilePath": "C:\\Source\\SHODAN\\RomanDateTime\\src\\RomanDateTime\\RomanDateTime.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\danny\\.nuget\\packages\\nodatime\\3.0.5\\nodatime.3.0.5.nupkg.sha512",
+    "C:\\Users\\danny\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}
